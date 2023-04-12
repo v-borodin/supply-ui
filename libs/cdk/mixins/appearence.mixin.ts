@@ -2,17 +2,17 @@ import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
 import {
   SupHasAppearance,
   SupAppearance,
-  SupCanAlterable,
+  SupManipulativeElement,
 } from '@supply/cdk/interfaces';
 
 type AppearanceCtor = SupConstructor<SupHasAppearance> &
   SupAbstractConstructor<SupHasAppearance>;
 
 export function supMixinAppearance<
-  TSuper extends SupAbstractConstructor<SupCanAlterable>
+  TSuper extends SupAbstractConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultAppearance?: SupAppearance): AppearanceCtor & TSuper;
 export function supMixinAppearance<
-  TSuper extends SupConstructor<SupCanAlterable>
+  TSuper extends SupConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultAppearance?: SupAppearance): AppearanceCtor & TSuper {
   return class MixinAppearance extends Super implements SupHasAppearance {
     private _appearance: SupAppearance;

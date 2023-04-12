@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 import {
-  SupAbstractElementBinder,
+  SupAbstractElementBase,
   supMixinAppearance,
   supMixinLoadable,
   supMixinSize,
@@ -13,8 +13,8 @@ import {
 import { SUP_LOADER_OPTIONS, SupLoaderOptions } from './loader.helpers';
 import { NgIf } from '@angular/common';
 
-const SupLoaderMixin = supMixinAppearance(
-  supMixinSize(supMixinLoadable(SupAbstractElementBinder, true))
+const LoaderMixin = supMixinAppearance(
+  supMixinSize(supMixinLoadable(SupAbstractElementBase, true))
 );
 
 @Component({
@@ -29,7 +29,7 @@ const SupLoaderMixin = supMixinAppearance(
   imports: [NgIf],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SupLoaderComponent extends SupLoaderMixin {
+export class SupLoaderComponent extends LoaderMixin {
   @Input()
   override size = this.options.size;
 

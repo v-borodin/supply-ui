@@ -1,15 +1,18 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
-import { SupCanAlterable, SupHasSize, SupSize } from '@supply/cdk/interfaces';
+import {
+  SupManipulativeElement,
+  SupHasSize,
+  SupSize,
+} from '@supply/cdk/interfaces';
 
 type SizeCtor = SupAbstractConstructor<SupHasSize>;
 
 export function supMixinSize<
-  TSuper extends SupAbstractConstructor<SupCanAlterable>
+  TSuper extends SupAbstractConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultSize?: SupSize): SizeCtor & TSuper;
-export function supMixinSize<TSuper extends SupConstructor<SupCanAlterable>>(
-  Super: TSuper,
-  defaultSize?: SupSize
-): SizeCtor & TSuper {
+export function supMixinSize<
+  TSuper extends SupConstructor<SupManipulativeElement>
+>(Super: TSuper, defaultSize?: SupSize): SizeCtor & TSuper {
   return class MixinSize extends Super implements SupHasSize {
     private _size: SupSize;
 

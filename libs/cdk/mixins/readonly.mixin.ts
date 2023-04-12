@@ -4,16 +4,16 @@ import {
   SupConstructor,
   supCoerceBooleanProperty,
   SupImplicitBoolean,
-  SupCanAlterable,
+  SupManipulativeElement,
 } from '@supply/cdk';
 
 type CanReadonlyCtor = SupAbstractConstructor<SupCanReadonly>;
 
 export function supMixinReadonly<
-  TSuper extends SupAbstractConstructor<SupCanAlterable>
+  TSuper extends SupAbstractConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultReadonly?: boolean): CanReadonlyCtor & TSuper;
 export function supMixinReadonly<
-  TSuper extends SupConstructor<SupCanAlterable>
+  TSuper extends SupConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultReadonly = false): CanReadonlyCtor & TSuper {
   return class MixinReadonly extends Super implements SupCanReadonly {
     private _readonly = defaultReadonly;

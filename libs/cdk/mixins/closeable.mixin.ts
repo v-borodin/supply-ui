@@ -5,16 +5,15 @@ export interface CanClose {
   close: EventEmitter<void>;
 }
 
-type CloseConstructor = SupConstructor<CanClose> &
-  SupAbstractConstructor<CanClose>;
+type CloseCtor = SupConstructor<CanClose> & SupAbstractConstructor<CanClose>;
 
 export function supMixinClose<TSuper extends SupAbstractConstructor>(
   Super: TSuper
-): CloseConstructor & TSuper;
+): CloseCtor & TSuper;
 export function supMixinClose<TSuper extends SupConstructor>(
   Super: TSuper
-): CloseConstructor & TSuper {
-  return class MixinCloseFactory extends Super implements CanClose {
+): CloseCtor & TSuper {
+  return class MixinClose extends Super implements CanClose {
     close = new EventEmitter<void>();
 
     constructor(...args: any[]) {

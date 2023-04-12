@@ -36,9 +36,9 @@ $_default-interactive-classes: (
 /* -------------------------------- */
 
 /**
- * @mixin {interactive-context} - mixes the constituent transition properties (property, duration, function, delay) to the class
+ * @mixin {transition-context} - mixes the constituent transition properties (property, duration, function, delay) to the class
  */
-@mixin interactive-context($transition: $_default-transition-options) {
+@mixin transition-context($transition: $_default-transition-options) {
   @if internal.assert-type($transition, map) {
     $props: internal.get-options($transition, $_default-transition-options);
 

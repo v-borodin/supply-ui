@@ -1,15 +1,18 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
-import { SupCanAlterable, SupHasShape, SupShape } from '@supply/cdk/interfaces';
+import {
+  SupManipulativeElement,
+  SupHasShape,
+  SupShape,
+} from '@supply/cdk/interfaces';
 
 type ShapeCtor = SupAbstractConstructor<SupHasShape>;
 
 export function supMixinShape<
-  TSuper extends SupAbstractConstructor<SupCanAlterable>
+  TSuper extends SupAbstractConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultShape?: SupShape): ShapeCtor & TSuper;
-export function supMixinShape<TSuper extends SupConstructor<SupCanAlterable>>(
-  Super: TSuper,
-  defaultShape?: SupShape
-): ShapeCtor & TSuper {
+export function supMixinShape<
+  TSuper extends SupConstructor<SupManipulativeElement>
+>(Super: TSuper, defaultShape?: SupShape): ShapeCtor & TSuper {
   return class MixinShape extends Super implements SupHasShape {
     private _shape: SupShape;
 

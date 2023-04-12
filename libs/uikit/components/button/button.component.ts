@@ -10,15 +10,15 @@ import {
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { SUP_BUTTON_OPTIONS, SupButtonOptions } from './button.helpers';
 import {
-  SupAbstractElementBinder,
+  SupAbstractElementBase,
   supMixinCustomized,
   supMixinInteractive,
   supMixinLoadable,
 } from '@supply/cdk';
-import { SupLoaderComponent } from '@supply/uikit/components';
+import { SupLoaderComponent } from '@supply/uikit/components/loader';
 
-const SupButtonMixin = supMixinInteractive(
-  supMixinLoadable(supMixinCustomized(SupAbstractElementBinder))
+const ButtonMixin = supMixinInteractive(
+  supMixinLoadable(supMixinCustomized(SupAbstractElementBase))
 );
 
 @Component({
@@ -35,7 +35,7 @@ const SupButtonMixin = supMixinInteractive(
   imports: [NgIf, NgTemplateOutlet, SupLoaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SupButtonComponent extends SupButtonMixin {
+export class SupButtonComponent extends ButtonMixin {
   @Input()
   override appearance = this.options.appearance;
 

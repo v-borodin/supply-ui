@@ -1,7 +1,7 @@
 @use "../../styles/supply-base" as sup;
 
 :host {
-  @include sup.interactive-context($transition: (properties: (border, box-shadow))) {
+  @include sup.transition-context($transition: (properties: (border, box-shadow))) {
     @include sup.hover {
       border: 1px solid var(--sup-color-neutral-6);
     }

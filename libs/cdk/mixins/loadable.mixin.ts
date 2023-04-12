@@ -1,13 +1,13 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
-import { SupCanLoadable, SupCanAlterable } from '@supply/cdk/interfaces';
+import { SupCanLoadable, SupManipulativeElement } from '@supply/cdk/interfaces';
 
 type LoadableCtor = SupAbstractConstructor<SupCanLoadable>;
 
 export function supMixinLoadable<
-  TSuper extends SupAbstractConstructor<SupCanAlterable>
+  TSuper extends SupAbstractConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultLoading?: boolean): LoadableCtor & TSuper;
 export function supMixinLoadable<
-  TSuper extends SupConstructor<SupCanAlterable>
+  TSuper extends SupConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultLoading = false): LoadableCtor & TSuper {
   return class MixinLoadable extends Super implements SupCanLoadable {
     private _loading = defaultLoading;

@@ -4,7 +4,6 @@ $icon-margin: 0.5rem;
 
 :host {
   @include sup.reset-button;
-  @include sup.common-shape-context;
 
   @include sup.attr-disabled {
     cursor: default;
@@ -20,10 +19,22 @@ $icon-margin: 0.5rem;
   touch-action: manipulation;
 
   &.sup-size-md {
-    height: 44px;
+    height: 2.75rem;
     padding: 0 1.25rem;
     font-weight: 600;
     font-size: 14px;
+  }
+
+  &.sup-shape-rounded {
+    border-radius: var(--sup-radius-medium, 0.50rem);
+  }
+
+  &.sup-shape-square {
+    border-radius: 0;
+  }
+
+  &.sup-shape-circle {
+    border-radius: 50%;
   }
 
   &.sup-appearance-primary {

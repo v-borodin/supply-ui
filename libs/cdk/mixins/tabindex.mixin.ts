@@ -1,17 +1,17 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
 import {
   SupCanDisable,
-  SupCanAlterable,
+  SupManipulativeElement,
   SupHasTabIndex,
 } from '@supply/cdk/interfaces';
 
 type TabIndexCtor = SupAbstractConstructor<SupHasTabIndex>;
 
 export function supMixinTabIndex<
-  TSuper extends SupAbstractConstructor<SupCanDisable & SupCanAlterable>
+  TSuper extends SupAbstractConstructor<SupCanDisable & SupManipulativeElement>
 >(Super: TSuper, defaultTabIndex?: number): TabIndexCtor & TSuper;
 export function supMixinTabIndex<
-  TSuper extends SupConstructor<SupCanDisable & SupCanAlterable>
+  TSuper extends SupConstructor<SupCanDisable & SupManipulativeElement>
 >(Super: TSuper, defaultTabIndex = 0): TabIndexCtor & TSuper {
   return class MixinTabIndex extends Super implements SupHasTabIndex {
     private _tabIndex: number = defaultTabIndex;

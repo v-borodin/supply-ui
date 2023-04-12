@@ -1,24 +1,22 @@
-import { ElementRef, inject, Renderer2 } from '@angular/core';
-import { SupClassChanges, SupCanAlterable } from '@supply/cdk/interfaces';
+import { ElementRef, inject } from '@angular/core';
+import {
+  SupClassChanges,
+  SupManipulativeElement,
+} from '@supply/cdk/interfaces';
 
-export abstract class SupAbstractElementBinder implements SupCanAlterable {
+export abstract class SupAbstractElementBase implements SupManipulativeElement {
   readonly elementRef = inject(ElementRef);
-
-  private readonly renderer = inject(Renderer2);
 
   private get nativeElement(): Element {
     return this.elementRef.nativeElement;
   }
 
   setAttribute(attributeName: string, value: string): void {
-    this.renderer.setAttribute(this.nativeElement, attributeName, value);
+    this.nativeElement.setAttribute(attributeName, value);
   }
 
-  toggleClass(className: string, toggle: boolean): void {
-    this.renderer[toggle ? 'addClass' : 'removeClass'](
-      this.nativeElement,
-      className
-    );
+  toggleClass(className: string, force: boolean): void {
+    this.nativeElement.classList.toggle(className, force);
   }
 
   changeClass({ current, previous }: SupClassChanges): void {
@@ -26,14 +24,12 @@ export abstract class SupAbstractElementBinder implements SupCanAlterable {
       return;
     }
 
-    const { nativeElement, renderer } = this;
-
     if (previous) {
-      renderer.removeClass(nativeElement, previous);
+      this.nativeElement.classList.remove(previous);
     }
 
     if (current) {
-      renderer.addClass(nativeElement, current);
+      this.nativeElement.classList.add(current);
     }
   }
 }

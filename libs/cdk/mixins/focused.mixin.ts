@@ -2,16 +2,16 @@ import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
 import {
   SupCanDisable,
   SupCanFocus,
-  SupCanAlterable,
+  SupManipulativeElement,
 } from '@supply/cdk/interfaces';
 
 type CanFocusCtor = SupAbstractConstructor<SupCanFocus>;
 
 export function supMixinFocused<
-  TSuper extends SupAbstractConstructor<SupCanDisable & SupCanAlterable>
+  TSuper extends SupAbstractConstructor<SupCanDisable & SupManipulativeElement>
 >(Super: TSuper, defaultFocused?: boolean): CanFocusCtor & TSuper;
 export function supMixinFocused<
-  TSuper extends SupConstructor<SupCanDisable & SupCanAlterable>
+  TSuper extends SupConstructor<SupCanDisable & SupManipulativeElement>
 >(Super: TSuper, defaultFocused = false): CanFocusCtor & TSuper {
   return class MixinFocused extends Super implements SupCanFocus {
     private _focused = defaultFocused;

@@ -4,15 +4,15 @@ import {
   supCoerceBooleanProperty,
   SupImplicitBoolean,
 } from '@supply/cdk/utils';
-import { SupCanDisable, SupCanAlterable } from '@supply/cdk/interfaces';
+import { SupCanDisable, SupManipulativeElement } from '@supply/cdk/interfaces';
 
 type CanDisableCtor = SupAbstractConstructor<SupCanDisable>;
 
 export function supMixinDisabled<
-  TSuper extends SupAbstractConstructor<SupCanAlterable>
+  TSuper extends SupAbstractConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultDisabled?: boolean): CanDisableCtor & TSuper;
 export function supMixinDisabled<
-  TSuper extends SupConstructor<SupCanAlterable>
+  TSuper extends SupConstructor<SupManipulativeElement>
 >(Super: TSuper, defaultDisabled = false): CanDisableCtor & TSuper {
   return class MixinDisabled extends Super implements SupCanDisable {
     private _disabled = defaultDisabled;

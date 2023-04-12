@@ -38,21 +38,29 @@ export interface SupCustomizedElement
     SupHasSize,
     SupHasShape {}
 
+export interface SupHasElementRef {
+  readonly elementRef: ElementRef;
+}
+
 export type SupClassChanges = {
   readonly current: string;
 
   readonly previous: string;
 };
 
-export interface SupCanAlterable {
-  readonly elementRef: ElementRef;
-
-  toggleClass(className: string, toggle: boolean): void;
+export interface SupManipulativeElement extends SupHasElementRef {
+  toggleClass(className: string, force: boolean): void;
 
   changeClass(changes: SupClassChanges): void;
 
   setAttribute(attributeName: string, value: string): void;
 }
+
+export interface SupInteractiveElement
+  extends SupCanFocus,
+    SupCanDisable,
+    SupHasTabIndex,
+    SupHasId<string> {}
 
 export interface SupCanDisable {
   disabled: boolean;
@@ -68,15 +76,9 @@ export interface SupHasTabIndex {
   defaultTabIndex: number;
 }
 
-export interface SupHasId {
-  id: string;
+export interface SupHasId<T> {
+  id: T;
 }
-
-export interface SupInteractiveElement
-  extends SupCanFocus,
-    SupCanDisable,
-    SupHasTabIndex,
-    SupHasId {}
 
 export interface SupCanLoadable {
   loading: boolean;

@@ -5,6 +5,7 @@ import {
   SupButtonComponent,
   SupInputComponent,
   SupLabelComponent,
+  SupNotificationComponent,
   SupTextInputComponent,
 } from '@supply/uikit';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SupLabelComponent,
     FormsModule,
     ReactiveFormsModule,
+    SupNotificationComponent,
   ],
   bootstrap: [AppComponent],
 })

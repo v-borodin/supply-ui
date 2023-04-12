@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.json",
+  "exclude": [
+    "libs/**/test.ts",
+    "**/*.spec.ts"
+  ],
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "declaration": true,
+    "declarationMap": true,
+    "inlineSources": true,
+    "types": [],
+    "paths": {
+      "@supply/cdk/*": [
+        "./dist/cdk/*"
+      ],
+      "@supply/cdk": [
+        "./dist/cdk/index"
+      ]
+    }
+  },
+  "include": [
+    "**/*.ts"
+  ]
+}

@@ -1,0 +1,198 @@
+@use 'sass:map';
+@use 'utils';
+@use '../functions/internal';
+
+/* -------------------------------- */
+/* Variables */
+/* -------------------------------- */
+
+/*
+ @private default transition options
+ */
+$_default-transition-options: (
+  properties: (color, background, opacity),
+  duration: 0.2s,
+  function: ease-in-out,
+  /* @see utils.scss (@mixin transition) for details*/
+  delay: 0
+);
+
+/*
+ @private default transition options
+ */
+$_default-interactive-classes: (
+  disabled: 'disabled',
+  focus: 'focused',
+  loading: 'loading',
+  invalid: 'invalid',
+  readonly: 'readonly',
+  selected: 'selected',
+  hover-inhibit: 'hover-inhibit',
+  active-inhibit: 'active-inhibit'
+);
+
+/* -------------------------------- */
+/* Base mixin for elements that can be interactive */
+/* -------------------------------- */
+
+/**
+ * @mixin {interactive-context} - mixes the constituent transition properties (property, duration, function, delay) to the class
+ */
+@mixin interactive-context($transition: $_default-transition-options) {
+  @if internal.assert-type($transition, map) {
+    $props: internal.get-options($transition, $_default-transition-options);
+
+    @include utils.transition($props...);
+  }
+
+  @content;
+}
+
+/* -------------------------------- */
+/* Interactive states mixins */
+/* -------------------------------- */
+
+@mixin hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin focus {
+  &:focus, &.focused {
+    @content;
+  }
+}
+
+@mixin active {
+  &:active {
+    @content;
+  }
+}
+
+//@mixin hover {
+//  /* solves sticky problem */
+//  @media (hover: hover) {
+//    $focused: map.get($_default-interactive-classes, focus);
+//    $hover-inhibit: map.get($_default-interactive-classes, hover-inhibit);
+//
+//    &:hover:not(#{$hover-inhibit}):not(#{$focused}) {
+//      @content;
+//    }
+//  }
+//}
+//
+//@mixin focus($native: false, $hover-suppress: false) {
+//  @if (internal.assert-type($native, bool)) and $native {
+//    &:focus {
+//      @content;
+//    }
+//  }
+//
+//  @if internal.assert-type($hover-suppress, bool) {
+//    $class-focus: map.get($_default-interactive-classes, focus);
+//    &:focus, &.#{$class-focus}, #{if($hover-suppress, '&:focus:hover', null)} {
+//      @content;
+//    }
+//  }
+//}
+//
+//@mixin active {
+//  $active-inhibit: map.get($_default-interactive-classes, active-inhibit);
+//
+//  &:active:not(#{$active-inhibit}) {
+//    @content;
+//  }
+//}
+
+@mixin focus-visible {
+  &:focus-visible, &:-moz-focusring {
+    @content;
+  }
+}
+
+/**
+ * warning! This mixin is nos supported for <input type="radio"> by [Safari, Safari on iOS]
+ */
+@mixin indeterminate {
+  &:indeterminate {
+    @content;
+  }
+}
+
+@mixin disabled($native: false, $loading-prevent: false) {
+  @if (internal.assert-type($native, bool)) and $native {
+    &:disabled {
+      @content;
+    }
+  }
+
+  @if internal.assert-type($loading-prevent, bool) and not $native {
+    $class-disabled: map.get($_default-interactive-classes, disabled);
+    $class-loading: map.get($_default-interactive-classes, loading);
+
+    &:disabled#{if($loading-prevent, ':not(.#{$class-loading})', null)},
+    &.#{$class-disabled} {
+      @content;
+    }
+  }
+}
+
+@mixin attr-disabled {
+  &[disabled] {
+    @content;
+  }
+}
+
+@mixin invalid($native: false) {
+  @if (internal.assert-type($native, bool)) and $native {
+    &:invalid {
+      @content;
+    }
+
+  } @else {
+    $class-invalid: map.get($_default-interactive-classes, invalid);
+    &:invalid, &.#{$class-invalid} {
+      @content;
+    }
+  }
+}
+
+@mixin readonly($native: false) {
+  @if (internal.assert-type($native, bool)) and $native {
+    &:read-only {
+      @content;
+    }
+
+  } @else {
+    $class-readonly: map.get($_default-interactive-classes, readonly);
+    &:read-only, &.#{$class-readonly} {
+      @content;
+    }
+  }
+}
+
+@mixin focus-readonly {
+  &:focus:read-only {
+    @content;
+  }
+}
+
+@mixin selected {
+  $class-selected: map.get($_default-interactive-classes, selected);
+
+  &.#{$class-selected} {
+    @content;
+  }
+}
+
+@mixin loading {
+  $class-loading: map.get($_default-interactive-classes, loading);
+
+  &.#{$class-loading} {
+    @content;
+  }
+}
+

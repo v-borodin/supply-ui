@@ -1,0 +1,69 @@
+{
+  "compileOnSave": false,
+  "include": [
+    "libs/**/*"
+  ],
+  "exclude": [
+    "libs/**/*.spec.ts",
+    "node_modules",
+    "tmp"
+  ],
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "preserveWhitespaces": false,
+    "annotateForClosureCompiler": false,
+    "skipTemplateCodegen": true,
+    "strictMetadataEmit": true,
+    "fullTemplateTypeCheck": true,
+    "strictInjectionParameters": true,
+    "enableResourceInlining": true,
+    "strictLiteralTypes": true,
+    "strictInputTypes": true,
+    "strictInputAccessModifiers": true,
+    "strictNullInputTypes": true,
+    "strictAttributeTypes": true,
+    "strictSafeNavigationTypes": true,
+    "strictDomLocalRefTypes": true,
+    "strictOutputEventTypes": true,
+    "strictDomEventTypes": true,
+    "strictContextGenerics": true
+  },
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "./dist",
+    "strict": true,
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "incremental": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2017",
+      "es2018.asynciterable",
+      "dom"
+    ],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": "./",
+    "paths": {
+      "@supply/cdk": [
+        "libs/cdk/index"
+      ],
+      "@supply/cdk/*": [
+        "libs/cdk/*"
+      ],
+      "@supply/uikit": [
+        "libs/uikit/index"
+      ],
+      "@supply/uikit/*": [
+        "libs/uikit/*"
+      ]
+    }
+  }
+}

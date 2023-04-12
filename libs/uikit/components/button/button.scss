@@ -1,0 +1,66 @@
+@use "../../styles/supply-base" as sup;
+
+$icon-margin: 0.5rem;
+
+:host {
+  @include sup.reset-button;
+  @include sup.common-shape-context;
+
+  @include sup.attr-disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  white-space: nowrap;
+  cursor: pointer;
+  touch-action: manipulation;
+
+  &.sup-size-md {
+    height: 44px;
+    padding: 0 1.25rem;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  &.sup-appearance-primary {
+    @include sup.appearance-primary;
+  }
+
+  &.sup-appearance-secondary {
+    @include sup.appearance-secondary;
+  }
+}
+
+.sup-inner {
+  @include sup.center-by-flex;
+
+  height: 100%;
+  text-align: center;
+
+  :host.loading & {
+    opacity: 0;
+  }
+
+}
+
+.sup-right-mg {
+}
+
+.sup-left-mg {
+}
+
+.sup-icon {
+  display: block;
+}
+
+.sup-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}

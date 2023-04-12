@@ -1,0 +1,78 @@
+@use "../../styles/supply-base" as sup;
+
+:host {
+  @include sup.loading {
+    overflow: hidden;
+  }
+
+  position: relative;
+  display: flex;
+
+}
+
+.sup-loader {
+  @include sup.center-by-flex;
+
+  position: relative;
+  flex-shrink: 0;
+  align-self: center;
+  min-width: 100%;
+  font-size: 24px;
+  animation: fade-in 0.5s;
+}
+
+.sup-spinner {
+  display: block;
+  overflow: hidden;
+  min-width: 1em;
+  max-width: 1em;
+  min-height: 1em;
+  max-height: 1em;
+  animation: rotate 2s linear infinite;
+  stroke-width: 5;
+
+  > .circle {
+    fill: none;
+    stroke: currentcolor;
+    animation: dash 2s linear infinite;
+    stroke-linecap: round;
+  }
+
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 150;
+    stroke-dashoffset: 0;
+  }
+
+  50% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -35;
+  }
+
+  100% {
+    stroke-dasharray: 90, 150;
+    stroke-dashoffset: -135;
+  }
+}

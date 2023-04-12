@@ -1,0 +1,45 @@
+@use 'interactive' as *;
+
+@mixin _appearance-common {
+  @include disabled($loading-prevent: true) {
+    opacity: var(--sup-disabled-opacity);
+  }
+}
+
+@mixin appearance-primary {
+  @include interactive-context {
+    @include _appearance-common;
+
+    @include hover {
+      background: var(--sup-color-primary-hover);
+    }
+
+    @include focus {
+      background: var(--sup-color-primary-hover);
+    }
+
+    @include active {
+      background: var(--sup-color-primary-active);
+    }
+
+    background: var(--sup-color-primary);
+    color: var(--sup-color-neutral-white);
+  }
+}
+
+@mixin appearance-secondary {
+  @include interactive-context {
+    @include _appearance-common;
+
+    @include hover {
+      background: var(--sup-color-neutral-4);
+    }
+
+    @include active {
+      background: var(--sup-color-neutral-5);
+    }
+
+    background: var(--sup-color-neutral-3);
+    color: var(--sup-color-text-1);
+  }
+}

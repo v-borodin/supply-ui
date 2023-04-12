@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "libs/**/*.scss"
+      ],
+      "customSyntax": "postcss-scss"
+    }
+  ],
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-hudochenkov/order"
+  ],
+  "rules": {
+    "selector-class-pattern": null,
+    "comment-empty-line-before": null
+  }
+}

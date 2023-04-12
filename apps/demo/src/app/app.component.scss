@@ -1,0 +1,19 @@
+@import "../../../../libs/uikit/styles/supply-base";
+
+.parent {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.child {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+
+  > * {
+    width: 260px;
+  }
+
+}

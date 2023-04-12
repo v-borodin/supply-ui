@@ -1,0 +1,33 @@
+@use 'sass:map';
+@use 'sass:list';
+@use 'sass:meta';
+
+@function get-options($options, $fallback-options) {
+  $length-options: list.length(map.values($options));
+  $length-fallback: list.length(map.values($fallback-options));
+  $list: ();
+
+  @if $length-fallback < $length-options {
+    @warn "The number of provided fallback options (#{$length-fallback}) does not match the number passed as an argument (#{$length-options}). Fallback options provided: '#{map-keys($fallback-options)}'";
+  }
+
+  @each $key in map-keys($fallback-options) {
+    $list: list.append($list, map.get($options, $key) or map.get($fallback-options, $key));
+  }
+
+  @return $list;
+}
+
+/**
+ * @function {assert-type} - checks the correspondence of the value with the declared type passed as an argument
+ * @return {true} if the value has expected type, else @throws {error}
+ */
+@function assert-type($value, $expected-type) {
+  $value-type: meta.type-of($value);
+
+  @if $value-type == $expected-type {
+    @return true;
+  } @else {
+    @error "Expected variable to be of type [#{$expected-type}], but got [#{$value-type}] with value '#{inspect($value)}'";
+  }
+}

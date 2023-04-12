@@ -1,0 +1,23 @@
+<span class="sup-inner">
+
+  <span *ngIf="iconLeft"
+        class="sup-left-mg">
+     <div class="sup-icon">
+       <ng-container *ngTemplateOutlet="iconLeft"/>
+     </div>
+  </span>
+
+  <ng-content/>
+
+  <span *ngIf="iconRight"
+        class="sup-right-mg">
+     <div class="sup-icon">
+       <ng-container *ngTemplateOutlet="iconRight"/>
+     </div>
+  </span>
+
+</span>
+
+<sup-loader *ngIf="loading"
+            class="sup-loader">
+</sup-loader>

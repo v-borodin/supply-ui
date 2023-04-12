@@ -1,0 +1,33 @@
+<!--  <label *ngIf="label"-->
+<!--         [attr.for]="id"-->
+<!--         [attr.aria-owns]="id"-->
+<!--         class="sup-label">-->
+<!--    <span class="sup-label_text">-->
+<!--      <ng-container-->
+<!--        [ngTemplateOutlet]="label.content"-->
+<!--      />-->
+<!--    </span>-->
+<!--  </label>-->
+
+<div class="sup-input-container">
+
+  <div class="sup-input-container_infix">
+
+    <input #textInput
+           [id]="id"
+           [attr.id]="id"
+           [disabled]="disabled"
+           class="sup-input"/>
+
+  </div>
+
+  <!--  <div class="sup-input-container_suffix">-->
+  <!--    <ng-content select="[supSuffix]"></ng-content>-->
+  <!--  </div>-->
+  <!--    <span *ngIf="showClear"-->
+  <!--            (click)="clear($event)"-->
+  <!--            class="sup-input-clear">-->
+  <!--      x-->
+  <!--    </span>-->
+</div>
+

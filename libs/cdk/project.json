@@ -1,0 +1,26 @@
+{
+  "name": "cdk",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "root": "libs/cdk",
+  "sourceRoot": "libs/cdk",
+  "prefix": "sup",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": [
+        "{workspaceRoot}/dist/{projectRoot}"
+      ],
+      "options": {
+        "project": "libs/cdk/ng-package.json"
+      },
+      "configurations": {
+        "development": {
+          "tsConfig": "libs/cdk/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "development"
+    }
+  },
+  "tags": []
+}

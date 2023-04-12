@@ -1,0 +1,102 @@
+{
+  "root": true,
+  "plugins": [
+    "@nrwl/nx",
+    "@angular-eslint",
+    "@angular-eslint/template"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "libs/**/*.ts",
+        "libs/**/*.js"
+      ],
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "sourceType": "module"
+      },
+      "plugins": [
+        "@typescript-eslint/eslint-plugin"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@typescript-eslint/recommended"
+        //        "prettier",
+        //        "prettier/@typescript-eslint",
+        //        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "@nrwl/nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": [
+        "libs/**/*.ts"
+      ],
+      "extends": [
+        "plugin:@nrwl/nx/typescript"
+      ],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "@angular-eslint/no-host-metadata-property": "off",
+        "@angular-eslint/no-inputs-metadata-property": "off"
+      }
+    },
+    {
+      "files": [
+        "libs/**/*.js"
+      ],
+      "extends": [
+        "plugin:@nrwl/nx/javascript"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "*.spec.ts",
+        "*.spec.tsx",
+        "*.spec.js",
+        "*.spec.jsx"
+      ],
+      "env": {
+        "jest": true
+      },
+      "rules": {}
+    },
+    {
+      "files": [
+        "libs/**/*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    },
+    {
+      "files": [
+        "libs/**/*.component.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {}
+    }
+  ]
+}

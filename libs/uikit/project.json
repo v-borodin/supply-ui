@@ -1,0 +1,28 @@
+{
+  "name": "uikit",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "root": "libs/uikit",
+  "sourceRoot": "libs/uikit",
+  "prefix": "sup",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:ng-packagr",
+      "outputs": [
+        "dist/uikit"
+      ],
+      "options": {
+        "tsConfig": "libs/uikit/tsconfig.build.json",
+        "project": "libs/uikit/ng-package.json"
+      },
+      "dependsOn": [
+        {
+          "target": "build",
+          "projects": "dependencies",
+          "params": "forward"
+        }
+      ]
+    }
+  },
+  "tags": []
+}

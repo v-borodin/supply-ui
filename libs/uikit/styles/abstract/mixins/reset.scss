@@ -1,0 +1,33 @@
+@use "prefixers" as *;
+@use "utils" as *;
+
+@mixin reset-button {
+  @include prefix-appearance(none);
+  @include prefix-user-select(none);
+  @include reset-props(text-decoration, outline, border);
+  @include inherit-host(font, color, line-height, text-align);
+
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  -webkit-tap-highlight-color: transparent;
+
+  &::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+  }
+
+}
+
+@mixin reset-input {
+  @include prefix-appearance(none);
+  @include reset-props(background, outline, resize);
+  @include inherit-host(font-size, font-weight, line-height, text-transform, text-align, color, border-radius);
+
+  margin: 0;
+  padding: 0;
+  border: 0;
+  word-break: keep-all;
+  caret-color: currentcolor;
+  -webkit-text-fill-color: currentcolor;
+}

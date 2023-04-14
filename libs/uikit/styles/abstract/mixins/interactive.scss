@@ -123,18 +123,13 @@ $_default-interactive-classes: (
 }
 
 @mixin disabled($native: false, $loading-prevent: false) {
-  @if (internal.assert-type($native, bool)) and $native {
+  @if $native {
     &:disabled {
       @content;
     }
-  }
-
-  @if internal.assert-type($loading-prevent, bool) and not $native {
-    $class-disabled: map.get($_default-interactive-classes, disabled);
-    $class-loading: map.get($_default-interactive-classes, loading);
-
-    &:disabled#{if($loading-prevent, ':not(.#{$class-loading})', null)},
-    &.#{$class-disabled} {
+  } @else {
+    &:disabled#{if($loading-prevent, ':not(.loading)', null)},
+    &.disabled {
       @content;
     }
   }
@@ -189,9 +184,7 @@ $_default-interactive-classes: (
 }
 
 @mixin loading {
-  $class-loading: map.get($_default-interactive-classes, loading);
-
-  &.#{$class-loading} {
+  &.loading {
     @content;
   }
 }

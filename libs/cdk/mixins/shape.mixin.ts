@@ -1,18 +1,16 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
-import {
-  SupManipulativeElement,
-  SupHasShape,
-  SupShape,
-} from '@supply/cdk/interfaces';
+import { SupElement, SupHasShape, SupShape } from '@supply/cdk/interfaces';
+import { SupDomHandler } from '@supply/cdk/abstract';
 
 type ShapeCtor = SupAbstractConstructor<SupHasShape>;
 
 export function supMixinShape<
-  TSuper extends SupAbstractConstructor<SupManipulativeElement>
+  TSuper extends SupAbstractConstructor<SupElement>
 >(Super: TSuper, defaultShape?: SupShape): ShapeCtor & TSuper;
-export function supMixinShape<
-  TSuper extends SupConstructor<SupManipulativeElement>
->(Super: TSuper, defaultShape?: SupShape): ShapeCtor & TSuper {
+export function supMixinShape<TSuper extends SupConstructor<SupElement>>(
+  Super: TSuper,
+  defaultShape?: SupShape
+): ShapeCtor & TSuper {
   return class MixinShape extends Super implements SupHasShape {
     private _shape: SupShape;
 
@@ -23,7 +21,7 @@ export function supMixinShape<
     set shape(value: SupShape) {
       const shape = value ?? defaultShape;
 
-      this.changeClass({
+      SupDomHandler.changeClass(this.element, {
         current: `sup-shape-${shape}`,
         previous: `sup-shape-${this._shape}`,
       });

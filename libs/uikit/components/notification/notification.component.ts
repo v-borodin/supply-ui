@@ -1,22 +1,25 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   HostBinding,
   Inject,
   Input,
 } from '@angular/core';
 import { NgIf } from '@angular/common';
-import {
-  SupAbstractElementBase,
-  supMixinClose,
-  supMixinShape,
-} from '@supply/cdk';
+import { supMixinClose, supMixinShape } from '@supply/cdk';
 import {
   SupNotificationOptions,
   SUP_NOTIFICATION_OPTIONS,
 } from './notification.helpers';
 
-const NotificationMixin = supMixinClose(supMixinShape(SupAbstractElementBase));
+const NotificationMixin = supMixinClose(
+  supMixinShape(
+    class {
+      constructor(readonly element: Element) {}
+    }
+  )
+);
 
 @Component({
   selector: 'sup-notification',
@@ -47,8 +50,9 @@ export class SupNotificationComponent extends NotificationMixin {
 
   constructor(
     @Inject(SUP_NOTIFICATION_OPTIONS)
-    private readonly options: SupNotificationOptions
+    private readonly options: SupNotificationOptions,
+    @Inject(ElementRef) { nativeElement }: ElementRef
   ) {
-    super();
+    super(nativeElement);
   }
 }

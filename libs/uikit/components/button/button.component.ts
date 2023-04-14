@@ -1,8 +1,9 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
+  forwardRef,
   HostBinding,
-  HostListener,
   Inject,
   Input,
   TemplateRef,
@@ -10,7 +11,8 @@ import {
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { SUP_BUTTON_OPTIONS, SupButtonOptions } from './button.helpers';
 import {
-  SupAbstractElementBase,
+  SUP_FOCUSABLE_ELEMENT,
+  SupFocusTrackerDirective,
   supMixinCustomized,
   supMixinInteractive,
   supMixinLoadable,
@@ -18,11 +20,17 @@ import {
 import { SupLoaderComponent } from '@supply/uikit/components/loader';
 
 const ButtonMixin = supMixinInteractive(
-  supMixinLoadable(supMixinCustomized(SupAbstractElementBase))
+  supMixinLoadable(
+    supMixinCustomized(
+      class {
+        constructor(readonly element: Element) {}
+      }
+    )
+  )
 );
 
 @Component({
-  selector: 'button[supButton], a[supButton]',
+  selector: 'button[supButton], button[supIconButton], a[supButton]',
   exportAs: 'supButton',
   templateUrl: './button.html',
   styleUrls: ['./button.scss'],
@@ -31,6 +39,13 @@ const ButtonMixin = supMixinInteractive(
     role: 'button',
     '[attr.aria-disabled]': '(disabled || loading).toString()',
   },
+  hostDirectives: [SupFocusTrackerDirective],
+  providers: [
+    {
+      provide: SUP_FOCUSABLE_ELEMENT,
+      useExisting: forwardRef(() => SupButtonComponent),
+    },
+  ],
   standalone: true,
   imports: [NgIf, NgTemplateOutlet, SupLoaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -46,7 +61,7 @@ export class SupButtonComponent extends ButtonMixin {
   override shape = this.options.shape;
 
   @Input()
-  iconLeft: TemplateRef<any> | undefined | null;
+  icon: TemplateRef<any> | undefined | null;
 
   @Input()
   iconRight: TemplateRef<any> | undefined | null;
@@ -57,14 +72,9 @@ export class SupButtonComponent extends ButtonMixin {
   }
 
   constructor(
-    @Inject(SUP_BUTTON_OPTIONS) private readonly options: SupButtonOptions
+    @Inject(SUP_BUTTON_OPTIONS) private readonly options: SupButtonOptions,
+    @Inject(ElementRef) { nativeElement }: ElementRef
   ) {
-    super();
-  }
-
-  @HostListener('focusin', ['true'])
-  @HostListener('focusout', ['false'])
-  onFocus(focused: boolean): void {
-    this.focused = focused;
+    super(nativeElement);
   }
 }

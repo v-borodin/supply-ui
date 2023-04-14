@@ -4,16 +4,18 @@ import {
   supCoerceBooleanProperty,
   SupImplicitBoolean,
 } from '@supply/cdk/utils';
-import { SupCanDisable, SupManipulativeElement } from '@supply/cdk/interfaces';
+import { SupCanDisable, SupElement } from '@supply/cdk/interfaces';
+import { SupDomHandler } from '@supply/cdk/abstract';
 
 type CanDisableCtor = SupAbstractConstructor<SupCanDisable>;
 
 export function supMixinDisabled<
-  TSuper extends SupAbstractConstructor<SupManipulativeElement>
+  TSuper extends SupAbstractConstructor<SupElement>
 >(Super: TSuper, defaultDisabled?: boolean): CanDisableCtor & TSuper;
-export function supMixinDisabled<
-  TSuper extends SupConstructor<SupManipulativeElement>
->(Super: TSuper, defaultDisabled = false): CanDisableCtor & TSuper {
+export function supMixinDisabled<TSuper extends SupConstructor<SupElement>>(
+  Super: TSuper,
+  defaultDisabled = false
+): CanDisableCtor & TSuper {
   return class MixinDisabled extends Super implements SupCanDisable {
     private _disabled = defaultDisabled;
 
@@ -23,7 +25,9 @@ export function supMixinDisabled<
 
     set disabled(value: SupImplicitBoolean) {
       const disabled = supCoerceBooleanProperty(value);
-      this.toggleClass('disabled', disabled);
+
+      SupDomHandler.toggleClass(this.element, 'disabled', disabled);
+
       this._disabled = disabled;
     }
 

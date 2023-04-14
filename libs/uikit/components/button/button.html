@@ -1,9 +1,14 @@
+<sup-loader *ngIf="loading"
+            [size]="size"
+            class="sup-loader">
+</sup-loader>
+
 <span class="sup-inner">
 
-  <span *ngIf="iconLeft"
+  <span *ngIf="icon"
         class="sup-left-mg">
      <div class="sup-icon">
-       <ng-container *ngTemplateOutlet="iconLeft"/>
+       <ng-container *ngTemplateOutlet="icon"/>
      </div>
   </span>
 
@@ -17,7 +22,3 @@
   </span>
 
 </span>
-
-<sup-loader *ngIf="loading"
-            class="sup-loader">
-</sup-loader>

@@ -8,7 +8,6 @@ import {
   Self,
 } from '@angular/core';
 import {
-  SupAbstractElementBase,
   supCoerceBooleanProperty,
   SupImplicitBoolean,
   supMixinInteractive,
@@ -23,7 +22,13 @@ import { SupInputModel } from '@supply/uikit/components';
 import { NgControl, Validators } from '@angular/forms';
 
 const SupInputMixin = supMixinReadonly(
-  supMixinInteractive(supMixinSize(SupAbstractElementBase)),
+  supMixinInteractive(
+    supMixinSize(
+      class {
+        constructor(readonly element: Element) {}
+      }
+    )
+  ),
   false
 );
 
@@ -73,15 +78,14 @@ export class SupInputComponent extends SupInputMixin implements SupInputModel {
 
   constructor(
     @Inject(ElementRef)
-    elementRef: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
+    { nativeElement }: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
     @Optional()
     @Inject(SUP_INPUT_VALUE_ACCESSOR)
     hostAccessor: SupInputValueAccessor<any>,
     @Optional() @Self() private ngControl: NgControl
   ) {
-    super();
+    super(nativeElement);
 
-    const { nativeElement } = elementRef;
     this.valueAccessor = hostAccessor || nativeElement;
   }
 

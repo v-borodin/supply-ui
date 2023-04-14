@@ -10,19 +10,10 @@ import {
 } from '@angular/core';
 import { SupTargetObserver, SupFocusTracker } from '@supply/cdk';
 import { FormControl } from '@angular/forms';
-import {
-  concat,
-  concatMap,
-  debounceTime,
-  distinctUntilChanged,
-  forkJoin,
-  mergeMap,
-  of,
-  tap,
-} from 'rxjs';
+import { distinctUntilChanged, forkJoin, of, tap } from 'rxjs';
 
 @Component({
-  selector: 'supply-root',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,7 +22,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('inputRef', { read: ElementRef })
   private inputRef?: ElementRef;
 
-  title = 'demo';
+  title = 'showcase';
 
   value = '';
 

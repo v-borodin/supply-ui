@@ -3,6 +3,7 @@
   --sup-color-primary: #4069FF;
   --sup-color-primary-hover: #4D73FF;
   --sup-color-primary-active: #305CFF;
+  --sup-color-accent: #FF7A27;
 
   // @typography
   --sup-color-text-1: #1F2123;
@@ -27,7 +28,8 @@
   --sup-disabled-opacity: 0.5;
 
   // @radius
-  --sup-radius-small: 0.25rem;
-  --sup-radius-medium: 0.50rem;
-  --sup-radius-large: 0.75rem;
+  --sup-radius-xs: 0.25rem;
+  --sup-radius-sm: 0.375rem;
+  --sup-radius-md: 0.50rem;
+  --sup-radius-lg: 0.75rem;
 }

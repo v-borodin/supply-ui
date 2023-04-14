@@ -1,20 +1,21 @@
 import {
   SupAbstractConstructor,
-  SupCanReadonly,
-  SupConstructor,
   supCoerceBooleanProperty,
+  SupConstructor,
   SupImplicitBoolean,
-  SupManipulativeElement,
-} from '@supply/cdk';
+} from '@supply/cdk/utils';
+import { SupCanReadonly, SupElement } from '@supply/cdk/interfaces';
+import { SupDomHandler } from '@supply/cdk/abstract';
 
 type CanReadonlyCtor = SupAbstractConstructor<SupCanReadonly>;
 
 export function supMixinReadonly<
-  TSuper extends SupAbstractConstructor<SupManipulativeElement>
+  TSuper extends SupAbstractConstructor<SupElement>
 >(Super: TSuper, defaultReadonly?: boolean): CanReadonlyCtor & TSuper;
-export function supMixinReadonly<
-  TSuper extends SupConstructor<SupManipulativeElement>
->(Super: TSuper, defaultReadonly = false): CanReadonlyCtor & TSuper {
+export function supMixinReadonly<TSuper extends SupConstructor<SupElement>>(
+  Super: TSuper,
+  defaultReadonly = false
+): CanReadonlyCtor & TSuper {
   return class MixinReadonly extends Super implements SupCanReadonly {
     private _readonly = defaultReadonly;
 
@@ -25,7 +26,8 @@ export function supMixinReadonly<
     set readonly(value: SupImplicitBoolean) {
       const readonly = supCoerceBooleanProperty(value);
 
-      this.toggleClass('readonly', readonly);
+      SupDomHandler.toggleClass(this.element, 'readonly', readonly);
+
       this._readonly = readonly;
     }
 

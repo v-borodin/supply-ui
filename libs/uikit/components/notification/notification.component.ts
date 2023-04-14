@@ -6,17 +6,13 @@ import {
   Input,
 } from '@angular/core';
 import { NgIf } from '@angular/common';
-import {
-  SupAbstractElementBase,
-  supMixinClose,
-  supMixinShape,
-} from '@supply/cdk';
+import { SupAbstractElement, supMixinClose, supMixinShape } from '@supply/cdk';
 import {
   SupNotificationOptions,
   SUP_NOTIFICATION_OPTIONS,
 } from './notification.helpers';
 
-const NotificationMixin = supMixinClose(supMixinShape(SupAbstractElementBase));
+const NotificationMixin = supMixinClose(supMixinShape(SupAbstractElement));
 
 @Component({
   selector: 'sup-notification',

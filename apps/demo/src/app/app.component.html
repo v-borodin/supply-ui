@@ -1,15 +1,89 @@
-<sup-notification>
-  Specifies the range that is considered to be a low value
-</sup-notification>
+<div class="parent">
+  <div class="child">
+    <button [loading]="true" supButton>
+      Continue
+    </button>
+    <button [iconLeft]="svg" supIconButton></button>
+    <button appearance="accent" size="sm" [iconLeft]="svg" supIconButton></button>
+    <button appearance="secondary" size="lg" [iconLeft]="svg" supIconButton></button>
+    <button class="custom-button" [iconLeft]="svg" supButton>
+      Continue
+    </button>
+    <button [iconRight]="svg" supButton>
+      Continue
+    </button>
+    <button disabled supButton>Continue</button>
+    <button [iconLeft]="svg" disabled supButton>Continue</button>
+    <button appearance="accent" supButton>
+      Continue
+    </button>
+    <button appearance="accent" disabled supButton>
+      Continue
+    </button>
+    <button [iconLeft]="svg" appearance="accent" supButton>
+      Continue
+    </button>
+    <button [loading]="loading"
+            (click)="setLoading()"
+            appearance="secondary" supButton>
+      Continue
+    </button>
+    <button [loading]="true" appearance="secondary" supButton>Continue</button>
+    <button [iconRight]="svg" appearance="secondary" disabled supButton>Continue</button>
+    <button appearance="secondary" disabled supButton>Continue</button>
+    <button appearance="tertiary" supButton>Continue</button>
+    <button [iconLeft]="svg" appearance="tertiary" supButton>Continue</button>
+    <button appearance="tertiary" disabled supButton>Continue</button>
+    <button size="sm" supButton>Continue</button>
+    <button [iconLeft]="svg" size="sm" supButton>Continue</button>
+    <button [iconRight]="svg" size="sm" supButton>Continue</button>
+    <button [loading]="loading"
+            (click)="setLoading()"
+            size="sm"
+            appearance="secondary" supButton>
+      Continue
+    </button>
+    <button [iconLeft]="svg" appearance="secondary" size="sm" supButton>Continue</button>
+    <button [iconRight]="svg" appearance="secondary" size="sm" supButton>Continue</button>
+    <button appearance="tertiary" size="sm" supButton>Continue</button>
+    <button size="lg" supButton>Continue</button>
+    <button [iconLeft]="svg" size="lg" supButton>Continue</button>
+    <button [loading]="loading"
+            (click)="setLoading()"
+            size="lg"
+            appearance="secondary" supButton>
+      Continue
+    </button>
+    <button appearance="tertiary" size="lg" supButton>Continue</button>
+    <button [loading]="true" size="lg" supButton>Continue</button>
+    <button [loading]="true" appearance="tertiary" size="lg" supButton>Continue</button>
+    <button [iconLeft]="svg" [loading]="true" size="lg" supButton>Continue</button>
+    <button [iconLeft]="svg" [loading]="loading" appearance="tertiary" size="lg" supButton>Continue</button>
+  </div>
 
-<sup-notification status="success">
-  Specifies the range that is considered to be a low value
-</sup-notification>
+  <div style="width: 360px; display: flex; flex-direction: column; gap: 4px">
+    <button style="width: 100%" [iconLeft]="svg" supButton>
+      Continue
+    </button>
 
-<sup-notification status="warning">
-  Specifies the range that is considered to be a low value
-</sup-notification>
+    <button style="width: 100%" appearance="secondary" [iconLeft]="svg" supButton>
+      Continue
+    </button>
 
-<sup-notification status="error">
-  Specifies the range that is considered to be a low value
-</sup-notification>
+    <button style="width: 100%" appearance="tertiary" [iconLeft]="svg" supButton>
+      Continue
+    </button>
+
+    <button style="width: 100%" size="sm" appearance="tertiary" [iconLeft]="svg" supButton>
+      Continue
+    </button>
+  </div>
+</div>
+
+<ng-template #svg>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="800px" height="800px" viewBox="0 0 16 16">
+    <path
+      d="M0 8c0-4.418 3.59-8 8-8 4.418 0 8 3.59 8 8 0 4.418-3.59 8-8 8-4.418 0-8-3.59-8-8zm2 0c0 3.307 2.686 6 6 6 3.307 0 6-2.686 6-6 0-3.307-2.686-6-6-6-3.307 0-6 2.686-6 6zm2 0c0-2.21 1.795-4 4-4 2.21 0 4 1.795 4 4 0 2.21-1.795 4-4 4-2.21 0-4-1.795-4-4zm2 0c0 1.112.895 2 2 2 1.112 0 2-.895 2-2 0-1.112-.895-2-2-2-1.112 0-2 .895-2 2z"
+      fill-rule="evenodd"/>
+  </svg>
+</ng-template>

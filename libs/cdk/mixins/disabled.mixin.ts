@@ -23,6 +23,7 @@ export function supMixinDisabled<
 
     set disabled(value: SupImplicitBoolean) {
       const disabled = supCoerceBooleanProperty(value);
+
       this.toggleClass('disabled', disabled);
       this._disabled = disabled;
     }

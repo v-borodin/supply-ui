@@ -1,8 +1,8 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  forwardRef,
   HostBinding,
-  HostListener,
   Inject,
   Input,
   TemplateRef,
@@ -10,7 +10,9 @@ import {
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { SUP_BUTTON_OPTIONS, SupButtonOptions } from './button.helpers';
 import {
-  SupAbstractElementBase,
+  SUP_FOCUSABLE_ELEMENT,
+  SupAbstractElement,
+  SupFocusTrackerDirective,
   supMixinCustomized,
   supMixinInteractive,
   supMixinLoadable,
@@ -18,11 +20,11 @@ import {
 import { SupLoaderComponent } from '@supply/uikit/components/loader';
 
 const ButtonMixin = supMixinInteractive(
-  supMixinLoadable(supMixinCustomized(SupAbstractElementBase))
+  supMixinLoadable(supMixinCustomized(SupAbstractElement))
 );
 
 @Component({
-  selector: 'button[supButton], a[supButton]',
+  selector: 'button[supButton], button[supIconButton], a[supButton]',
   exportAs: 'supButton',
   templateUrl: './button.html',
   styleUrls: ['./button.scss'],
@@ -31,6 +33,13 @@ const ButtonMixin = supMixinInteractive(
     role: 'button',
     '[attr.aria-disabled]': '(disabled || loading).toString()',
   },
+  hostDirectives: [SupFocusTrackerDirective],
+  providers: [
+    {
+      provide: SUP_FOCUSABLE_ELEMENT,
+      useExisting: forwardRef(() => SupButtonComponent),
+    },
+  ],
   standalone: true,
   imports: [NgIf, NgTemplateOutlet, SupLoaderComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -60,11 +69,5 @@ export class SupButtonComponent extends ButtonMixin {
     @Inject(SUP_BUTTON_OPTIONS) private readonly options: SupButtonOptions
   ) {
     super();
-  }
-
-  @HostListener('focusin', ['true'])
-  @HostListener('focusout', ['false'])
-  onFocus(focused: boolean): void {
-    this.focused = focused;
   }
 }

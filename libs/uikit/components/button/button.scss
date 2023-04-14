@@ -1,6 +1,10 @@
 @use "../../styles/supply-base" as sup;
 
-$icon-margin: 0.5rem;
+$margin-icon-md: 0.5rem;
+$margin-icon-sm: 0.35rem;
+$height-sm: 2.125rem;
+$height-md: 2.50rem;
+$height-lg: 2.75rem;
 
 :host {
   @include sup.reset-button;
@@ -18,15 +22,54 @@ $icon-margin: 0.5rem;
   cursor: pointer;
   touch-action: manipulation;
 
+  &.sup-size-sm {
+    height: $height-sm;
+    padding: 0 0.75rem;
+    font-weight: 600;
+    font-size: 13px;
+
+    &[supIconButton] {
+      width: $height-sm;
+    }
+
+    &.sup-shape-rounded {
+      border-radius: var(--sup-radius-sm);
+    }
+  }
+
   &.sup-size-md {
-    height: 2.75rem;
+    height: $height-md;
+    padding: 0 1rem;
+    font-weight: 600;
+    font-size: 14px;
+
+    &[supIconButton] {
+      width: $height-md;
+    }
+  }
+
+  &.sup-size-lg {
+    height: $height-lg;
     padding: 0 1.25rem;
     font-weight: 600;
     font-size: 14px;
+
+    &[supIconButton] {
+      width: $height-lg;
+    }
+  }
+
+  &[supIconButton] {
+    padding: 0;
+  }
+
+  &[supIconButton] .sup-right-mg,
+  &[supIconButton] .sup-left-mg {
+    margin: 0;
   }
 
   &.sup-shape-rounded {
-    border-radius: var(--sup-radius-medium, 0.50rem);
+    border-radius: var(--sup-radius-md, 0.50rem);
   }
 
   &.sup-shape-square {
@@ -44,6 +87,14 @@ $icon-margin: 0.5rem;
   &.sup-appearance-secondary {
     @include sup.appearance-secondary;
   }
+
+  &.sup-appearance-tertiary {
+    @include sup.appearance-tertiary;
+  }
+
+  &.sup-appearance-accent {
+    @include sup.appearance-accent;
+  }
 }
 
 .sup-inner {
@@ -55,17 +106,20 @@ $icon-margin: 0.5rem;
   :host.loading & {
     opacity: 0;
   }
-
 }
 
 .sup-right-mg {
+  margin: 0 calc(-0.5rem / 2) 0 0.5rem;
 }
 
 .sup-left-mg {
+  margin: 0 0.5rem 0 calc(-0.5rem / 2);
 }
 
 .sup-icon {
   display: block;
+  width: 1rem;
+  height: 1rem;
 }
 
 .sup-loader {

@@ -1,7 +1,9 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 import { SupCanDisable } from '@supply/cdk/interfaces';
 
-@Directive()
+@Directive({
+  hostDirectives: [],
+})
 export abstract class DisabledDirective implements SupCanDisable {
   private _disabled = false;
 

@@ -1,5 +1,8 @@
 @use "../../styles/supply-base" as sup;
 
+$duration-loading: 2s;
+$offset-gap: 187;
+
 :host {
   @include sup.loading {
     overflow: hidden;
@@ -16,8 +19,20 @@
   flex-shrink: 0;
   align-self: center;
   min-width: 100%;
-  font-size: 24px;
   animation: fade-in 0.5s;
+  stroke-width: 6;
+
+  :host.sup-size-sm & {
+    font-size: 1.15rem;
+  }
+
+  :host.sup-size-md & {
+    font-size: 1.375rem;
+  }
+
+  :host.sup-size-lg & {
+    font-size: 1.5rem;
+  }
 }
 
 .sup-spinner {
@@ -27,16 +42,42 @@
   max-width: 1em;
   min-height: 1em;
   max-height: 1em;
-  animation: rotate 2s linear infinite;
-  stroke-width: 5;
+  animation: loading-rotator $duration-loading linear infinite;
+  stroke-linecap: round;
 
   > .circle {
-    fill: none;
     stroke: currentcolor;
-    animation: dash 2s linear infinite;
-    stroke-linecap: round;
+    transform-origin: center;
+    animation: loading-dash $duration-loading ease-in-out infinite;
+    stroke-dasharray: $offset-gap;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes loading-rotator {
+  0% {
+    transform: rotate(0deg);
   }
 
+  100% {
+    transform: rotate(270deg);
+  }
+}
+
+@keyframes loading-dash {
+  0% {
+    stroke-dashoffset: $offset-gap;
+  }
+
+  50% {
+    transform: rotate(135deg);
+    stroke-dashoffset: calc($offset-gap / 4);
+  }
+
+  100% {
+    transform: rotate(450deg);
+    stroke-dashoffset: $offset-gap;
+  }
 }
 
 @keyframes fade-in {
@@ -46,32 +87,5 @@
 
   100% {
     opacity: 1;
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(359deg);
-  }
-}
-
-@keyframes dash {
-  0% {
-    stroke-dasharray: 1, 150;
-    stroke-dashoffset: 0;
-  }
-
-  50% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -35;
-  }
-
-  100% {
-    stroke-dasharray: 90, 150;
-    stroke-dashoffset: -135;
   }
 }

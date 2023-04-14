@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { SupShape } from '@supply/cdk';
 
-export type SupStatusType = 'info' | 'success' | 'warning' | 'error' | string;
+export type SupStatusType = 'info' | 'success' | 'warning' | 'error';
 
 export interface SupNotificationOptions {
   readonly status: SupStatusType;

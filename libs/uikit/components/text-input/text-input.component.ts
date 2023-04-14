@@ -15,7 +15,7 @@ import {
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { SUP_LABEL, SupLabelComponent } from '@supply/uikit/components';
 import {
-  SupAbstractElementBase,
+  SupAbstractElement,
   SupFocusTracker,
   supMixinInteractive,
   supMixinShape,
@@ -24,7 +24,7 @@ import {
 import { NgControl } from '@angular/forms';
 
 const SupTextInputMixin = supMixinInteractive(
-  supMixinSize(supMixinShape(SupAbstractElementBase))
+  supMixinSize(supMixinShape(SupAbstractElement))
 );
 
 @Component({

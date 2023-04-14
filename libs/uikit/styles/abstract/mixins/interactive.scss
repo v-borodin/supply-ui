@@ -189,9 +189,7 @@ $_default-interactive-classes: (
 }
 
 @mixin loading {
-  $class-loading: map.get($_default-interactive-classes, loading);
-
-  &.#{$class-loading} {
+  &.loading {
     @content;
   }
 }

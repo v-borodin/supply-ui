@@ -5,7 +5,7 @@ import {
   Input,
 } from '@angular/core';
 import {
-  SupAbstractElementBase,
+  SupAbstractElement,
   supMixinAppearance,
   supMixinLoadable,
   supMixinSize,
@@ -14,7 +14,7 @@ import { SUP_LOADER_OPTIONS, SupLoaderOptions } from './loader.helpers';
 import { NgIf } from '@angular/common';
 
 const LoaderMixin = supMixinAppearance(
-  supMixinSize(supMixinLoadable(SupAbstractElementBase, true))
+  supMixinSize(supMixinLoadable(SupAbstractElement, true))
 );
 
 @Component({

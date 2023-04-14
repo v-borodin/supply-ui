@@ -21,6 +21,10 @@ export function supMixinFocused<
     }
 
     set focused(value) {
+      if (this.disabled) {
+        return;
+      }
+
       this.toggleClass('focused', value);
       this._focused = value;
     }

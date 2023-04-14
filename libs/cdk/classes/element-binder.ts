@@ -4,7 +4,7 @@ import {
   SupManipulativeElement,
 } from '@supply/cdk/interfaces';
 
-export abstract class SupAbstractElementBase implements SupManipulativeElement {
+export abstract class SupAbstractElement implements SupManipulativeElement {
   readonly elementRef = inject(ElementRef);
 
   private get nativeElement(): Element {

@@ -16,6 +16,7 @@
 
     @include focus {
       background-color: var(--sup-color-primary-hover);
+      outline: 2px solid #F9A300;
     }
 
     @include active {
@@ -35,11 +36,59 @@
       background-color: var(--sup-color-neutral-4);
     }
 
+    @include focus {
+      outline: 2px solid #F9A300;
+    }
+
+    @include active {
+      background-color: var(--sup-color-neutral-5);
+    }
+
+    border: 1px solid #D5D7DE;
+    background-color: var(--sup-color-neutral-white);
+    color: var(--sup-color-text-1);
+    box-shadow: 0 1px 1px #F1F1F1;
+  }
+}
+
+@mixin appearance-tertiary {
+  @include transition-context {
+    @include _appearance-common;
+
+    @include hover {
+      background-color: var(--sup-color-neutral-4);
+    }
+
+    @include focus {
+      outline: 2px solid #F9A300;
+    }
+
     @include active {
       background-color: var(--sup-color-neutral-5);
     }
 
     background-color: var(--sup-color-neutral-3);
     color: var(--sup-color-text-1);
+  }
+}
+
+@mixin appearance-accent {
+  @include transition-context {
+    @include _appearance-common;
+
+    @include hover {
+      background-color: var(--sup-color-accent);
+    }
+
+    @include focus {
+      outline: 2px solid #F9A300;
+    }
+
+    @include active {
+      background-color: var(--sup-color-accent);
+    }
+
+    background-color: var(--sup-color-accent);
+    color: var(--sup-color-neutral-white);
   }
 }

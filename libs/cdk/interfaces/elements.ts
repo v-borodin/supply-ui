@@ -3,6 +3,7 @@ import { ElementRef } from '@angular/core';
 export type SupAppearance =
   | 'primary'
   | 'secondary'
+  | 'tertiary'
   | 'outline'
   | 'accent'
   | 'flat'
@@ -19,7 +20,7 @@ export type SupSize =
   | string
   | undefined;
 
-export type SupShape = 'rounded' | 'square' | 'circle' | string | undefined;
+export type SupShape = 'rounded' | 'square' | 'circle' | undefined;
 
 export interface SupHasAppearance {
   appearance: SupAppearance;

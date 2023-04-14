@@ -8,7 +8,7 @@ import {
   Self,
 } from '@angular/core';
 import {
-  SupAbstractElementBase,
+  SupAbstractElement,
   supCoerceBooleanProperty,
   SupImplicitBoolean,
   supMixinInteractive,
@@ -23,7 +23,7 @@ import { SupInputModel } from '@supply/uikit/components';
 import { NgControl, Validators } from '@angular/forms';
 
 const SupInputMixin = supMixinReadonly(
-  supMixinInteractive(supMixinSize(SupAbstractElementBase)),
+  supMixinInteractive(supMixinSize(SupAbstractElement)),
   false
 );
 

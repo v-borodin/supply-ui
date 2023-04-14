@@ -1,5 +1,3 @@
-import { ElementRef } from '@angular/core';
-
 export type SupAppearance =
   | 'primary'
   | 'secondary'
@@ -34,28 +32,14 @@ export interface SupHasShape {
   shape: SupShape;
 }
 
+export interface SupElement {
+  readonly element: Element;
+}
+
 export interface SupCustomizedElement
   extends SupHasAppearance,
     SupHasSize,
     SupHasShape {}
-
-export interface SupHasElementRef {
-  readonly elementRef: ElementRef;
-}
-
-export type SupClassChanges = {
-  readonly current: string;
-
-  readonly previous: string;
-};
-
-export interface SupManipulativeElement extends SupHasElementRef {
-  toggleClass(className: string, force: boolean): void;
-
-  changeClass(changes: SupClassChanges): void;
-
-  setAttribute(attributeName: string, value: string): void;
-}
 
 export interface SupInteractiveElement
   extends SupCanFocus,

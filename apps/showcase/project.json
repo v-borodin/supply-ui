@@ -1,22 +1,31 @@
 {
-  "name": "demo",
+  "name": "showcase",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "sourceRoot": "apps/demo/src",
-  "prefix": "supply",
+  "sourceRoot": "apps/showcase/src",
+  "prefix": "app",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
-        "outputPath": "dist/apps/demo",
-        "index": "apps/demo/src/index.html",
-        "main": "apps/demo/src/main.ts",
-        "polyfills": ["zone.js"],
-        "tsConfig": "apps/demo/tsconfig.app.json",
+        "outputPath": "dist/showcase/showcase",
+        "index": "apps/showcase/src/index.html",
+        "main": "apps/showcase/src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "apps/showcase/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/demo/src/favicon.ico", "apps/demo/src/assets"],
-        "styles": ["apps/demo/src/styles.scss"],
+        "assets": [
+          "apps/showcase/src/favicon.ico",
+          "apps/showcase/src/assets"
+        ],
+        "styles": [
+          "apps/showcase/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -50,10 +59,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "demo:build:production"
+          "browserTarget": "showcase:build:production"
         },
         "development": {
-          "browserTarget": "demo:build:development"
+          "browserTarget": "showcase:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -61,21 +70,28 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "demo:build"
+        "browserTarget": "showcase:build"
       }
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/demo/**/*.ts", "apps/demo/**/*.html"]
+        "lintFilePatterns": [
+          "apps/showcase/**/*.ts",
+          "apps/showcase/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
-        "jestConfig": "apps/demo/jest.config.ts",
+        "jestConfig": "apps/showcase/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {

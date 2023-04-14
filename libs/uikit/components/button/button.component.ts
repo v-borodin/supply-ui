@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   forwardRef,
   HostBinding,
   Inject,
@@ -11,7 +12,6 @@ import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { SUP_BUTTON_OPTIONS, SupButtonOptions } from './button.helpers';
 import {
   SUP_FOCUSABLE_ELEMENT,
-  SupAbstractElement,
   SupFocusTrackerDirective,
   supMixinCustomized,
   supMixinInteractive,
@@ -20,7 +20,13 @@ import {
 import { SupLoaderComponent } from '@supply/uikit/components/loader';
 
 const ButtonMixin = supMixinInteractive(
-  supMixinLoadable(supMixinCustomized(SupAbstractElement))
+  supMixinLoadable(
+    supMixinCustomized(
+      class {
+        constructor(readonly element: Element) {}
+      }
+    )
+  )
 );
 
 @Component({
@@ -55,7 +61,7 @@ export class SupButtonComponent extends ButtonMixin {
   override shape = this.options.shape;
 
   @Input()
-  iconLeft: TemplateRef<any> | undefined | null;
+  icon: TemplateRef<any> | undefined | null;
 
   @Input()
   iconRight: TemplateRef<any> | undefined | null;
@@ -66,8 +72,9 @@ export class SupButtonComponent extends ButtonMixin {
   }
 
   constructor(
-    @Inject(SUP_BUTTON_OPTIONS) private readonly options: SupButtonOptions
+    @Inject(SUP_BUTTON_OPTIONS) private readonly options: SupButtonOptions,
+    @Inject(ElementRef) { nativeElement }: ElementRef
   ) {
-    super();
+    super(nativeElement);
   }
 }

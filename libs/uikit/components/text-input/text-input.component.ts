@@ -15,7 +15,6 @@ import {
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { SUP_LABEL, SupLabelComponent } from '@supply/uikit/components';
 import {
-  SupAbstractElement,
   SupFocusTracker,
   supMixinInteractive,
   supMixinShape,
@@ -24,7 +23,13 @@ import {
 import { NgControl } from '@angular/forms';
 
 const SupTextInputMixin = supMixinInteractive(
-  supMixinSize(supMixinShape(SupAbstractElement))
+  supMixinSize(
+    supMixinShape(
+      class {
+        constructor(readonly element: Element) {}
+      }
+    )
+  )
 );
 
 @Component({
@@ -50,7 +55,7 @@ export class SupTextInputComponent
   hasClearIcon = true;
 
   constructor(
-    @Inject(ElementRef) override readonly elementRef: ElementRef<HTMLElement>,
+    @Inject(ElementRef) readonly elementRef: ElementRef<HTMLElement>,
     @Optional()
     @Self()
     @Inject(NgControl)
@@ -59,7 +64,7 @@ export class SupTextInputComponent
     @Inject(SupFocusTracker)
     private focusTracker: SupFocusTracker
   ) {
-    super();
+    super(elementRef.nativeElement);
   }
 
   ngAfterContentInit() {

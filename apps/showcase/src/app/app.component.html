@@ -3,24 +3,24 @@
     <button [loading]="true" supButton>
       Continue
     </button>
-    <button [iconLeft]="svg" supIconButton></button>
-    <button appearance="accent" size="sm" [iconLeft]="svg" supIconButton></button>
-    <button appearance="secondary" size="lg" [iconLeft]="svg" supIconButton></button>
-    <button class="custom-button" [iconLeft]="svg" supButton>
+    <button [icon]="svg" supIconButton></button>
+    <button appearance="accent" size="sm" [icon]="svg" supIconButton></button>
+    <button appearance="secondary" size="lg" [icon]="svg" supIconButton></button>
+    <button class="custom-button" [icon]="svg" supButton>
       Continue
     </button>
     <button [iconRight]="svg" supButton>
       Continue
     </button>
     <button disabled supButton>Continue</button>
-    <button [iconLeft]="svg" disabled supButton>Continue</button>
+    <button [icon]="svg" disabled supButton>Continue</button>
     <button appearance="accent" supButton>
       Continue
     </button>
     <button appearance="accent" disabled supButton>
       Continue
     </button>
-    <button [iconLeft]="svg" appearance="accent" supButton>
+    <button [icon]="svg" appearance="accent" supButton>
       Continue
     </button>
     <button [loading]="loading"
@@ -32,10 +32,10 @@
     <button [iconRight]="svg" appearance="secondary" disabled supButton>Continue</button>
     <button appearance="secondary" disabled supButton>Continue</button>
     <button appearance="tertiary" supButton>Continue</button>
-    <button [iconLeft]="svg" appearance="tertiary" supButton>Continue</button>
+    <button [icon]="svg" appearance="tertiary" supButton>Continue</button>
     <button appearance="tertiary" disabled supButton>Continue</button>
     <button size="sm" supButton>Continue</button>
-    <button [iconLeft]="svg" size="sm" supButton>Continue</button>
+    <button [icon]="svg" size="sm" supButton>Continue</button>
     <button [iconRight]="svg" size="sm" supButton>Continue</button>
     <button [loading]="loading"
             (click)="setLoading()"
@@ -43,11 +43,11 @@
             appearance="secondary" supButton>
       Continue
     </button>
-    <button [iconLeft]="svg" appearance="secondary" size="sm" supButton>Continue</button>
+    <button [icon]="svg" appearance="secondary" size="sm" supButton>Continue</button>
     <button [iconRight]="svg" appearance="secondary" size="sm" supButton>Continue</button>
     <button appearance="tertiary" size="sm" supButton>Continue</button>
     <button size="lg" supButton>Continue</button>
-    <button [iconLeft]="svg" size="lg" supButton>Continue</button>
+    <button [icon]="svg" size="lg" supButton>Continue</button>
     <button [loading]="loading"
             (click)="setLoading()"
             size="lg"
@@ -57,24 +57,24 @@
     <button appearance="tertiary" size="lg" supButton>Continue</button>
     <button [loading]="true" size="lg" supButton>Continue</button>
     <button [loading]="true" appearance="tertiary" size="lg" supButton>Continue</button>
-    <button [iconLeft]="svg" [loading]="true" size="lg" supButton>Continue</button>
-    <button [iconLeft]="svg" [loading]="loading" appearance="tertiary" size="lg" supButton>Continue</button>
+    <button [icon]="svg" [loading]="true" size="lg" supButton>Continue</button>
+    <button [icon]="svg" [loading]="loading" appearance="tertiary" size="lg" supButton>Continue</button>
   </div>
 
   <div style="width: 360px; display: flex; flex-direction: column; gap: 4px">
-    <button style="width: 100%" [iconLeft]="svg" supButton>
+    <button style="width: 100%" [icon]="svg" supButton>
       Continue
     </button>
 
-    <button style="width: 100%" appearance="secondary" [iconLeft]="svg" supButton>
+    <button style="width: 100%" appearance="secondary" [icon]="svg" supButton>
       Continue
     </button>
 
-    <button style="width: 100%" appearance="tertiary" [iconLeft]="svg" supButton>
+    <button style="width: 100%" appearance="tertiary" [icon]="svg" supButton>
       Continue
     </button>
 
-    <button style="width: 100%" size="sm" appearance="tertiary" [iconLeft]="svg" supButton>
+    <button style="width: 100%" size="sm" appearance="tertiary" [icon]="svg" supButton>
       Continue
     </button>
   </div>

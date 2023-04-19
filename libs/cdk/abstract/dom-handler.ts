@@ -15,9 +15,9 @@ export abstract class SupDomHandler {
     element.classList.toggle(className, force);
   }
 
-  static changeClass(
+  static changeClass<T extends string>(
     element: Element,
-    { current, previous }: { current: string; previous: string }
+    { current, previous }: { current: T; previous: T }
   ): void {
     if (current === previous) {
       return;

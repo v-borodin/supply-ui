@@ -1,4 +1,5 @@
 export * from '@supply/uikit/components/button';
+export * from '@supply/uikit//components/icon';
 export * from '@supply/uikit/components/input';
 export * from '@supply/uikit/components/label';
 export * from '@supply/uikit/components/loader';

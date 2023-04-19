@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import {
   SupButtonComponent,
+  SupIconComponent,
   SupInputComponent,
   SupLabelComponent,
   SupNotificationComponent,
@@ -21,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     SupNotificationComponent,
+    SupIconComponent,
   ],
   bootstrap: [AppComponent],
 })

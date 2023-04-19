@@ -6,6 +6,10 @@ export function supIsString(value: unknown): value is string {
   return typeof value === 'string';
 }
 
+export function supIsObject(value: unknown): value is object {
+  return typeof value === 'object';
+}
+
 export function supIsFunction(
   value: unknown
 ): value is (...args: any[]) => any {

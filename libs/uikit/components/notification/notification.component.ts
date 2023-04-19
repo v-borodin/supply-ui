@@ -5,6 +5,7 @@ import {
   HostBinding,
   Inject,
   Input,
+  TemplateRef,
 } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { supMixinClose, supMixinShape } from '@supply/cdk';
@@ -40,13 +41,16 @@ export class SupNotificationComponent extends NotificationMixin {
   status = this.options.status;
 
   @Input()
+  override shape = this.options.shape;
+
+  @Input()
   hasClose = this.options.hasClose;
 
   @Input()
   hasIcon = this.options.hasIcon;
 
   @Input()
-  override shape = this.options.shape;
+  icon: TemplateRef<any> | null | undefined;
 
   constructor(
     @Inject(SUP_NOTIFICATION_OPTIONS)

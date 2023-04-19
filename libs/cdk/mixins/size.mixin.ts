@@ -1,6 +1,7 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
 import { SupElement, SupHasSize, SupSize } from '@supply/cdk/interfaces';
 import { SupDomHandler } from '@supply/cdk/abstract';
+import { SupPrefixed } from '@supply/cdk/types';
 
 type SizeCtor = SupAbstractConstructor<SupHasSize>;
 
@@ -22,7 +23,7 @@ export function supMixinSize<TSuper extends SupConstructor<SupElement>>(
     set size(value: SupSize) {
       const size = value ?? defaultSize;
 
-      SupDomHandler.changeClass(this.element, {
+      SupDomHandler.changeClass<SupPrefixed>(this.element, {
         current: `sup-size-${size}`,
         previous: `sup-size-${this._size}`,
       });

@@ -1,0 +1,22 @@
+$size-default: 1.5rem;
+
+:host {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: $size-default;
+  height: $size-default;
+  font-size: 1rem;
+  line-height: 0;
+  fill: currentcolor;
+  stroke: transparent;
+
+  &.inline {
+    width: inherit;
+    height: inherit;
+    font-size: inherit;
+    line-height: inherit;
+  }
+
+}

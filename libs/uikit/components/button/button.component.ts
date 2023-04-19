@@ -34,7 +34,7 @@ const ButtonMixin = supMixinInteractive(
   exportAs: 'supButton',
   templateUrl: './button.html',
   styleUrls: ['./button.scss'],
-  inputs: ['loading', 'disabled'],
+  inputs: ['loading', 'disabled', 'id'],
   host: {
     role: 'button',
     '[attr.aria-disabled]': '(disabled || loading).toString()',

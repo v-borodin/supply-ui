@@ -1,5 +1,9 @@
+<ng-container *ngIf="hasIcon">
+</ng-container>
+
 <ng-content/>
 
 <button *ngIf="hasClose"
+        (click)="close.emit()"
         type="button">
 </button>

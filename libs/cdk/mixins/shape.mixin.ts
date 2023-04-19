@@ -1,6 +1,7 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
 import { SupElement, SupHasShape, SupShape } from '@supply/cdk/interfaces';
 import { SupDomHandler } from '@supply/cdk/abstract';
+import { SupPrefixed } from '@supply/cdk/types';
 
 type ShapeCtor = SupAbstractConstructor<SupHasShape>;
 
@@ -21,7 +22,7 @@ export function supMixinShape<TSuper extends SupConstructor<SupElement>>(
     set shape(value: SupShape) {
       const shape = value ?? defaultShape;
 
-      SupDomHandler.changeClass(this.element, {
+      SupDomHandler.changeClass<SupPrefixed>(this.element, {
         current: `sup-shape-${shape}`,
         previous: `sup-shape-${this._shape}`,
       });

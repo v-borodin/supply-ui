@@ -61,7 +61,7 @@ $_default-interactive-classes: (
 }
 
 @mixin focus {
-  &:focus, &.focused {
+  &:focus, &.sup-focused {
     @content;
   }
 }
@@ -128,8 +128,8 @@ $_default-interactive-classes: (
       @content;
     }
   } @else {
-    &:disabled#{if($loading-prevent, ':not(.loading)', null)},
-    &.disabled {
+    &:disabled#{if($loading-prevent, ':not(.sup-loading)', null)},
+    &.sup-disabled {
       @content;
     }
   }
@@ -184,7 +184,7 @@ $_default-interactive-classes: (
 }
 
 @mixin loading {
-  &.loading {
+  &.sup-loading {
     @content;
   }
 }

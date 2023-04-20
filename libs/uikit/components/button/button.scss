@@ -103,7 +103,7 @@ $height-lg: 2.75rem;
   height: 100%;
   text-align: center;
 
-  :host.loading & {
+  :host.sup-loading & {
     opacity: 0;
   }
 }

@@ -5,7 +5,6 @@ import {
   SupElement,
 } from '@supply/cdk/interfaces';
 import { SupDomHandler } from '@supply/cdk/abstract';
-import { SupPrefixed } from '@supply/cdk/types';
 
 type AppearanceCtor = SupConstructor<SupHasAppearance> &
   SupAbstractConstructor<SupHasAppearance>;
@@ -27,7 +26,7 @@ export function supMixinAppearance<TSuper extends SupConstructor<SupElement>>(
     set appearance(value: SupAppearance) {
       const appearance = value ?? defaultAppearance;
 
-      SupDomHandler.changeClass<SupPrefixed>(this.element, {
+      SupDomHandler.updateClass(this.element, {
         current: `sup-appearance-${appearance}`,
         previous: `sup-appearance-${this._appearance}`,
       });

@@ -22,7 +22,7 @@ export function supMixinFocused<
         return;
       }
 
-      SupDomHandler.toggleClass(this.element, 'focused', value);
+      SupDomHandler.toggleClass(this.element, 'sup-focused', value);
 
       this._focused = value;
     }

@@ -1,3 +1,5 @@
+import { SupPrefixed } from '@supply/cdk/types';
+
 export abstract class SupDomHandler {
   static setAttribute(
     element: Element,
@@ -9,15 +11,15 @@ export abstract class SupDomHandler {
 
   static toggleClass(
     element: Element,
-    className: string,
+    className: SupPrefixed,
     force: boolean
   ): void {
     element.classList.toggle(className, force);
   }
 
-  static changeClass<T extends string>(
+  static updateClass(
     element: Element,
-    { current, previous }: { current: T; previous: T }
+    { current, previous }: { current: SupPrefixed; previous: SupPrefixed }
   ): void {
     if (current === previous) {
       return;

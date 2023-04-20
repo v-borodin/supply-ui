@@ -19,7 +19,7 @@ export function supMixinLoadable<TSuper extends SupConstructor<SupElement>>(
     }
 
     set loading(loading) {
-      SupDomHandler.toggleClass(this.element, 'loading', loading);
+      SupDomHandler.toggleClass(this.element, 'sup-loading', loading);
 
       this._loading = loading;
     }

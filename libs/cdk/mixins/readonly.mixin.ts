@@ -26,7 +26,7 @@ export function supMixinReadonly<TSuper extends SupConstructor<SupElement>>(
     set readonly(value: SupImplicitBoolean) {
       const readonly = supCoerceBooleanProperty(value);
 
-      SupDomHandler.toggleClass(this.element, 'readonly', readonly);
+      SupDomHandler.toggleClass(this.element, 'sup-readonly', readonly);
 
       this._readonly = readonly;
     }

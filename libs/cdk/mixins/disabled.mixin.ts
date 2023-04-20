@@ -26,7 +26,7 @@ export function supMixinDisabled<TSuper extends SupConstructor<SupElement>>(
     set disabled(value: SupImplicitBoolean) {
       const disabled = supCoerceBooleanProperty(value);
 
-      SupDomHandler.toggleClass(this.element, 'disabled', disabled);
+      SupDomHandler.toggleClass(this.element, 'sup-disabled', disabled);
 
       this._disabled = disabled;
     }

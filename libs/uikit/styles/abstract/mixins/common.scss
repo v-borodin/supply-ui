@@ -1,4 +1,4 @@
-@use "../functions/internal" as *;
+@use "../functions/utils";
 
 /* -------------------------------- */
 /* For each */
@@ -19,7 +19,7 @@
     $prefixes: (webkit, moz, ms, o);
   }
 
-  @if assert-type($prefixes, list) {
+  @if utils.assert-type($prefixes, list) {
     @each $prefix in $prefixes {
       #{'-' + $prefix + '-' + $property}: $value;
     }
@@ -59,7 +59,7 @@
 }
 
 /* -------------------------------- */
-/* Input placeholder */
+/* Input placeholder with vendors */
 /* -------------------------------- */
 
 @mixin placeholder {
@@ -88,4 +88,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* -------------------------------- */
+/* Vendors */
+/* -------------------------------- */
+
+/** @link https://caniuse.com/?search=user-select */
+@mixin prefix-user-select($value: none) {
+  @if utils.assert-type($value, string) {
+    @include support-vendors(user-select, $value, (webkit, moz, ms));
+  }
+}
+
+/** @link https://caniuse.com/?search=appearance */
+@mixin prefix-appearance($value: none) {
+  @if utils.assert-type($value, string) {
+    @include support-vendors(appearance, $value, (webkit, moz));
+  }
 }

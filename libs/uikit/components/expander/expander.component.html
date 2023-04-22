@@ -1,0 +1,6 @@
+<ng-container *ngIf="stateController$ | async"></ng-container>
+<div class="content-wrapper" #wrapper>
+  <ng-container *ngIf="displayContent">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </ng-container>
+</div>

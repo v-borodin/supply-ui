@@ -1,0 +1,15 @@
+<div *ngFor="let row of rows"
+     class="years-list__row">
+  <ng-container *ngFor="let column of columns; trackBy: trackByFn">
+    <button *ngIf="min | supYear: [row, column] as item"
+            [class._selected]="item === value?.year"
+            [class._hidden]="item > max.year"
+            [supScrollIntoView]="item === initYear"
+            (click)="select(item, $event)"
+            class="years-list__item"
+            role="button"
+            type="button">
+      {{item}}
+    </button>
+  </ng-container>
+</div>

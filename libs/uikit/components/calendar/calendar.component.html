@@ -1,0 +1,20 @@
+<sup-years-list *ngIf="year; else calendar"
+                [value]="value"
+                [initYear]="year"
+                (yearSelect)="onYearChange($event)">
+</sup-years-list>
+
+<ng-template #calendar>
+  <sup-calendar-pagination [value]="month"
+                           (valueChange)="onMonthChange($event)"
+                           (signatureClick)="showYears($event)">
+  </sup-calendar-pagination>
+
+  <sup-calendar-grid [month]="month"
+                     [value]="value"
+                     [showAdjacent]="showAdjacent"
+                     (dayClick)="onDayClick($event)">
+  </sup-calendar-grid>
+</ng-template>
+
+

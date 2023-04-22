@@ -1,3 +1,6 @@
+import { ControlValueAccessor } from '@angular/forms';
+import { DateTime } from 'luxon';
+
 export function supIsNumber(value: unknown): value is number {
   return typeof value === 'number';
 }
@@ -26,4 +29,12 @@ export function supIsPromise(value: any): value is PromiseLike<any> {
 
 export function supIsHTMLElement(value: unknown): value is HTMLElement {
   return value instanceof HTMLElement;
+}
+
+export function supIsValueAccessor(x: unknown): x is ControlValueAccessor {
+  return !!(x as ControlValueAccessor).writeValue;
+}
+
+export function supIsLuxonDate(x: unknown): x is DateTime {
+  return x instanceof DateTime;
 }

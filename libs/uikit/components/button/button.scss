@@ -10,23 +10,27 @@ $height-lg: 2.75rem;
   @include sup.reset-button;
 
   @include sup.attr-disabled {
-    cursor: default;
     pointer-events: none;
+    cursor: default;
   }
 
+  touch-action: manipulation;
+  cursor: pointer;
+
   position: relative;
+
   display: inline-block;
   flex-shrink: 0;
+
   box-sizing: border-box;
+
   white-space: nowrap;
-  cursor: pointer;
-  touch-action: manipulation;
 
   &.sup-size-sm {
     height: $height-sm;
     padding: 0 0.75rem;
-    font-weight: 600;
     font-size: 13px;
+    font-weight: 600;
 
     &[supIconButton] {
       width: $height-sm;
@@ -40,8 +44,8 @@ $height-lg: 2.75rem;
   &.sup-size-md {
     height: $height-md;
     padding: 0 1rem;
-    font-weight: 600;
     font-size: 14px;
+    font-weight: 600;
 
     &[supIconButton] {
       width: $height-md;
@@ -51,8 +55,8 @@ $height-lg: 2.75rem;
   &.sup-size-lg {
     height: $height-lg;
     padding: 0 1.25rem;
-    font-weight: 600;
     font-size: 14px;
+    font-weight: 600;
 
     &[supIconButton] {
       width: $height-lg;
@@ -126,6 +130,7 @@ $height-lg: 2.75rem;
   position: absolute;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100%;
 }

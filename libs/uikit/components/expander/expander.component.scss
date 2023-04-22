@@ -1,0 +1,27 @@
+@use "../src/styles/abstract/mixin" as *;
+
+:host {
+  @include transition(.3s);
+
+  display: block;
+  opacity: 0.01;
+  transition-property: opacity, height, visibility;
+
+  &._overflow {
+    overflow: hidden;
+  }
+
+  &._expanded {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+
+  &._loading {
+    opacity: 0.99;
+  }
+
+}
+
+.content-wrapper {
+  display: block;
+}

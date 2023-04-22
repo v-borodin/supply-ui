@@ -1,0 +1,21 @@
+<div *ngFor="let radio of radios; let index = index"
+     [class.radio-button-block]="type === 'block'"
+     [class.bg-secondary]="radio.value === value && type === 'block'">
+
+  <input id="{{index}}"
+         [value]="radio.value"
+         [checked]="radio.value === value"
+         (change)="onChangeEvent($event)"
+         (click)="select(radio.value)"
+         type="radio"
+         class="radio-button"
+         name="radio-group">
+
+  <label for="{{index}}"
+         [class.mr-24]="direction === 'horizontal'"
+         class="radio-label">
+    <ng-container *ngTemplateOutlet="radio.content"></ng-container>
+  </label>
+  <ng-container *ngTemplateOutlet="radio.lazyContent || null"></ng-container>
+</div>
+

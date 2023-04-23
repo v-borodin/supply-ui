@@ -1,5 +1,6 @@
 export * from '@supply/cdk/abstract';
 export * from '@supply/cdk/interfaces';
+export * from '@supply/cdk/constants';
 export * from '@supply/cdk/datetime';
 export * from '@supply/cdk/directives';
 export * from '@supply/cdk/mixins';

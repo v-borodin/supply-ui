@@ -14,6 +14,7 @@ import { supIsNumber, supIsString, toPx } from '@supply/cdk';
 import { CalendarPaginationComponent } from '@supply/uikit/components/calendar-pagination';
 import { SupCalendarGridComponent } from '@supply/uikit/components/calendar-grid';
 import { YearsListComponent } from '@supply/uikit/components/years-list';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'sup-calendar',
@@ -25,6 +26,7 @@ import { YearsListComponent } from '@supply/uikit/components/years-list';
     CalendarPaginationComponent,
     SupCalendarGridComponent,
     YearsListComponent,
+    NgIf,
   ],
 })
 export class SupCalendarComponent {

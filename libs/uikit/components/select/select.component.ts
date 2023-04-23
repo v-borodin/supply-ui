@@ -11,7 +11,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
-import { SupOptionDirective } from '../../directives/option/option.directive';
+import { SupOptionDirective } from '@supply/uikit/directives/option';
 import {
   runOutsideAngular,
   SupClickOutsideHandler,
@@ -21,8 +21,8 @@ import {
   SupImplicitBoolean,
 } from '@supply/cdk';
 import { Observable, skipWhile, startWith, takeUntil, tap } from 'rxjs';
-import { AsyncPipe, NgIf } from '@angular/common';
-import { SupIconComponent } from '@supply/uikit/components';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { SupIconComponent } from '@supply/uikit/components/icon';
 
 @Component({
   selector: 'sup-select',
@@ -38,7 +38,7 @@ import { SupIconComponent } from '@supply/uikit/components';
   providers: [SupClickOutsideHandler],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, NgIf, SupIconComponent],
+  imports: [AsyncPipe, NgIf, SupIconComponent, NgForOf],
 })
 export class SelectComponent
   extends SupFieldSimpleDirective
@@ -84,7 +84,6 @@ export class SelectComponent
 
   @Input()
   set value(newValue: any) {
-    console.log(newValue);
     const hasAssigned = this.assignValue(newValue);
     if (hasAssigned) {
       this.onChange(newValue);

@@ -19,8 +19,8 @@ import { SupDestroyService, SupFormFieldController } from '@supply/cdk';
 import { SupFieldService } from '@supply/uikit/services';
 import { HintDirective, SUP_HINT } from '@supply/uikit/directives/hint';
 import { SUP_FORM_FIELD_CONTROLLER } from '@supply/cdk/tokens';
-import { SupLoaderComponent } from '@supply/uikit/components';
 import { NgIf } from '@angular/common';
+import { SupLoaderComponent } from '@supply/uikit/components/loader';
 
 @Component({
   selector: 'sup-form-field',

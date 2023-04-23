@@ -1,10 +1,7 @@
-@use "../src/styles/abstract/mixin" as *;
-
 :host {
-  @include transition(.3s);
-
   display: block;
   opacity: 0.01;
+  transition-duration: .3s;
   transition-property: opacity, height, visibility;
 
   &._overflow {
@@ -12,8 +9,8 @@
   }
 
   &._expanded {
-    opacity: 1;
     transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 
   &._loading {

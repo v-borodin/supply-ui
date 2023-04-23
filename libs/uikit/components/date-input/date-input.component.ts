@@ -18,6 +18,7 @@ import {
 import { DateTime } from 'luxon';
 import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
 import { SupIconComponent } from '@supply/uikit/components/icon';
+import { SupCalendarComponent } from '@supply/uikit/components';
 
 @Component({
   selector: 'sup-date-input',
@@ -25,7 +26,7 @@ import { SupIconComponent } from '@supply/uikit/components/icon';
   styleUrls: ['./date-input.component.scss'],
   providers: [SupClickOutsideHandler],
   standalone: true,
-  imports: [AsyncPipe, NgIf, DatePipe, SupIconComponent],
+  imports: [AsyncPipe, NgIf, DatePipe, SupIconComponent, SupCalendarComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SupDateInputComponent

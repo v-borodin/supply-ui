@@ -4,10 +4,8 @@ import { AppComponent } from './app.component';
 import {
   SupButtonComponent,
   SupIconComponent,
-  SupInputComponent,
   SupLabelComponent,
   SupNotificationComponent,
-  SupTextInputComponent,
 } from '@supply/uikit';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -16,8 +14,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     SupButtonComponent,
-    SupInputComponent,
-    SupTextInputComponent,
     SupLabelComponent,
     FormsModule,
     ReactiveFormsModule,

@@ -1,14 +1,14 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
   HostBinding,
   Inject,
-  Input,
-  Renderer2,
+  OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import {
   supCoerceBooleanProperty,
+  SupDompurifyPipe,
   SupImplicitBoolean,
   SupSvgRegistry,
 } from '@supply/cdk';
@@ -18,24 +18,17 @@ import {
   exportAs: 'supIcon',
   templateUrl: './icon.html',
   styleUrls: ['./icon.scss'],
+  inputs: ['src', 'inline'],
   host: {
     role: 'img',
   },
   standalone: true,
+  imports: [SupDompurifyPipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SupIconComponent {
-  @Input()
-  set src(value: string) {
-    this.process(value);
-    this._src = value;
-  }
+export class SupIconComponent implements OnChanges {
+  src = '';
 
-  get src(): string {
-    return this._src;
-  }
-
-  @Input()
   @HostBinding('class.inline')
   get inline(): boolean {
     return this._inline;
@@ -45,31 +38,25 @@ export class SupIconComponent {
     this._inline = supCoerceBooleanProperty(inline);
   }
 
+  innerHtml: string | null = null;
+
   private _inline = false;
 
-  private _src = '';
+  constructor(@Inject(SupSvgRegistry) private readonly svgRegistry: SupSvgRegistry) {}
 
-  constructor(
-    @Inject(SupSvgRegistry) private readonly svgRegistry: SupSvgRegistry,
-    @Inject(ElementRef) private readonly elementRef: ElementRef,
-    @Inject(Renderer2) private readonly renderer: Renderer2
-  ) {}
+  ngOnChanges({ src }: SimpleChanges) {
+    src && this.process(this.src);
+  }
 
   private process(source: string): void {
     const iconFromRegistry = this.getFromRegistry(source);
 
     if (iconFromRegistry) {
-      this.appendSvgElement(iconFromRegistry);
+      this.innerHtml = iconFromRegistry;
     }
   }
 
-  private getFromRegistry(key: string): SVGElement | null {
+  private getFromRegistry(key: string): string | null {
     return this.svgRegistry.retrieve(key);
-  }
-
-  private appendSvgElement(svg: SVGElement): void {
-    const { nativeElement } = this.elementRef;
-
-    this.renderer.appendChild(nativeElement, svg);
   }
 }

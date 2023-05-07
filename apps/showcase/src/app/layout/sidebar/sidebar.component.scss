@@ -1,0 +1,19 @@
+@use "../layout" as *;
+
+:host {
+  position: fixed;
+  z-index: 50;
+  top: $height-header;
+  bottom: 0;
+  left: 0;
+
+  overflow: auto;
+  display: flex;
+  flex-shrink: 0;
+
+  width: $width-sidebar;
+  padding: 1rem;
+
+  background: var(--sup-color-scale-white);
+  border-right: $border-layout;
+}

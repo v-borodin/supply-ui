@@ -1,0 +1,21 @@
+<div class="aside-container">
+  <div class="aside-title">On this page</div>
+  <ul class="aside-list">
+    <li *ngFor="let section of sections">
+<!--      <div [style.top.px]="getMarkerPosition()"-->
+<!--           *ngIf="currentSection"-->
+<!--           class="li-marker">-->
+<!--      </div>-->
+      <a #anchorElement
+         [class.active]="section.id === currentSection"
+         [id]="section.id"
+         (click)="click(section)" class="aside-link">
+        {{section.title}}
+      </a>
+    </li>
+  </ul>
+
+<!--  <hr class="sup-divider mt-4 mb-4"/>-->
+
+<!--  <div class="aside-title sup-text-muted">See also</div>-->
+</div>

@@ -5,14 +5,12 @@ $margin-icon-sm: 0.35rem;
 $height-sm: 2.125rem;
 $height-md: 2.50rem;
 $height-lg: 2.75rem;
+$size-icon-sm: 1.15rem;
+$size-icon-md: 1.25rem;
+$size-icon-lg: 1.5rem;
 
 :host {
   @include sup.reset-button;
-
-  @include sup.attr-disabled {
-    pointer-events: none;
-    cursor: default;
-  }
 
   touch-action: manipulation;
   cursor: pointer;
@@ -26,11 +24,21 @@ $height-lg: 2.75rem;
 
   white-space: nowrap;
 
+  &[disabled] {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  &.sup-size-inherit {
+    @include sup.inherit-host(width, height);
+
+    padding: 0;
+  }
+
   &.sup-size-sm {
     height: $height-sm;
     padding: 0 0.75rem;
-    font-size: 13px;
-    font-weight: 600;
+    font: var(--sup-font-text-xs-bold);
 
     &[supIconButton] {
       width: $height-sm;
@@ -44,8 +52,7 @@ $height-lg: 2.75rem;
   &.sup-size-md {
     height: $height-md;
     padding: 0 1rem;
-    font-size: 14px;
-    font-weight: 600;
+    font: var(--sup-font-text-sm-bold);
 
     &[supIconButton] {
       width: $height-md;
@@ -55,8 +62,7 @@ $height-lg: 2.75rem;
   &.sup-size-lg {
     height: $height-lg;
     padding: 0 1.25rem;
-    font-size: 14px;
-    font-weight: 600;
+    font: var(--sup-font-text-sm-bold);
 
     &[supIconButton] {
       width: $height-lg;
@@ -96,6 +102,10 @@ $height-lg: 2.75rem;
     @include sup.appearance-tertiary;
   }
 
+  &.sup-appearance-flat {
+    @include sup.appearance-flat;
+  }
+
   &.sup-appearance-accent {
     @include sup.appearance-accent;
   }
@@ -117,13 +127,25 @@ $height-lg: 2.75rem;
 }
 
 .sup-left-mg {
-  margin: 0 0.5rem 0 calc(-0.5rem / 2);
+  margin: 0 0.4rem 0 calc(-0.5rem / 2);
 }
 
 .sup-icon {
+  @include sup.size($size-icon-sm);
+
   display: block;
-  width: 1rem;
-  height: 1rem;
+
+  :host.sup-size-inherit & {
+    @include sup.size(1em);
+  }
+
+  :host.sup-size-md & {
+    @include sup.size($size-icon-md);
+  }
+
+  :host.sup-size-lg & {
+    @include sup.size($size-icon-lg);
+  }
 }
 
 .sup-loader {

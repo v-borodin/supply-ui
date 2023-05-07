@@ -63,6 +63,9 @@
       ],
       "@supply/uikit/*": [
         "libs/uikit/*"
+      ],
+      "@app/icons": [
+        "libs/icons/index"
       ]
     }
   }

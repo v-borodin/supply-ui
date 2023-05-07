@@ -1,0 +1,35 @@
+@use "libs/uikit/styles/supply-internal" as sup;
+
+/**
+ * These rules goes into global non-encapsulated styles to complement the existing styles of the @supply/uikit library
+ */
+
+/**
+ * Usage example: <button appearance="danger" supButton>Click me</button>
+ */
+[supButton].sup-appearance-danger {
+  @include sup.transition-context {
+    @include sup.hover {
+      background-color: var(--app-color-btn-danger-bg-hover);
+    }
+
+    @include sup.active {
+      background-color: var(--app-color-btn-danger-bg-active);
+    }
+
+    color: var(--app-color-btn-danger-text);
+    background-color: var(--app-color-btn-danger-bg);
+    border: 1px solid var(--app-color-btn-danger-border);
+    box-shadow: var(--sup-color-btn-shadow);
+  }
+}
+
+/**
+ * Usage example: <button appearance="dashed" supButton>Click me</button>
+ */
+[supButton].sup-appearance-dashed {
+  @include sup.appearance-secondary;
+
+  border: 1px dashed var(--sup-color-btn-secondary-border-hover);
+  box-shadow: none;
+}

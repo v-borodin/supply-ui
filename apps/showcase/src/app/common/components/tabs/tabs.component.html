@@ -1,0 +1,15 @@
+<nav class="tabs-header">
+  <button *ngFor="let tab of tabs; let i = index"
+          [class.active]="i === activeTab"
+          (click)="onClick(i)"
+          class="tab-btn">
+    <ng-container *ngIf="tab.icon">
+      <ng-container *ngxContentOutlet="tab.icon as name">
+        <i [src]="name" supIcon></i>
+      </ng-container>
+    </ng-container>
+    {{tab.name}}
+  </button>
+</nav>
+
+<ng-container [ngTemplateOutlet]="active?.template || null"/>

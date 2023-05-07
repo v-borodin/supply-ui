@@ -10,7 +10,7 @@
  @private default transition options
  */
 $_default-transition-options: (
-  properties: (color, background, opacity),
+  properties: (color, background, background-color, opacity),
   duration: 0.2s,
   function: ease-in-out,
   /* @see common.scss (@mixin transition) for details*/

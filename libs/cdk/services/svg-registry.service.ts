@@ -1,17 +1,17 @@
-import { Inject, Injectable, OnDestroy, SecurityContext } from '@angular/core';
+import { Inject, Injectable, OnDestroy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 import { supIsObject } from '@supply/cdk/utils';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SupSvgRegistry implements OnDestroy {
-  private readonly registry = new Map<string, SVGElement>();
+  private readonly registry = new Map<string, string>();
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
-    @Inject(DomSanitizer) private readonly sanitizer: DomSanitizer
+    @Inject(DomSanitizer) private readonly sanitizer: DomSanitizer,
   ) {}
 
   ngOnDestroy() {
@@ -20,20 +20,15 @@ export class SupSvgRegistry implements OnDestroy {
 
   register(source: Record<string, string>): void;
   register(name: string, source: string): void;
-  register(
-    nameOrSource: string | Record<string, string>,
-    source?: string
-  ): void {
+  register(nameOrSource: string | Record<string, string>, source?: string): void {
     if (supIsObject(nameOrSource)) {
-      Object.keys(nameOrSource).forEach(key =>
-        this.registerSvgElement(key, nameOrSource[key])
-      );
+      Object.keys(nameOrSource).forEach(key => this.registerSvgElement(key, nameOrSource[key]));
     } else if (source) {
       this.registerSvgElement(nameOrSource, source);
     }
   }
 
-  retrieve(name: string): SVGElement | null {
+  retrieve(name: string): string | null {
     return this.registry.get(name) ?? null;
   }
 
@@ -43,20 +38,19 @@ export class SupSvgRegistry implements OnDestroy {
       return;
     }
 
-    this.registry.set(key, this.getSvgFromStringLiteral(source));
+    this.registry.set(key, source);
   }
 
-  private getSvgFromStringLiteral(literal: string): SVGElement {
-    const div = this.document.createElement('DIV');
+  // @TODO: resolve
+  // private getSvgFromStringLiteral(literal: string): SVGElement {
+  //   const div = this.document.createElement('div');
+  //
+  //   div.innerHTML = String(this.sanitize(literal));
+  //
+  //   return div.querySelector('svg') as SVGElement;
+  // }
 
-    div.innerHTML = String(this.sanitize(literal));
-
-    return div.querySelector('svg') as SVGElement;
-  }
-
-  private sanitize(source: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(
-      this.sanitizer.sanitize(SecurityContext.HTML, source) || ''
-    );
-  }
+  // private sanitize(source: string): SafeHtml {
+  //   return this.sanitizer.bypassSecurityTrustHtml(DOMPurify.sanitize(source));
+  // }
 }

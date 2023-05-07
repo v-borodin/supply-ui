@@ -1,0 +1,7 @@
+<button (click)="copyToClipboard(code)" type="button" class="copy-btn">
+  <i *ngIf="!copied; else checkmark" src="appClipboard" supIcon></i>
+  <ng-template #checkmark>
+    <i class="zoom-in" src="appCheck" supIcon></i>
+  </ng-template>
+</button>
+<code class="language-{{lang}}">{{code}}</code>

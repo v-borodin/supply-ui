@@ -1,0 +1,45 @@
+.aside-list {
+  position: relative;
+}
+
+.li-marker {
+  position: absolute;
+  z-index: 0;
+  left: -12px;
+
+  width: 3.5px;
+  height: 20px;
+
+  background-color: var(--sup-color-btn-primary-bg);
+  border-radius: 6px;
+
+  transition: top .25s cubic-bezier(0, 1, .5, 1), opacity .25s, background-color .5s;
+}
+
+.aside-title {
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+
+.aside-link {
+  overflow: hidden;
+  display: block;
+
+  font-size: 13.5px;
+  line-height: 28px;
+  color: var(--sup-color-text-2);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  opacity: 0.8;
+  transition: color .5s;
+
+  &.active {
+    opacity: 1;
+    color: var(--sup-color-text-1);
+  }
+}

@@ -1,0 +1,27 @@
+<ul class="sup-list">
+  <ng-container *ngFor="let item of items">
+    <li class="sup-item">
+      <a class="sup-link">
+        <ng-container *ngxContentOutlet="item.icon as name">
+          <i [src]="name" supIcon></i>
+        </ng-container>
+        <ng-container [ngTemplateOutlet]="item.template"/>
+      </a>
+
+      <ul *ngFor="let group of item.groups" class="sup-group">
+        <label *ngIf="group.label as label" class="sup-label">
+          {{label}}
+        </label>
+        <li *ngFor="let item of group.items" class="sup-group-item">
+          <a [routerLink]="item.routerLink"
+             (click)="click(item)"
+             class="sup-group-item-link"
+             routerLinkActive="active">
+            <ng-container [ngTemplateOutlet]="item.template"/>
+          </a>
+        </li>
+      </ul>
+    </li>
+    <hr *ngIf="item.divider" class="sup-divider light"/>
+  </ng-container>
+</ul>

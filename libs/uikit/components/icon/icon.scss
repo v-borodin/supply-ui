@@ -12,7 +12,6 @@ $size-default: 1.5rem;
 
   font-size: 1rem;
   line-height: 0;
-  vertical-align: middle;
 
   fill: currentcolor;
   stroke: transparent;
@@ -20,4 +19,10 @@ $size-default: 1.5rem;
   &.inline {
     @include sup.inherit-host(width, height, font-size, line-height);
   }
+}
+
+.sup-svg-container {
+  @include sup.inherit-host(width, height);
+
+  display: flex;
 }

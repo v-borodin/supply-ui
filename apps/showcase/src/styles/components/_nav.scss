@@ -1,0 +1,96 @@
+@use "libs/uikit/styles/supply-internal" as sup;
+
+.sup-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.25rem;
+}
+
+.sup-item {
+  position: relative;
+  width: 100%;
+}
+
+.sup-link {
+  cursor: default;
+
+  position: relative;
+
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  width: inherit;
+  height: 2rem;
+  padding: 0 0.75rem 0 0.25rem;
+
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+
+  i {
+    width: 1.10rem;
+    height: 1.10rem;
+    color: #007BEB;
+  }
+}
+
+.sup-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.sup-group-item {
+  width: 100%;
+}
+
+.sup-group-item-link {
+  @include sup.reset-button;
+
+  @include sup.hover {
+    background-color: var(--sup-color-scale-gray-3);
+  }
+
+  display: inline-flex;
+  align-items: center;
+
+  width: inherit;
+  height: 2rem;
+  padding: 0 0.75rem 0 1.85rem;
+
+  font-size: 14px;
+  line-height: 20px;
+
+  background-color: transparent;
+  border-radius: var(--sup-radius-sm);
+
+  &.active {
+    background-color: var(--sup-color-scale-gray-4);
+  }
+}
+
+.sup-label {
+  position: relative;
+
+  display: inline-block;
+
+  padding: 12px 14px 4px 30px;
+
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #778591;
+  text-transform: uppercase;
+  letter-spacing: 0.1px;
+}
+
+.sup-divider {
+  width: 100%;
+  height: 1px;
+  background-color: var(--sup-color-scale-gray-6);
+  border: 0;
+
+  &.light {
+    background-color: var(--sup-color-scale-gray-5);
+  }
+}

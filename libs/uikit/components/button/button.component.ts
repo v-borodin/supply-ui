@@ -18,6 +18,8 @@ import {
   supMixinLoadable,
 } from '@supply/cdk';
 import { SupLoaderComponent } from '@supply/uikit/components/loader';
+import { SupIconComponent } from '@supply/uikit/components';
+import { NgxContentOutlet, ReflectiveContent } from '@coreteq/ngx-projection';
 
 const ButtonMixin = supMixinInteractive(
   supMixinLoadable(
@@ -30,7 +32,8 @@ const ButtonMixin = supMixinInteractive(
 );
 
 @Component({
-  selector: 'button[supButton], button[supIconButton], a[supButton]',
+  selector:
+    'button[supButton], button[supIconButton], a[supButton], a[supIconButton]',
   exportAs: 'supButton',
   templateUrl: './button.html',
   styleUrls: ['./button.scss'],
@@ -47,7 +50,13 @@ const ButtonMixin = supMixinInteractive(
     },
   ],
   standalone: true,
-  imports: [NgIf, NgTemplateOutlet, SupLoaderComponent],
+  imports: [
+    NgIf,
+    NgTemplateOutlet,
+    SupLoaderComponent,
+    SupIconComponent,
+    NgxContentOutlet,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SupButtonComponent extends ButtonMixin {
@@ -61,10 +70,10 @@ export class SupButtonComponent extends ButtonMixin {
   override shape = this.options.shape;
 
   @Input()
-  icon: TemplateRef<any> | undefined | null;
+  icon: ReflectiveContent;
 
   @Input()
-  iconRight: TemplateRef<any> | undefined | null;
+  iconRight: ReflectiveContent;
 
   @HostBinding('attr.disabled')
   get isDisabled(): '' | null {

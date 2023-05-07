@@ -67,17 +67,26 @@
     @content;
   }
 
-  &::-moz-placeholder {
+  &::placeholder {
     @content;
   }
 
-  &::-webkit-input-placeholder {
+  &::input-placeholder {
     @content;
   }
 
-  &:-ms-input-placeholder {
+  &:input-placeholder {
     @content;
   }
+}
+
+/* -------------------------------- */
+/* Size */
+/* -------------------------------- */
+
+@mixin size($value) {
+  width: $value;
+  height: $value;
 }
 
 /* -------------------------------- */
@@ -86,8 +95,8 @@
 
 @mixin center-by-flex {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 /* -------------------------------- */

@@ -1,0 +1,71 @@
+@use "../abstract/variables" as *;
+
+@each $key, $val in $spaces {
+  .p-#{$key} {
+    padding: #{$val} !important;
+  }
+  .pt-#{$key} {
+    padding-top: #{$val} !important;
+  }
+  .pr-#{$key} {
+    padding-right: #{$val} !important;
+  }
+  .pb-#{$key} {
+    padding-bottom: #{$val} !important;
+  }
+  .pl-#{$key} {
+    padding-left: #{$val} !important;
+  }
+  .px-#{$key} {
+    padding-right: #{$val} !important;
+    padding-left: #{$val} !important;
+  }
+  .py-#{$key} {
+    padding-top: #{$val} !important;
+    padding-bottom: #{$val} !important;
+  }
+
+  .m-#{$key} {
+    margin: #{$val} !important;
+  }
+  .mt-#{$key} {
+    margin-top: #{$val} !important;
+  }
+  .mr-#{$key} {
+    margin-right: #{$val} !important;
+  }
+  .mb-#{$key} {
+    margin-bottom: #{$val} !important;
+  }
+  .ml-#{$key} {
+    margin-left: #{$val} !important;
+  }
+  .mx-#{$key} {
+    margin-right: #{$val} !important;
+    margin-left: #{$val} !important;
+  }
+  .my-#{$key} {
+    margin-top: #{$val} !important;
+    margin-bottom: #{$val} !important;
+  }
+}
+
+.m-auto {
+  margin: auto !important;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+.mr-auto {
+  margin-right: auto !important;
+}
+
+.mb-auto {
+  margin-bottom: auto !important;
+}
+
+.ml-auto {
+  margin-left: auto !important;
+}

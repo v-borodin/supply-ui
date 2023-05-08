@@ -8,7 +8,7 @@ import * as html from '!!raw-loader!./button-customization-example.component.htm
 
 @Component({
   selector: 'app-button-customization-demo',
-  template: '<app-demo [activeTab]="0" [example]="example"/>',
+  template: '<app-demo [activeTab]="3" [example]="example"/>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonCustomizationDemoComponent extends AbstractShowcase {

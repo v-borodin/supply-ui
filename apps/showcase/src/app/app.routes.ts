@@ -1,8 +1,6 @@
 import { Route } from '@angular/router';
 import { LayoutComponent } from './layout/layout.component';
 import { IntroductionPageComponent } from './feature/introduction-page/introduction-page.component';
-import { ButtonPageComponent } from './feature/button-page/button-page.component';
-import { NotificationPageComponent } from './feature/notification-page/notification-page.component';
 
 export const appRoutes: Route[] = [
   {
@@ -23,11 +21,15 @@ export const appRoutes: Route[] = [
         children: [
           {
             path: 'button',
-            component: ButtonPageComponent,
+            loadChildren: () =>
+              import('./feature/button-page/button-page.module').then(m => m.ButtonPageModule),
           },
           {
             path: 'notification',
-            component: NotificationPageComponent,
+            loadChildren: () =>
+              import('./feature/notification-page/notification-page.module').then(
+                m => m.NotificationPageModule
+              ),
           },
         ],
       },

@@ -6,7 +6,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { NavItemComponent } from '../item/nav-item.component';
-import { EMPTY_QUERY } from '../nav.component';
+import { EMPTY_QUERY } from '../../../../common/constants/query-list';
 
 @Component({
   selector: 'app-nav-group',

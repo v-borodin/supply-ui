@@ -14,7 +14,9 @@ import { NavDividerDirective } from './sidebar/nav/divider/nav-divider.directive
 import { SectionComponent } from './section/section.component';
 import { PageComponent } from './page/page.component';
 import { AsideComponent } from './aside/aside.component';
-import { SectionListComponent } from './page/section-list/section-list.component';
+import { SectionWrapperComponent } from './section-wrapper/section-wrapper.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
+import { PageDividerComponent } from './page-divider/page-divider.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { SectionListComponent } from './page/section-list/section-list.component
     SectionComponent,
     PageComponent,
     AsideComponent,
-    SectionListComponent,
+    SectionWrapperComponent,
+    PageHeaderComponent,
+    PageDividerComponent,
   ],
   imports: [
     RouterOutlet,
@@ -42,6 +46,12 @@ import { SectionListComponent } from './page/section-list/section-list.component
     NgIf,
     RouterLinkActive,
   ],
-  exports: [SectionComponent, PageComponent, SectionListComponent],
+  exports: [
+    SectionComponent,
+    PageComponent,
+    SectionWrapperComponent,
+    PageHeaderComponent,
+    PageDividerComponent,
+  ],
 })
 export class LayoutModule {}

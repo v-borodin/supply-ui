@@ -1,4 +1,4 @@
-<app-tabs>
+<app-tabs [activeTab]="activeTab">
   <app-tab *ngFor="let tab of tabs" [name]="tab">
     <ng-template #lazyContent>
       <ng-container *ngIf="tab === 'Preview'; else highlight">

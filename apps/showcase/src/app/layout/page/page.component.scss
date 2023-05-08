@@ -1,9 +1,9 @@
+@use "../layout" as *;
+
 :host {
   display: flex;
 }
 
-.page-wrap {
-  display: block;
-  min-width: 75ch;
-  max-width: 100%;
+.page-wrapper {
+  @include page-wrapper;
 }

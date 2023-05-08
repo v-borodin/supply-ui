@@ -7,13 +7,14 @@ import {
   Inject,
   Input,
   NgZone,
+  OnDestroy,
   QueryList,
   ViewChildren,
 } from '@angular/core';
 import { PageSection } from '../section/section.component';
 import { DOCUMENT } from '@angular/common';
 import { PageComponent } from '../page/page.component';
-import { EMPTY_QUERY } from '../sidebar/nav/nav.component';
+import { getOriginalArray } from '../../common/constants/query-list';
 
 const FALLBACK_HEADER_HEIGHT = 50;
 const HEADER_OFFSET = 28;
@@ -25,14 +26,13 @@ const SCROLL_TOP_OFFSET = 60;
   styleUrls: ['./aside.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AsideComponent implements AfterViewInit {
-  @ViewChildren('anchorElement')
-  private readonly links: QueryList<ElementRef<HTMLAnchorElement>> = EMPTY_QUERY;
-
+export class AsideComponent implements AfterViewInit, OnDestroy {
   @Input()
-  sections: PageSection[] = this.page.sections.toArray();
+  sections = getOriginalArray(this.page.sections);
 
   currentSection: string | null = null;
+
+  private scrollHandler: any;
 
   private get window(): Window {
     const { defaultView } = this.document;
@@ -48,8 +48,8 @@ export class AsideComponent implements AfterViewInit {
     return this.document.getElementById('header')?.offsetHeight || FALLBACK_HEADER_HEIGHT;
   }
 
-  private get sectionListElement(): HTMLElement {
-    return this.page.sectionList?.elementRef.nativeElement;
+  private get sectionWrapper(): ElementRef | null {
+    return this.page.sectionWrapper ?? null;
   }
 
   constructor(
@@ -60,59 +60,58 @@ export class AsideComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    this.ngZone.runOutsideAngular(() => {
-      this.document.addEventListener(
-        'scroll',
-        (event: any) => {
-          let current = '';
+    if (!this.sectionWrapper) {
+      return;
+    }
 
-          const { scrollTop } = event.target.documentElement;
-          const { offsetTop, children } = this.sectionListElement;
+    this.scrollHandler = (event: any) => {
+      let current = '';
 
-          for (let i = 0; i < children.length; i++) {
-            const element = children[i] as HTMLElement;
-            if (this.intersected(element, offsetTop, scrollTop)) {
-              current = element.id;
-            }
-          }
+      const { scrollTop } = event.target.documentElement;
+      const { offsetTop, children } = this.sectionWrapper?.nativeElement;
 
-          this.ngZone.run(() => {
-            if (current !== this.currentSection) {
-              this.currentSection = current;
-              this.cdr.markForCheck();
-            }
-          });
-        },
-        {
-          passive: true,
+      for (let i = 0; i < children.length; i++) {
+        const element = children[i] as HTMLElement;
+        if (this.intersected(element, offsetTop, scrollTop)) {
+          current = element.id;
         }
-      );
+      }
+
+      this.ngZone.run(() => {
+        if (current !== this.currentSection) {
+          this.currentSection = current;
+          this.cdr.markForCheck();
+        }
+      });
+    };
+
+    this.ngZone.runOutsideAngular(() => {
+      this.document.addEventListener('scroll', this.scrollHandler, {
+        passive: true,
+      });
     });
+  }
+
+  ngOnDestroy(): void {
+    this.document.removeEventListener('scroll', this.scrollHandler);
   }
 
   click(section: PageSection): void {
     const { nativeElement } = section.elementRef;
 
     const headerOffset = this.headerHeight + HEADER_OFFSET;
-    const elementPosition = nativeElement.getBoundingClientRect().top;
-    const position = elementPosition + this.window.pageYOffset - headerOffset;
+    const { top } = nativeElement.getBoundingClientRect();
+    const { pageYOffset } = this.window;
 
     this.window.scrollTo({
-      top: position,
+      top: top + pageYOffset - headerOffset,
+      behavior: 'smooth',
     });
-  }
-
-  getMarkerPosition(): number {
-    const link = this.links.toArray().find(ref => {
-      return ref.nativeElement.id === this.currentSection;
-    });
-
-    const top = link?.nativeElement.offsetTop || 0;
-
-    return top + 4;
   }
 
   private intersected(element: HTMLElement, containerOffset: number, scrollTop: number): boolean {
-    return element.offsetTop - containerOffset - this.headerHeight - SCROLL_TOP_OFFSET <= scrollTop;
+    return (
+      element.offsetTop - containerOffset - this.headerHeight - SCROLL_TOP_OFFSET + 200 <= scrollTop
+    );
   }
 }

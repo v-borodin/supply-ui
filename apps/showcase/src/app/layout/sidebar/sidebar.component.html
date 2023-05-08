@@ -1,24 +1,27 @@
 <nav appNav>
   <app-nav-item icon="appList">
-    Getting started
+    Documentation
     <app-nav-group>
       <app-nav-item routerLink="introduction">Introduction</app-nav-item>
       <app-nav-item>Quick Start</app-nav-item>
+      <app-nav-item>Changelog</app-nav-item>
     </app-nav-group>
     <app-nav-divider/>
   </app-nav-item>
-
-  <app-nav-item icon="appCellType">
+  <app-nav-item showCounter icon="appComponent">
     Components
     <app-nav-group label="Core">
-      <app-nav-item routerLink="components/button">Button</app-nav-item>
-      <app-nav-item routerLink="components/notification">Notification</app-nav-item>
+      <app-nav-item marked routerLink="components/button">Button</app-nav-item>
+      <app-nav-item marked routerLink="components/notification">Notification</app-nav-item>
       <app-nav-item>Dialog</app-nav-item>
+      <app-nav-item>Calendar</app-nav-item>
     </app-nav-group>
 
     <app-nav-group label="Form">
-      <app-nav-item>Autocomplete</app-nav-item>
       <app-nav-item>Textfield</app-nav-item>
+      <app-nav-item>Textarea</app-nav-item>
+      <app-nav-item>Autocomplete</app-nav-item>
+      <app-nav-item>Date Picker</app-nav-item>
       <app-nav-item>Combobox</app-nav-item>
     </app-nav-group>
 
@@ -27,8 +30,16 @@
       <app-nav-item>Table</app-nav-item>
     </app-nav-group>
   </app-nav-item>
-
-  <app-nav-item>
+  <app-nav-item showCounter icon="appCode">
     CDK (Dev Kit)
+    <app-nav-group>
+      <app-nav-item>RXJS Operators</app-nav-item>
+      <app-nav-item>Dom Handler</app-nav-item>
+      <app-nav-item>TS Mixins</app-nav-item>
+    </app-nav-group>
   </app-nav-item>
 </nav>
+
+<div class="block-2">
+  Version 0.1.0
+</div>

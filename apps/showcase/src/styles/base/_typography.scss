@@ -26,7 +26,7 @@
   // rules
 }
 
-.h1 {
+h1, .h1 {
   font-family: Poppins, sans-serif;
   font-size: 2.25rem;
   font-weight: 600;
@@ -34,7 +34,7 @@
   line-height: 3rem;
 }
 
-.h2 {
+h2, .h2 {
   font-family: Poppins, sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
@@ -52,6 +52,15 @@
 
 .h5 {
   @include h5-default;
+}
+
+.h6 {
+
+}
+
+p {
+  font: var(--sup-font-text-md);
+  color: var(--sup-color-scale-gray-12);
 }
 
 .sup-text-body-sm {

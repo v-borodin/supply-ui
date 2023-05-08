@@ -11,22 +11,8 @@
         "*.ts"
       ],
       "rules": {
-        "@angular-eslint/directive-selector": [
-          "warn",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
-        ],
-        "@angular-eslint/component-selector": [
-          "warn",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
-        ]
+        "@angular-eslint/no-input-rename": "off",
+        "@angular-eslint/no-host-metadata-property": "off"
       },
       "extends": [
         "plugin:@nrwl/nx/angular",

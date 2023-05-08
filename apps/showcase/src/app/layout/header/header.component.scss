@@ -25,12 +25,13 @@
 
   &__line {
     width: 1px;
-    height: 1.9rem;
+    height: 1.8rem;
     background-color: var(--sup-color-scale-gray-8);
     border-radius: 2px;
   }
 
   &__subtitle {
+    margin-left: 0.15rem;
     padding: 4px 11px;
 
     font-size: 12.5px;

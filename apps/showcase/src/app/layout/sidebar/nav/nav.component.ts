@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, Component, ContentChildren, QueryList } from '@angular/core';
 import { NavItemComponent } from './item/nav-item.component';
-
-export const EMPTY_QUERY = new QueryList<any>();
+import { EMPTY_QUERY } from '../../../common/constants/query-list';
 
 @Component({
   selector: 'nav[appNav]',

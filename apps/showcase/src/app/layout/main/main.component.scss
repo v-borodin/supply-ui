@@ -7,5 +7,5 @@
 }
 
 .main-wrapper {
-  padding: 4rem 5rem;
+  @include main-wrapper;
 }

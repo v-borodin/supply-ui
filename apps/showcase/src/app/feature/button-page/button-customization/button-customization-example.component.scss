@@ -1,0 +1,16 @@
+@use "libs/uikit/styles/supply-internal" as sup;
+
+[supButton].sup-appearance-custom {
+  @include sup.transition-context {
+    @include sup.hover {
+      background-color: #0EA35A;
+    }
+
+    @include sup.active {
+      background-color: #0E9954;
+    }
+
+    color: #fff;
+    background-color: #CD6799;
+  }
+}

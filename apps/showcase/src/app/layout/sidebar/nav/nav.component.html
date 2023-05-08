@@ -6,6 +6,7 @@
           <i [src]="name" supIcon></i>
         </ng-container>
         <ng-container [ngTemplateOutlet]="item.template"/>
+        <span *ngIf="item.showCounter" class="sup-counter">{{item.counter}}</span>
       </a>
 
       <ul *ngFor="let group of item.groups" class="sup-group">
@@ -18,6 +19,9 @@
              class="sup-group-item-link"
              routerLinkActive="active">
             <ng-container [ngTemplateOutlet]="item.template"/>
+            <span *ngIf="item.marked"
+                  class="sup-group-item-marker">
+            </span>
           </a>
         </li>
       </ul>

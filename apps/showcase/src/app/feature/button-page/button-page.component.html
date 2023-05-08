@@ -1,57 +1,50 @@
 <div appPage>
-  <div class="d-flex flex-items-center flex-justify-between mb-5">
+  <header url="https://github.com/v-borodin/supply-ui/tree/develop/libs/uikit/components/button" appPageHeader>
+    <h1>Button</h1>
+    <p>
+      SupButtonModule is a module with components supButton, supIconButton are components to use them with native button
+      and
+      a elements. See setup to prepare workspace for the buttons
+    </p>
+  </header>
 
-    <div class="d-flex flex-items-center">
-      <h1 class="h1">
-        Button
-      </h1>
-      <!--      <span class="headline-divider"></span>-->
-      <!--      <label class="headline-label">-->
-      <!--        <i src="appCheckCircle" supIcon></i>-->
-      <!--        coreteq/uikit-->
-      <!--      </label>-->
-    </div>
+  <hr appPageDivider/>
 
-    <div class="code-btn">
-      <i src="appCode" supIcon></i>
-    </div>
-  </div>
-
-  <p class="sup-text-body-md sup-text-paragraph">
-    SupButtonModule is a module with components supButton, supIconButton are components to use them with native button
-    and
-    a elements. See setup to prepare workspace for the buttons
-  </p>
-
-  <hr class="sup-divider mt-8 mb-10"/>
-
-  <app-section-list>
-    <section name="Color Modes" appPageSection>
-      <p class="sup-text-body-md sup-text-paragraph mb-5">
-        Default button is a set of different styles
-      </p>
+  <div appSectionWrapper>
+    <section appSection>
+      <h2>Color Modes</h2>
+      <p>Default button is a set of different styles</p>
       <app-default-button-demo/>
     </section>
 
-    <section name="Size & Shape" appPageSection>
-      <p class="sup-text-body-md sup-text-paragraph mb-5">
-        Default button is a set of different styles
-      </p>
+    <section appSection>
+      <h2>Size & Shape</h2>
+      <p>Default button is a set of different styles</p>
       <app-button-size-shape-demo/>
     </section>
 
-    <section name="States" appPageSection>
-      <p class="sup-text-body-md sup-text-paragraph mb-5">
-        Default button is a set of different styles
-      </p>
+    <section appSection>
+      <h2>States</h2>
+      <p>Default button is a set of different styles</p>
       <app-button-states-demo/>
     </section>
 
-    <section name="Customization" appPageSection>
-      <p class="sup-text-body-md sup-text-paragraph mb-5">
-        Default button is a set of different styles
-      </p>
-      <app-button-states-demo/>
+    <section appSection>
+      <h2>Customization</h2>
+      <p>Default button is a set of different styles</p>
+      <div class="hint mt-4">
+        <i src="appSass" supIcon></i>
+
+        <div class="hint__text">
+          For customization you can use <span class="mark">internal</span> mixins. Learn more
+        </div>
+      </div>
+      <app-button-customization-demo/>
     </section>
-  </app-section-list>
+
+    <section appSection>
+      <h2>Options Token</h2>
+      <p>Default button is a set of different styles</p>
+    </section>
+  </div>
 </div>

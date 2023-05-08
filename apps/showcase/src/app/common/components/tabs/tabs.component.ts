@@ -8,7 +8,7 @@ import {
   QueryList,
 } from '@angular/core';
 import { TabComponent } from './tab/tab.component';
-import { EMPTY_QUERY } from '../../../layout/sidebar/nav/nav.component';
+import { EMPTY_QUERY } from '../../constants/query-list';
 
 @Component({
   selector: 'app-tabs',

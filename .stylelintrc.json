@@ -18,6 +18,8 @@
   "rules": {
     "selector-class-pattern": null,
     "comment-empty-line-before": null,
-    "max-nesting-depth": null
+    "max-nesting-depth": null,
+    "selector-no-qualifying-type": null,
+    "property-no-vendor-prefix": null
   }
 }

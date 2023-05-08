@@ -12,6 +12,9 @@ export class DemoComponent {
   @Input()
   example: Record<any, any> = {};
 
+  @Input()
+  activeTab = 0;
+
   readonly lang = {
     Preview: 'none',
     HTML: 'html',

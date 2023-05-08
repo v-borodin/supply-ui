@@ -1,5 +1,7 @@
 @use "../layout" as *;
 
+@include sidebar-webkit-scrollbar;
+
 :host {
   position: fixed;
   z-index: 50;
@@ -7,13 +9,25 @@
   bottom: 0;
   left: 0;
 
-  overflow: auto;
   display: flex;
+  flex-direction: column;
   flex-shrink: 0;
 
   width: $width-sidebar;
-  padding: 1rem;
 
   background: var(--sup-color-scale-white);
   border-right: $border-layout;
+}
+
+.block-2 {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  height: 3.75rem;
+  padding: 0 1rem;
+
+  border-top: $border-layout;
+
+  font-size: 14px;
 }

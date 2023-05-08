@@ -2,3 +2,31 @@ $height-header: 4rem;
 $width-sidebar: 18rem;
 $width-aside-page: 20rem;
 $border-layout: 1px solid var(--sup-color-scale-gray-6);
+
+@mixin main-wrapper {
+  padding: 4rem 5rem;
+}
+
+@mixin page-wrapper {
+  display: block;
+  min-width: 75ch;
+  max-width: 100%;
+}
+
+@mixin sidebar-webkit-scrollbar {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--sup-color-scale-gray-1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--sup-color-scale-gray-5);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #E0E1E2;
+  }
+}

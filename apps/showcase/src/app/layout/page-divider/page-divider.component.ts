@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'hr[appPageDivider]',
-  templateUrl: './page-divider.component.html',
+  template: '',
   styleUrls: ['./page-divider.component.scss'],
   host: {
     class: 'sup-divider',

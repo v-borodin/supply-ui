@@ -1,9 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, TitleStrategy } from '@angular/router';
 import { appRoutes } from './app.routes';
+import { TemplatePageTitleStrategy } from './core/template-title';
 
 @NgModule({
   imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
+  providers: [
+    {
+      provide: TitleStrategy,
+      useClass: TemplatePageTitleStrategy,
+    },
+  ],
 })
 export class AppRoutingModule {}

@@ -14,6 +14,7 @@ export const appRoutes: Route[] = [
     children: [
       {
         path: 'introduction',
+        title: 'Introduction',
         component: IntroductionPageComponent,
       },
       {
@@ -21,15 +22,14 @@ export const appRoutes: Route[] = [
         children: [
           {
             path: 'button',
-            loadChildren: () =>
-              import('./feature/button-page/button-page.module').then(m => m.ButtonPageModule),
+            title: 'Button',
+            loadChildren: () => import('./feature/button-page/button-page.module').then(m => m.ButtonPageModule),
           },
           {
             path: 'notification',
+            title: 'Notification',
             loadChildren: () =>
-              import('./feature/notification-page/notification-page.module').then(
-                m => m.NotificationPageModule
-              ),
+              import('./feature/notification-page/notification-page.module').then(m => m.NotificationPageModule),
           },
         ],
       },

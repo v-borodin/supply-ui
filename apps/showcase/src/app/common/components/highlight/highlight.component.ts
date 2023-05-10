@@ -1,27 +1,19 @@
-import {
-  AfterViewChecked,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  Inject,
-  Input,
-} from '@angular/core';
+import { AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject } from '@angular/core';
 import { HighlightService } from '../../services/highlight.service';
 
 @Component({
   selector: 'pre[highlight]',
   templateUrl: './highlight.component.html',
   styleUrls: ['./highlight.component.scss'],
+  inputs: ['code:highlight', 'lang'],
   host: {
-    class: 'line-numbers rounded',
+    class: 'line-numbers',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HighlightComponent implements AfterViewChecked {
-  @Input('highlight')
-  code: any;
+  code = '';
 
-  @Input()
   lang = 'ts';
 
   copied = false;
@@ -29,15 +21,16 @@ export class HighlightComponent implements AfterViewChecked {
   private highlighted = false;
 
   constructor(
-    @Inject(HighlightService) private highlightService: HighlightService,
-    @Inject(ChangeDetectorRef) private cdr: ChangeDetectorRef
+    @Inject(HighlightService) private readonly highlightService: HighlightService,
+    @Inject(ChangeDetectorRef) private readonly cdr: ChangeDetectorRef
   ) {}
 
   copyToClipboard(code: string): void {
-    window.navigator.clipboard.writeText(code).then(() => {
-      this.copied = true;
-      this.cdr.markForCheck();
-    });
+    window.navigator.clipboard
+      .writeText(code)
+      .then(() => (this.copied = true))
+      .catch(err => console.error(err))
+      .finally(() => this.cdr.markForCheck());
   }
 
   ngAfterViewChecked(): void {

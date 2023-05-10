@@ -46,6 +46,7 @@
     "lib": [
       "es2017",
       "es2018.asynciterable",
+      "es2018.promise",
       "dom"
     ],
     "skipLibCheck": true,

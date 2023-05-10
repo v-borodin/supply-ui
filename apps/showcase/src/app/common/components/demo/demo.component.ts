@@ -10,17 +10,17 @@ export type TemplateTab = 'Preview' | 'TypeScript' | 'HTML' | 'SCSS';
 })
 export class DemoComponent {
   @Input()
-  example: Record<any, any> = {};
+  example: Record<string, any> = {};
 
   @Input()
   activeTab = 0;
 
   readonly lang = {
-    Preview: 'none',
+    Preview: '',
     HTML: 'html',
     SCSS: 'scss',
     TypeScript: 'ts',
   };
 
-  readonly tabs: TemplateTab[] = ['Preview', 'TypeScript', 'HTML', 'SCSS'];
+  readonly tabs: ReadonlyArray<TemplateTab> = ['Preview', 'TypeScript', 'HTML', 'SCSS'];
 }

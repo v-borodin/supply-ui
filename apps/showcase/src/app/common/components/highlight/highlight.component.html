@@ -1,5 +1,6 @@
 <button (click)="copyToClipboard(code)"
         type="button"
+        role="button"
         class="copy-btn">
   <i *ngIf="!copied; else checkmark"
      src="appClipboard" supIcon>

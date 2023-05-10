@@ -59,11 +59,6 @@
   }
 }
 
-.rounded {
-  border-bottom-right-radius: var(--sup-radius-md);
-  border-bottom-left-radius: var(--sup-radius-md);
-}
-
 .copy-btn {
   @include sup.reset-button;
 

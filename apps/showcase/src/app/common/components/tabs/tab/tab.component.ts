@@ -1,17 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ContentChild,
-  Input,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ContentChild, TemplateRef, ViewChild } from '@angular/core';
 import { ReflectiveContent } from '@coreteq/ngx-projection';
 
 @Component({
   selector: 'app-tab',
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.scss'],
+  inputs: ['name', 'icon'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabComponent {
@@ -25,9 +19,7 @@ export class TabComponent {
     return this.explicit ?? this.implicit;
   }
 
-  @Input()
   name = '';
 
-  @Input()
   icon: ReflectiveContent;
 }

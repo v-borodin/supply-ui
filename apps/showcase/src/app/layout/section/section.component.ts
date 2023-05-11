@@ -2,13 +2,16 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  Host,
   Inject,
   InjectionToken,
   Input,
+  Optional,
   ViewChild,
 } from '@angular/core';
 import { SupIdGeneratorStrategy } from '@supply/cdk';
 import { ReflectiveContent } from '@coreteq/ngx-projection';
+import { SectionWrapperComponent } from '../section-wrapper/section-wrapper.component';
 
 export interface PageSection {
   readonly id: string;
@@ -55,6 +58,11 @@ export class SectionComponent implements PageSection {
   constructor(
     @Inject(ElementRef) readonly elementRef: ElementRef,
     @Inject(SupIdGeneratorStrategy)
-    private readonly idGenerator: SupIdGeneratorStrategy<string>
-  ) {}
+    private readonly idGenerator: SupIdGeneratorStrategy<string>,
+    @Inject(SectionWrapperComponent) @Optional() @Host() host: SectionWrapperComponent
+  ) {
+    if (!host) {
+      console.warn();
+    }
+  }
 }

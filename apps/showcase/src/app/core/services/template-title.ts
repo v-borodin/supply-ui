@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { APP_TITLE } from './tokens/app-title';
+import { APP_TITLE } from '../tokens/app-title';
 
 @Injectable()
 export class TemplatePageTitleStrategy extends TitleStrategy {

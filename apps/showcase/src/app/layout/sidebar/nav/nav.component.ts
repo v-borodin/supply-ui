@@ -6,6 +6,9 @@ import { EMPTY_QUERY } from '../../../common/constants/query-list';
   selector: 'nav[appNav]',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.scss'],
+  host: {
+    role: 'navigation',
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavComponent {

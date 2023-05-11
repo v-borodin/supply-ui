@@ -10,7 +10,7 @@ export type TemplateTab = 'Preview' | 'TypeScript' | 'HTML' | 'SCSS';
 })
 export class DemoComponent {
   @Input()
-  example: Record<string, any> = {};
+  example: Readonly<Record<string, any>> = {};
 
   @Input()
   activeTab = 0;

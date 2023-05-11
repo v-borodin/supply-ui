@@ -8,8 +8,6 @@ import {
   Input,
   NgZone,
   OnDestroy,
-  QueryList,
-  ViewChildren,
 } from '@angular/core';
 import { PageSection } from '../section/section.component';
 import { DOCUMENT } from '@angular/common';
@@ -96,7 +94,7 @@ export class AsideComponent implements AfterViewInit, OnDestroy {
     this.document.removeEventListener('scroll', this.scrollHandler);
   }
 
-  click(section: PageSection): void {
+  scrollToSection(section: PageSection): void {
     const { nativeElement } = section.elementRef;
 
     const headerOffset = this.headerHeight + HEADER_OFFSET;
@@ -110,8 +108,6 @@ export class AsideComponent implements AfterViewInit, OnDestroy {
   }
 
   private intersected(element: HTMLElement, containerOffset: number, scrollTop: number): boolean {
-    return (
-      element.offsetTop - containerOffset - this.headerHeight - SCROLL_TOP_OFFSET + 200 <= scrollTop
-    );
+    return element.offsetTop - containerOffset - this.headerHeight - SCROLL_TOP_OFFSET + 200 <= scrollTop;
   }
 }

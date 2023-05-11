@@ -8,7 +8,7 @@
       <!--      </div>-->
       <a [class.active]="section.id === currentSection"
          [id]="section.id"
-         (click)="click(section)"
+         (click)="scrollToSection(section)"
          class="aside-link">
         {{section.title}}
       </a>

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ContentChild, TemplateRef, ViewChild } from '@angular/core';
 import { ReflectiveContent } from '@coreteq/ngx-projection';
+import { supMemo } from '@supply/cdk/decorators';
 
 @Component({
   selector: 'app-tab',
@@ -15,6 +16,7 @@ export class TabComponent {
   @ContentChild('lazyContent', { static: true })
   readonly explicit: TemplateRef<any> | null = null;
 
+  @supMemo
   get template(): TemplateRef<any> | null {
     return this.explicit ?? this.implicit;
   }

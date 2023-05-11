@@ -1,7 +1,7 @@
 <nav class="tabs-header">
-  <button *ngFor="let tab of tabs; let i = index"
-          [class.active]="i === activeTab"
-          (click)="onClick(i)"
+  <button *ngFor="let tab of tabs; let tabIndex = index"
+          [class.active]="tabIndex === activeTab"
+          (click)="onClick(tabIndex)"
           class="tab-btn">
     <ng-container *ngIf="tab.icon">
       <ng-container *ngxContentOutlet="tab.icon as name">

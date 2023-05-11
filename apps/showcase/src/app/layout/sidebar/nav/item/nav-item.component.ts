@@ -52,8 +52,8 @@ export class NavItemComponent {
 
   @supMemo
   get counter(): number {
-    return getOriginalArray(this.groups).reduce((acc, curr) => {
-      return acc + curr.items.length;
+    return getOriginalArray(this.groups).reduce((acc, group) => {
+      return acc + group.items.length;
     }, 0);
   }
 

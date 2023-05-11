@@ -10,7 +10,7 @@ import 'prismjs/components/prism-sass.js';
 import 'prismjs/components/prism-scss.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 
-declare var Prism: any;
+declare const Prism: any;
 
 @Injectable({
   providedIn: 'root',

@@ -11,7 +11,7 @@ import { ButtonStatesExampleComponent } from './button-states/button-states-exam
 import { ButtonSizeShapeExampleComponent } from './button-size-shape/button-size-shape-example.component';
 import { ButtonCustomizationExampleComponent } from './button-customization/button-customization-example.component';
 import { ButtonCustomizationDemoComponent } from './button-customization/button-customization-demo.component';
-import {DefaultButtonExampleComponent} from "./default-button/default-button-example.component";
+import { DefaultButtonExampleComponent } from './default-button/default-button-example.component';
 
 @NgModule({
   declarations: [

@@ -2,25 +2,27 @@
 
 :host {
   position: relative;
-  display: block;
+
   overflow: hidden;
+  display: block;
+
   box-sizing: border-box;
   width: 100%;
   padding: 0.7rem 1rem;
 
-  &[status='info'] {
+  &[data-status='info'] {
     background-color: #E5EFFA;
   }
 
-  &[status='success'] {
+  &[data-status='success'] {
     background-color: #EBF8EE;
   }
 
-  &[status='warning'] {
+  &[data-status='warning'] {
     background-color: #FEF8EA;
   }
 
-  &[status='error'] {
+  &[data-status='error'] {
     background-color: #FDECE9;
   }
 

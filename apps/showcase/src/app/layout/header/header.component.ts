@@ -6,6 +6,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
   host: {
     id: 'header',
+    role: 'banner',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

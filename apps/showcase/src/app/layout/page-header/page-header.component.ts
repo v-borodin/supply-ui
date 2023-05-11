@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Input } from '@angular/core';
+import { GITHUB_PATH_URL } from '../../core/tokens/github-path-url';
 
 @Component({
   selector: 'header[appPageHeader]',
@@ -8,5 +9,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class PageHeaderComponent {
   @Input()
-  url: string | null = null;
+  url: string | null = inject(GITHUB_PATH_URL, { optional: true });
 }

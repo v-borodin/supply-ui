@@ -6,7 +6,6 @@ import {
   HostBinding,
   Inject,
   Input,
-  TemplateRef,
 } from '@angular/core';
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { SUP_BUTTON_OPTIONS, SupButtonOptions } from './button.helpers';
@@ -25,15 +24,14 @@ const ButtonMixin = supMixinInteractive(
   supMixinLoadable(
     supMixinCustomized(
       class {
-        constructor(readonly element: Element) {}
+        constructor(readonly elementRef: ElementRef) {}
       }
     )
   )
 );
 
 @Component({
-  selector:
-    'button[supButton], button[supIconButton], a[supButton], a[supIconButton]',
+  selector: 'button[supButton], button[supIconButton], a[supButton], a[supIconButton]',
   exportAs: 'supButton',
   templateUrl: './button.html',
   styleUrls: ['./button.scss'],
@@ -82,8 +80,8 @@ export class SupButtonComponent extends ButtonMixin {
 
   constructor(
     @Inject(SUP_BUTTON_OPTIONS) private readonly options: SupButtonOptions,
-    @Inject(ElementRef) { nativeElement }: ElementRef
+    @Inject(ElementRef) elementRef: ElementRef
   ) {
-    super(nativeElement);
+    super(elementRef);
   }
 }

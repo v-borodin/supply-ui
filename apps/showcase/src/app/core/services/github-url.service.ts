@@ -23,23 +23,12 @@ export class GithubUrlService {
   }
 
   private constructRepositoryUrl(projectName: string, pointer: GitObject): string {
-    return `${this.baseUrl}/${pointer}/${this.actualBranch}/${this.baseDirectory}/${projectName}`;
-  }
-
-  private get baseDirectory(): string {
-    return this.repositoryConfiguration.baseDirectory;
-  }
-
-  private get actualBranch(): string {
-    return this.repositoryConfiguration.actualBranch;
+    const { baseUrl, actualBranch, baseDirectory } = this.repositoryConfiguration;
+    return `${baseUrl}/${pointer}/${actualBranch}/${baseDirectory}/${projectName}`;
   }
 
   private get availableProjects(): readonly string[] {
     return this.repositoryConfiguration.projects;
-  }
-
-  private get baseUrl(): string {
-    return this.repositoryConfiguration.baseUrl;
   }
 
   private get repositoryConfiguration(): AppConfigRepository {

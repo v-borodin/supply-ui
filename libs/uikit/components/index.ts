@@ -8,6 +8,7 @@ export * from '@supply/uikit/components/expander';
 export * from '@supply/uikit/components/form-field';
 export * from '@supply/uikit/components/select';
 export * from '@supply/uikit/components/slider';
+export * from '@supply/uikit/components/table';
 export * from '@supply/uikit/components/button';
 export * from '@supply/uikit//components/icon';
 export * from '@supply/uikit/components/label';

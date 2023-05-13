@@ -16,11 +16,15 @@ $offset-gap: 187;
   @include sup.center-by-flex;
 
   position: relative;
+
   flex-shrink: 0;
   align-self: center;
+
   min-width: 100%;
-  animation: fade-in 0.5s;
+
   stroke-width: 6;
+
+  animation: fade-in 0.5s;
 
   :host.sup-size-sm & {
     font-size: 1.15rem;
@@ -36,21 +40,29 @@ $offset-gap: 187;
 }
 
 .sup-spinner {
-  display: block;
   overflow: hidden;
+  display: block;
+
   min-width: 1em;
   max-width: 1em;
   min-height: 1em;
   max-height: 1em;
-  animation: loading-rotator $duration-loading linear infinite;
+
   stroke-linecap: round;
 
+  animation: loading-rotator $duration-loading linear infinite;
+
   > .circle {
-    stroke: currentcolor;
     transform-origin: center;
-    animation: loading-dash $duration-loading ease-in-out infinite;
+
+    width: inherit;
+    height: inherit;
+
+    stroke: currentcolor;
     stroke-dasharray: $offset-gap;
     stroke-dashoffset: 0;
+
+    animation: loading-dash $duration-loading linear infinite;
   }
 }
 

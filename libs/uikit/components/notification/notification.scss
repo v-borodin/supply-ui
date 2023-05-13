@@ -1,5 +1,39 @@
 @use "../../styles/supply-internal" as sup;
 
+$bg-info: #E5EFFA;
+$bg-success: #EBF8EE;
+$bg-warning: #FFF7E0;
+$bg-error: #FFEFE9;
+$color-info-btn-close: #5F7895;
+$color-success-btn-close: #507B5C;
+$color-warning-btn-close: #A4883C;
+$color-error-btn-close: #835B47;
+$size-btn-close: 1.5rem;
+
+@mixin info {
+  :host[data-status='info'] & {
+    @content;
+  }
+}
+
+@mixin success {
+  :host[data-status='success'] & {
+    @content;
+  }
+}
+
+@mixin warning {
+  :host[data-status='warning'] & {
+    @content;
+  }
+}
+
+@mixin error {
+  :host[data-status='error'] & {
+    @content;
+  }
+}
+
 :host {
   position: relative;
 
@@ -8,22 +42,39 @@
 
   box-sizing: border-box;
   width: 100%;
-  padding: 0.7rem 1rem;
+  padding: 0.75rem;
+
+  font: var(--sup-font-text-sm);
+
+  &::after {
+    content: '';
+    clear: both;
+    display: block;
+    width: 100%;
+  }
+
+  &.has-icon {
+    padding-left: 2.75rem;
+  }
+
+  &.has-close {
+    padding-right: 4.3rem;
+  }
 
   &[data-status='info'] {
-    background-color: #E5EFFA;
+    background-color: $bg-info;
   }
 
   &[data-status='success'] {
-    background-color: #EBF8EE;
+    background-color: $bg-success;
   }
 
   &[data-status='warning'] {
-    background-color: #FEF8EA;
+    background-color: $bg-warning;
   }
 
   &[data-status='error'] {
-    background-color: #FDECE9;
+    background-color: $bg-error;
   }
 
   &.sup-shape-rounded {
@@ -32,5 +83,89 @@
 
   &.sup-shape-square {
     border-radius: 0;
+  }
+}
+
+.sup-icon {
+  @include sup.center-by-flex;
+
+  @include info {
+    color: var(--sup-color-btn-primary-bg-hover);
+  }
+
+  @include success {
+    color: var(--sup-color-success-solid);
+  }
+
+  @include warning {
+    color: var(--sup-color-warning-solid);
+  }
+
+  @include error {
+    color: var(--sup-color-error-solid);
+  }
+
+  position: absolute;
+  top: 0;
+  left: 0.75rem;
+
+  width: 1.5rem;
+  height: 100%;
+  max-height: 3rem;
+
+  &__default-size {
+    @include sup.size(1.35rem);
+  }
+}
+
+.sup-text {
+  color: var(--sup-color-text-1);
+  word-wrap: break-word;
+}
+
+.sup-btn-close {
+  @include sup.reset-button;
+  @include sup.center-by-flex;
+  @include sup.size($size-btn-close);
+
+  @include info {
+    color: $color-info-btn-close;
+  }
+
+  @include success {
+    color: $color-success-btn-close;
+  }
+
+  @include warning {
+    color: $color-warning-btn-close;
+  }
+
+  @include error {
+    color: $color-error-btn-close;
+  }
+
+  @include sup.transition-context {
+    @include sup.hover {
+      color: var(--sup-color-text-1) !important;
+      background-color: rgb(255 255 255 / 90%);
+      box-shadow: rgb(27 31 35 / 4%) 0 1px 0, rgb(255 255 255 / 25%) 0 1px 0 inset;
+    }
+
+    @include sup.active {
+      background-color: rgb(255 255 255 / 75%);
+    }
+  }
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+
+  background-color: transparent;
+  border-radius: 50%;
+
+  &__icon {
+    @include sup.size(1rem);
   }
 }

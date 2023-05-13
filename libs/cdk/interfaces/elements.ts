@@ -1,3 +1,5 @@
+import { ElementRef } from '@angular/core';
+
 export type SupAppearance =
   | 'primary'
   | 'secondary'
@@ -5,20 +7,13 @@ export type SupAppearance =
   | 'outline'
   | 'accent'
   | 'flat'
+  | 'danger'
   | string
   | undefined;
 
-export type SupSize =
-  | 'xs'
-  | 'sm'
-  | 'md'
-  | 'lg'
-  | 'xl'
-  | 'xxl'
-  | string
-  | undefined;
+export type SupSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | 'inherit' | string | undefined;
 
-export type SupShape = 'rounded' | 'square' | 'circle' | undefined;
+export type SupShape = 'rounded' | 'square' | 'circle' | string | undefined;
 
 export interface SupHasAppearance {
   appearance: SupAppearance;
@@ -32,14 +27,11 @@ export interface SupHasShape {
   shape: SupShape;
 }
 
-export interface SupElement {
-  readonly element: Element;
+export interface SupHasElementRef {
+  readonly elementRef: ElementRef;
 }
 
-export interface SupCustomizedElement
-  extends SupHasAppearance,
-    SupHasSize,
-    SupHasShape {}
+export interface SupCustomizedElement extends SupHasAppearance, SupHasSize, SupHasShape {}
 
 export interface SupInteractiveElement
   extends SupCanFocus,
@@ -47,12 +39,22 @@ export interface SupInteractiveElement
     SupHasTabIndex,
     SupHasId<string> {}
 
+export interface SupControlElement
+  extends SupInteractiveElement,
+    SupCanLoadable,
+    SupCanReadonly,
+    SupHasValidity {}
+
 export interface SupCanDisable {
   disabled: boolean;
 }
 
 export interface SupCanFocus {
   focused: boolean;
+}
+
+export interface SupHasValidity {
+  invalid: boolean;
 }
 
 export interface SupHasTabIndex {
@@ -70,5 +72,5 @@ export interface SupCanLoadable {
 }
 
 export interface SupCanReadonly {
-  readonly: boolean;
+  readOnly: boolean;
 }

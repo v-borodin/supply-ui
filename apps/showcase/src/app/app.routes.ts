@@ -7,7 +7,10 @@ import { GithubUrlService } from './core/services/github-url.service';
 import { PROJECT_NAME } from './core/tokens/project-name';
 import { LibProject } from './core/enums/projects';
 
-export function githubUrlProvider(path: string, explicitProject?: string): FactoryProvider {
+export function githubUrlProvider(
+  path: string,
+  explicitProject?: string
+): FactoryProvider {
   return {
     provide: GITHUB_PATH_URL,
     deps: [GithubUrlService, [PROJECT_NAME, new Host(), new Optional()]],
@@ -45,14 +48,44 @@ export const appRoutes: Route[] = [
             path: 'button',
             title: 'Button',
             providers: [githubUrlProvider('components/button')],
-            loadChildren: () => import('./feature/button-page/button-page.module').then(m => m.ButtonPageModule),
+            loadChildren: () =>
+              import('./feature/button-page/button-page.module').then(
+                m => m.ButtonPageModule
+              ),
           },
           {
             path: 'notification',
             title: 'Notification',
             providers: [githubUrlProvider('components/notification')],
             loadChildren: () =>
-              import('./feature/notification-page/notification-page.module').then(m => m.NotificationPageModule),
+              import('./feature/notification-page/notification-page.module').then(
+                m => m.NotificationPageModule
+              ),
+          },
+          {
+            path: 'icon',
+            title: 'Icon',
+            providers: [githubUrlProvider('components/icon')],
+            loadChildren: () =>
+              import('./feature/icon-page/icon-page.module').then(m => m.IconPageModule),
+          },
+          {
+            path: 'dialog',
+            title: 'Dialog',
+            providers: [githubUrlProvider('components/dialog')],
+            loadChildren: () =>
+              import('./feature/dialog-page/dialog-page.module').then(
+                m => m.DialogPageModule
+              ),
+          },
+          {
+            path: 'table',
+            title: 'Table',
+            providers: [githubUrlProvider('components/table')],
+            loadChildren: () =>
+              import('./feature/table-page/table-page.module').then(
+                m => m.TablePageModule
+              ),
           },
         ],
       },

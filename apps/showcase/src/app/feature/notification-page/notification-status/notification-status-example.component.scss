@@ -1,0 +1,24 @@
+@keyframes reveal {
+  from {
+    transform: translateY(1.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transition: none;
+  }
+}
+
+:host {
+  --delay: 0s;
+
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.15rem;
+}
+
+.row {
+  display: block;
+  opacity: 0;
+  animation: reveal 0.5s forwards var(--delay);
+}

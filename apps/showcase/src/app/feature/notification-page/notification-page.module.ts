@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { NotificationPageComponent } from './notification-page.component';
 import { RouterModule } from '@angular/router';
-import { NotificationStatusExampleComponent } from './notification-status/notification-status-example.component';
-import { NotificationStatusDemoComponent } from './notification-status/notification-status-demo.component';
-import { SharedModule } from '../../common/shared.module';
 import { SupIconComponent } from '@supply/uikit';
+import { SharedModule } from '../../common/shared.module';
 import { LayoutModule } from '../../layout/layout.module';
+import { NotificationStatusDemoComponent } from './notification-status/notification-status-demo.component';
+import { NotificationCloseDemoComponent } from './notification-close/notification-close-demo.component';
 
 @NgModule({
-  declarations: [NotificationPageComponent, NotificationStatusDemoComponent],
+  declarations: [
+    NotificationPageComponent,
+    NotificationStatusDemoComponent,
+    NotificationCloseDemoComponent,
+  ],
   imports: [
     RouterModule.forChild([
       {
@@ -16,7 +20,6 @@ import { LayoutModule } from '../../layout/layout.module';
         component: NotificationPageComponent,
       },
     ]),
-    NotificationStatusExampleComponent,
     SharedModule,
     SupIconComponent,
     LayoutModule,

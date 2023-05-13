@@ -51,6 +51,11 @@
   // @Colors dropdown
   --sup-color-dropdown-border: var(--sup-color-btn-secondary-border);
 
+  // @Colors status
+  --sup-color-success-solid: #0A9A55;
+  --sup-color-warning-solid: #FBBB00;
+  --sup-color-error-solid: #F54C16;
+
   // @State disabled
   --sup-disabled-opacity: 0.5;
 
@@ -69,7 +74,7 @@
   --sup-text-lg: 1.25rem;
   --sup-text-xl: 1.5rem;
   --sup-font-text-xs: 400 var(--sup-text-xs) / 1.25rem var(--sup-text-font);
-  --sup-font-text-sm: 400 var(--sup-text-sm) / 1.3rem var(--sup-text-font);
+  --sup-font-text-sm: 400 var(--sup-text-sm) / 1.4rem var(--sup-text-font);
   --sup-font-text-md: 400 var(--sup-text-md) / 1.7rem var(--sup-text-font);
   --sup-font-text-xs-bold: 600 var(--sup-text-xs) / 1.3rem var(--sup-text-font);
   --sup-font-text-sm-bold: 600 var(--sup-text-sm) / 1.4rem var(--sup-text-font);

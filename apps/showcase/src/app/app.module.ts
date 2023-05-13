@@ -1,5 +1,6 @@
 import { APP_INITIALIZER, Inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxContentOutlet } from '@coreteq/ngx-projection';
 import { SupSvgRegistry } from '@supply/cdk';
@@ -9,12 +10,20 @@ import { LayoutModule } from './layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
 import { IntroductionPageComponent } from './feature/introduction-page/introduction-page.component';
 import { SharedModule } from './common/shared.module';
-import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
 import { ConfigService } from './core/services/config.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, IntroductionPageComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, LayoutModule, NgxContentOutlet, SharedModule],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    LayoutModule,
+    NgxContentOutlet,
+    SharedModule,
+  ],
   providers: [
     {
       provide: APP_BASE_HREF,

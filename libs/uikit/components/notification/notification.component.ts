@@ -1,16 +1,27 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject } from '@angular/core';
 import { NgIf } from '@angular/common';
-import { supMixinClose, supMixinShape } from '@supply/cdk';
-import { SupNotificationOptions, SUP_NOTIFICATION_OPTIONS } from './notification.helpers';
-import { ReflectiveContent } from '@coreteq/ngx-projection';
+import { supCoerceBooleanProperty, SupImplicitBoolean, supMixinClose, supMixinShape } from '@supply/cdk';
+import { SupNotificationOptions, SUP_NOTIFICATION_OPTIONS, FadeInOut } from './notification.helpers';
+import { NgxContentOutlet, ReflectiveContent } from '@coreteq/ngx-projection';
+import { SupIconComponent } from '@supply/uikit/components';
 
 const NotificationMixin = supMixinClose(
   supMixinShape(
     class {
-      constructor(readonly element: Element) {}
+      constructor(readonly elementRef: ElementRef) {}
     }
   )
 );
+
+const STATUS_ICON = {
+  info: 'supInfo',
+
+  success: 'supSuccess',
+
+  error: 'supError',
+
+  warning: 'supWarning',
+} as const;
 
 @Component({
   selector: 'sup-notification',
@@ -22,26 +33,44 @@ const NotificationMixin = supMixinClose(
     role: 'alert',
   },
   standalone: true,
-  imports: [NgIf],
+  animations: [FadeInOut(200, 300, true)],
+  imports: [NgIf, NgxContentOutlet, SupIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SupNotificationComponent extends NotificationMixin {
   @HostBinding('attr.data-status')
   status = this.options.status;
 
-  override shape = this.options.shape;
+  @HostBinding('class.has-close')
+  get hasClose(): boolean {
+    return this._hasClose;
+  }
 
-  hasClose = this.options.hasClose;
+  set hasClose(value: SupImplicitBoolean) {
+    this._hasClose = supCoerceBooleanProperty(value);
+  }
 
+  @HostBinding('class.has-icon')
   hasIcon = this.options.hasIcon;
 
+  override shape = this.options.shape;
+
+  @HostBinding('@fadeInOut')
+  animated = true;
+
   icon: ReflectiveContent;
+
+  get statusIcon(): string {
+    return STATUS_ICON[this.status];
+  }
+
+  private _hasClose = this.options.hasClose;
 
   constructor(
     @Inject(SUP_NOTIFICATION_OPTIONS)
     private readonly options: SupNotificationOptions,
-    @Inject(ElementRef) { nativeElement }: ElementRef
+    @Inject(ElementRef) elementRef: ElementRef
   ) {
-    super(nativeElement);
+    super(elementRef);
   }
 }

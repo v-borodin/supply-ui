@@ -63,6 +63,10 @@
     background-color: var(--sup-color-scale-gray-3);
   }
 
+  @include sup.focus {
+    background-color: var(--sup-color-scale-gray-2);
+  }
+
   display: inline-flex;
   align-items: center;
 
@@ -89,7 +93,7 @@
   margin-right: 0.1rem;
   margin-left: auto;
 
-  background: #3CAF76; //0A9A55 42B67D
+  background: #3CAF76;
   border-radius: 50%;
 }
 

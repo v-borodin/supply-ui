@@ -6,8 +6,8 @@
       <!--           *ngIf="currentSection"-->
       <!--           class="li-marker">-->
       <!--      </div>-->
-      <a [class.active]="section.id === currentSection"
-         [id]="section.id"
+      <a [id]="section.id"
+         [class.active]="section.id === currentSection"
          (click)="scrollToSection(section)"
          class="aside-link">
         {{section.title}}

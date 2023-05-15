@@ -79,6 +79,15 @@ export const appRoutes: Route[] = [
               ),
           },
           {
+            path: 'accordion',
+            title: 'Accordion',
+            providers: [githubUrlProvider('components/accordion')],
+            loadChildren: () =>
+              import('./feature/accordion-page/accordion-page.module').then(
+                m => m.AccordionPageModule
+              ),
+          },
+          {
             path: 'table',
             title: 'Table',
             providers: [githubUrlProvider('components/table')],

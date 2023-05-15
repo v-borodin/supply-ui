@@ -11,7 +11,7 @@ export class SupSvgRegistry implements OnDestroy {
 
   constructor(
     @Inject(DOCUMENT) private readonly document: Document,
-    @Inject(DomSanitizer) private readonly sanitizer: DomSanitizer,
+    @Inject(DomSanitizer) private readonly sanitizer: DomSanitizer
   ) {}
 
   ngOnDestroy() {
@@ -22,9 +22,11 @@ export class SupSvgRegistry implements OnDestroy {
   register(name: string, source: string): void;
   register(nameOrSource: string | Record<string, string>, source?: string): void {
     if (supIsObject(nameOrSource)) {
-      Object.keys(nameOrSource).forEach(key => this.registerSvgElement(key, nameOrSource[key]));
+      Object.keys(nameOrSource).forEach(key =>
+        this.registerSvgSource(key, nameOrSource[key])
+      );
     } else if (source) {
-      this.registerSvgElement(nameOrSource, source);
+      this.registerSvgSource(nameOrSource, source);
     }
   }
 
@@ -32,9 +34,9 @@ export class SupSvgRegistry implements OnDestroy {
     return this.registry.get(name) ?? null;
   }
 
-  private registerSvgElement(key: string, source: string): void {
+  private registerSvgSource(key: string, source: string): void {
     if (this.registry.has(key)) {
-      console.warn(`Icon with key ${key} is already registered`);
+      console.warn(`Icon with key [${key}] is already registered`);
       return;
     }
 

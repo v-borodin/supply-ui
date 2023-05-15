@@ -36,10 +36,11 @@
   white-space: nowrap;
 
   opacity: 0.8;
+
   transition: color .5s;
 
   &.active {
-    opacity: 1;
     color: var(--sup-color-text-1);
+    opacity: 1;
   }
 }

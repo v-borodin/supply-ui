@@ -1,6 +1,7 @@
 <ul class="sup-list">
   <ng-container *ngFor="let item of items">
     <li class="sup-item">
+
       <a class="sup-link">
         <ng-container *ngxContentOutlet="item.icon as name">
           <i [src]="name" supIcon></i>
@@ -25,6 +26,7 @@
           </a>
         </li>
       </ul>
+
     </li>
     <hr *ngIf="item.divider" class="sup-divider light"/>
   </ng-container>

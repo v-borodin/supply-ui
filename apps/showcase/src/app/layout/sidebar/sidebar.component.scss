@@ -19,7 +19,7 @@
   border-right: $border-layout;
 }
 
-.block-2 {
+.sidebar-footer {
   display: flex;
   align-items: center;
 
@@ -27,7 +27,7 @@
   height: 3.75rem;
   padding: 0 1rem;
 
-  border-top: $border-layout;
-
   font-size: 14px;
+
+  border-top: $border-layout;
 }

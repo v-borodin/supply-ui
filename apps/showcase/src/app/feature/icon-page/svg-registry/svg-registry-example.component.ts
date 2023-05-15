@@ -24,7 +24,7 @@ const SVG_SOURCE = `
   templateUrl: './svg-registry-example.component.html',
   imports: [SupIconComponent],
   styleUrls: ['./svg-registry-example.component.scss'],
-  providers: [SupSvgRegistry],
+  providers: [SupSvgRegistry], // <-- local provider
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgRegistryExampleComponent {

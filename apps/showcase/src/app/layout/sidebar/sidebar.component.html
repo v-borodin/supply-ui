@@ -15,13 +15,15 @@
       <app-nav-item marked routerLink="components/notification">Notification</app-nav-item>
       <app-nav-item routerLink="components/icon">Icon</app-nav-item>
       <app-nav-item routerLink="components/dialog">Dialog</app-nav-item>
+      <app-nav-item routerLink="components/dropdown">Dropdown</app-nav-item>
     </app-nav-group>
 
     <app-nav-group label="Form">
-      <app-nav-item>Textfield</app-nav-item>
-      <app-nav-item>Textarea</app-nav-item>
+      <app-nav-item routerLink="components/text-field">Textfield</app-nav-item>
+      <app-nav-item>Label</app-nav-item>
+      <app-nav-item routerLink="components/textarea">Textarea</app-nav-item>
       <app-nav-item>Autocomplete</app-nav-item>
-      <app-nav-item>Date Picker</app-nav-item>
+      <app-nav-item routerLink="components/date-picker">Date Picker</app-nav-item>
       <app-nav-item>Combobox</app-nav-item>
     </app-nav-group>
 
@@ -33,9 +35,10 @@
   <app-nav-item showCounter icon="appCode">
     CDK (Dev Kit)
     <app-nav-group>
-      <app-nav-item>RXJS Operators</app-nav-item>
+      <app-nav-item routerLink="tools/operators">RXJS Operators</app-nav-item>
       <app-nav-item>Dom Handler</app-nav-item>
       <app-nav-item>TS Mixins</app-nav-item>
+      <app-nav-item routerLink="tools/memoize">Memoize Decorator</app-nav-item>
     </app-nav-group>
   </app-nav-item>
 </nav>

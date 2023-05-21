@@ -4,6 +4,7 @@ export * from '@supply/uikit/components/calendar-grid';
 export * from '@supply/uikit/components/calendar-pagination';
 export * from '@supply/uikit/components/checkbox';
 export * from '@supply/uikit/components/date-input';
+export * from '@supply/uikit/components/dialog';
 export * from '@supply/uikit/components/expander';
 export * from '@supply/uikit/components/form-field';
 export * from '@supply/uikit/components/select';

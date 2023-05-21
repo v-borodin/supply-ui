@@ -1,4 +1,4 @@
-import {Inject, Injectable} from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {
   concat,
   filter,
@@ -15,9 +15,8 @@ import {
   takeUntil,
   timer,
 } from 'rxjs';
-import {DOCUMENT} from '@angular/common';
-
-export type SupFocusOrigin = 'touch' | 'mouse' | 'keyboard' | 'script' | null;
+import { DOCUMENT } from '@angular/common';
+import { SupFocusOrigin } from '@supply/cdk/types';
 
 function mapToOrigin(origin: SupFocusOrigin) {
   return function <T>(source: Observable<T>): Observable<SupFocusOrigin> {
@@ -29,8 +28,7 @@ function mapToOrigin(origin: SupFocusOrigin) {
   providedIn: 'root',
 })
 export class SupFocusTracker {
-  constructor(@Inject(DOCUMENT) private readonly document: Document) {
-  }
+  constructor(@Inject(DOCUMENT) private readonly document: Document) {}
 
   track(element: HTMLElement): Observable<SupFocusOrigin> {
     return concat(
@@ -44,9 +42,9 @@ export class SupFocusTracker {
           type === 'script'
             ? of(type)
             : fromEvent(element, 'focus').pipe(
-              map(() => type),
-              takeUntil(timer(0))
-            )
+                map(() => type),
+                takeUntil(timer(0))
+              )
         ),
         first(),
         retry()

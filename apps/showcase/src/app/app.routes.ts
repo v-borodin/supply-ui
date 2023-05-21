@@ -79,6 +79,33 @@ export const appRoutes: Route[] = [
               ),
           },
           {
+            path: 'dropdown',
+            title: 'Dropdown',
+            providers: [githubUrlProvider('components/dropdown')],
+            loadChildren: () =>
+              import('./feature/dropdown-page/dropdown-page.module').then(
+                m => m.DropdownPageModule
+              ),
+          },
+          {
+            path: 'text-field',
+            title: 'Textfield',
+            providers: [githubUrlProvider('components/text-field')],
+            loadChildren: () =>
+              import('./feature/text-field-page/text-field-page.module').then(
+                m => m.TextFieldPageModule
+              ),
+          },
+          {
+            path: 'date-picker',
+            title: 'Date Picker',
+            providers: [githubUrlProvider('components/date-picker')],
+            loadChildren: () =>
+              import('./feature/date-picker-page/date-picker-page.module').then(
+                m => m.DatePickerPageModule
+              ),
+          },
+          {
             path: 'accordion',
             title: 'Accordion',
             providers: [githubUrlProvider('components/accordion')],
@@ -88,12 +115,48 @@ export const appRoutes: Route[] = [
               ),
           },
           {
+            path: 'textarea',
+            title: 'Textarea',
+            providers: [githubUrlProvider('components/textarea')],
+            loadChildren: () =>
+              import('./feature/textarea/textarea.module').then(m => m.TextareaModule),
+          },
+          {
             path: 'table',
             title: 'Table',
             providers: [githubUrlProvider('components/table')],
             loadChildren: () =>
               import('./feature/table-page/table-page.module').then(
                 m => m.TablePageModule
+              ),
+          },
+        ],
+      },
+      {
+        path: 'tools',
+        providers: [
+          {
+            provide: PROJECT_NAME,
+            useValue: LibProject.Cdk,
+          },
+        ],
+        children: [
+          {
+            path: 'memoize',
+            title: 'Memoize Decorator',
+            providers: [githubUrlProvider('decorators/memoize')],
+            loadChildren: () =>
+              import('./feature/memoize-page/memoize-page.module').then(
+                m => m.MemoizePageModule
+              ),
+          },
+          {
+            path: 'operators',
+            title: 'RXJS Operators',
+            providers: [githubUrlProvider('operators/operators')],
+            loadChildren: () =>
+              import('./feature/operators-page/operators-page.module').then(
+                m => m.OperatorsPageModule
               ),
           },
         ],

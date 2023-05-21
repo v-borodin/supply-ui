@@ -1,0 +1,32 @@
+<div *ngIf="context.label as label" class="sup-dialog-label">
+  <ng-container *ngxContentOutlet="label as text">
+    <span class="sup-dialog-label-text">
+      {{text}}
+    </span>
+  </ng-container>
+  <button [supTooltip]="closeWord"
+          [supTooltipShowDelay]="500"
+          (click)="dialog.close()"
+          type="button"
+          class="sup-dialog-btn-close">
+    <i src="appClose" inline supIcon></i>
+  </button>
+</div>
+
+<header *ngIf="header" class="sup-header">
+  <ng-container *ngxContentOutlet="header as text; context: context">
+    {{text}}
+  </ng-container>
+</header>
+
+<section class="sup-dialog-content">
+  <ng-container *ngxContentOutlet="context.content as text; context: context">
+    <div [innerHTML]="text"></div>
+  </ng-container>
+</section>
+
+<footer *ngIf="footer" class="sup-footer">
+  <ng-container *ngxContentOutlet="footer as text; context: context">
+    {{text}}
+  </ng-container>
+</footer>

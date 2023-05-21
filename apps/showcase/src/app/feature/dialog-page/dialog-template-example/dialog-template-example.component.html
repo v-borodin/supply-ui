@@ -1,0 +1,13 @@
+<button (click)="dialog.open(templateRef, {label: 'Dialog from template'})"
+        supButton>
+  Open dialog
+</button>
+
+<ng-template #templateRef let-dialog>
+  <div class="d-flex flex-column p-4">
+    <div class="mb-5">Hi! 🥳 This is the template</div>
+    <button (click)="dialog.close()" supButton>
+      Close
+    </button>
+  </div>
+</ng-template>

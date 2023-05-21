@@ -33,3 +33,9 @@
   border: 1px dashed var(--sup-color-btn-secondary-border-hover);
   box-shadow: none;
 }
+
+.cdk-global-scrollblock {
+  position: initial !important;
+  overflow-y: hidden !important;
+  width: initial !important;
+}

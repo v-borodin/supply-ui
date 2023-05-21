@@ -13,9 +13,7 @@ export function supIsObject(value: unknown): value is object {
   return typeof value === 'object';
 }
 
-export function supIsFunction(
-  value: unknown
-): value is (...args: any[]) => any {
+export function supIsFunction(value: unknown): value is (...args: any[]) => any {
   return typeof value === 'function';
 }
 
@@ -37,4 +35,10 @@ export function supIsValueAccessor(x: unknown): x is ControlValueAccessor {
 
 export function supIsLuxonDate(x: unknown): x is DateTime {
   return x instanceof DateTime;
+}
+
+export function supIsElement(
+  node?: Element | EventTarget | Node | null
+): node is Element {
+  return !!node && 'nodeType' in node && node.nodeType === Node.ELEMENT_NODE;
 }

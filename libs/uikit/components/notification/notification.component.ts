@@ -1,7 +1,22 @@
-import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostBinding,
+  Inject,
+} from '@angular/core';
 import { NgIf } from '@angular/common';
-import { supCoerceBooleanProperty, SupImplicitBoolean, supMixinClose, supMixinShape } from '@supply/cdk';
-import { SupNotificationOptions, SUP_NOTIFICATION_OPTIONS, FadeInOut } from './notification.helpers';
+import {
+  supCoerceBooleanProperty,
+  SupImplicitBoolean,
+  supMixinClose,
+  supMixinShape,
+} from '@supply/cdk';
+import {
+  SupNotificationOptions,
+  SUP_NOTIFICATION_OPTIONS,
+  FadeInOut,
+} from './notification.helpers';
 import { NgxContentOutlet, ReflectiveContent } from '@coreteq/ngx-projection';
 import { SupIconComponent } from '@supply/uikit/components';
 

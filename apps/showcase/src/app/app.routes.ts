@@ -117,9 +117,11 @@ export const appRoutes: Route[] = [
           {
             path: 'textarea',
             title: 'Textarea',
-            providers: [githubUrlProvider('components/textarea')],
+            providers: [githubUrlProvider('components/textarea-page')],
             loadChildren: () =>
-              import('./feature/textarea/textarea.module').then(m => m.TextareaModule),
+              import('./feature/textarea-page/textarea-page.module').then(
+                m => m.TextareaPageModule
+              ),
           },
           {
             path: 'table',
@@ -129,6 +131,31 @@ export const appRoutes: Route[] = [
               import('./feature/table-page/table-page.module').then(
                 m => m.TablePageModule
               ),
+          },
+          {
+            path: 'tooltip',
+            title: 'Tooltip',
+            providers: [githubUrlProvider('components/tooltip')],
+            loadChildren: () =>
+              import('./feature/tooltip-page/tooltip-page.module').then(
+                m => m.TooltipPageModule
+              ),
+          },
+          {
+            path: 'select',
+            title: 'Select',
+            providers: [githubUrlProvider('components/select')],
+            loadChildren: () =>
+              import('./feature/select-page/select-page.module').then(
+                m => m.SelectPageModule
+              ),
+          },
+          {
+            path: 'tabs',
+            title: 'Tabs',
+            providers: [githubUrlProvider('components/tabs')],
+            loadChildren: () =>
+              import('./feature/tabs-page/tabs-page.module').then(m => m.TabsPageModule),
           },
         ],
       },

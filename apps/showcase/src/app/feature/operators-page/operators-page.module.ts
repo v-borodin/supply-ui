@@ -7,6 +7,7 @@ import { SharedModule } from '../../common/shared.module';
 import { OutsideAngularDemoComponent } from './outside-angular/outside-angular-demo.component';
 import { PreventDefaultDemoComponent } from './prevent-default/prevent-default-demo.component';
 import { StopPropagationDemoComponent } from './stop-propagation/stop-propagation-demo.component';
+import { SupNotificationComponent } from '@supply/uikit';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { StopPropagationDemoComponent } from './stop-propagation/stop-propagatio
     ]),
     LayoutModule,
     SharedModule,
+    SupNotificationComponent,
   ],
 })
 export class OperatorsPageModule {}

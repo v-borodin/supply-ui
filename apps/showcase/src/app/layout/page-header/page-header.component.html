@@ -1,5 +1,5 @@
 <div class="d-flex flex-items-center flex-justify-between">
-  <ng-content/>
+  <ng-content select="h1"/>
 
   <a *ngIf="!!url"
      [href]="url"
@@ -9,3 +9,4 @@
   </a>
 </div>
 <ng-content select="p"/>
+<ng-content/>

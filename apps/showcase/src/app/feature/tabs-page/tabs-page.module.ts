@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { TextareaComponent } from './textarea.component';
+import { TabsPageComponent } from './tabs-page.component';
 import { LayoutModule } from '../../layout/layout.module';
 
 @NgModule({
-  declarations: [TextareaComponent],
+  declarations: [TabsPageComponent],
   imports: [
     RouterModule.forChild([
       {
         path: '',
-        component: TextareaComponent,
+        component: TabsPageComponent,
       },
     ]),
     LayoutModule,
   ],
 })
-export class TextareaModule {}
+export class TabsPageModule {}

@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
-import { DropdownPageComponent } from './dropdown-page.component';
+import { SelectPageComponent } from './select-page.component';
 import { RouterModule } from '@angular/router';
 import { LayoutModule } from '../../layout/layout.module';
-import { DropdownTemplateDemoComponent } from './dropdown-template-example/dropdown-template-demo.component';
 import { SharedModule } from '../../common/shared.module';
 
 @NgModule({
-  declarations: [DropdownPageComponent, DropdownTemplateDemoComponent],
+  declarations: [SelectPageComponent],
   imports: [
     RouterModule.forChild([
       {
         path: '',
-        component: DropdownPageComponent,
+        component: SelectPageComponent,
       },
     ]),
     LayoutModule,
     SharedModule,
   ],
 })
-export class DropdownPageModule {}
+export class SelectPageModule {}

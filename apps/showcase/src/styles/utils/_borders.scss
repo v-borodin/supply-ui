@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "../abstract/variables" as *;
+
+$width-variants: (
+  sm: 1px,
+  md: 1.5px,
+  lg: 2px,
+  xl: 3px
+);
+$color-variants: (
+  primary: var(--sup-color-scale-gray-7),
+  secondary: var(--sup-color-btn-secondary-border)
+);
+$default-size: map.get($width-variants, sm);
+
+/**
+ * Default border
+ */
+@each $dir in $directions {
+  .border-#{$dir} {
+    border-#{$dir}: map.get($width-variants, sm) solid map.get($color-variants, primary);
+  }
+}
+
+.border-primary {
+  border: 1px solid map.get($color-variants, primary);
+}
+
+.border-secondary {
+  border: 1px solid map.get($color-variants, secondary);
+}
+
+.circle {
+  border-radius: 50% !important;
+}
+
+.border-dashed {
+  border-style: dashed !important;
+}

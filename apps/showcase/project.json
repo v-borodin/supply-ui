@@ -24,9 +24,16 @@
           "apps/showcase/src/assets"
         ],
         "styles": [
-          "apps/showcase/src/styles.scss"
+          "apps/showcase/src/styles/styles.scss",
+          "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css"
         ],
-        "scripts": []
+        "scripts": [
+          "node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"
+        ],
+        "allowedCommonJsDependencies": [
+          "prismjs",
+          "dompurify"
+        ]
       },
       "configurations": {
         "production": {
@@ -102,5 +109,11 @@
       }
     }
   },
-  "tags": []
+  "tags": [],
+  "generators": {
+    "@nrwl/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush"
+    }
+  }
 }

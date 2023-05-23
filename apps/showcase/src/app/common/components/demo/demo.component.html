@@ -1,0 +1,16 @@
+<app-tabs [activeTab]="activeTab">
+  <app-tab *ngFor="let tab of tabs" [name]="tab">
+    <ng-template #lazyContent>
+      <div *ngIf="tab === 'Preview'; else highlight"
+           class="preview-container">
+        <ng-container [ngComponentOutlet]="example[tab]"/>
+      </div>
+
+      <ng-template #highlight>
+        <pre [lang]="lang[tab]"
+             [highlight]="example[tab].default">
+        </pre>
+      </ng-template>
+    </ng-template>
+  </app-tab>
+</app-tabs>

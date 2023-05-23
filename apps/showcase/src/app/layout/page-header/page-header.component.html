@@ -1,0 +1,12 @@
+<div class="d-flex flex-items-center flex-justify-between">
+  <ng-content select="h1"/>
+
+  <a *ngIf="!!url"
+     [href]="url"
+     target="_blank"
+     class="code-btn">
+    <i src="appCode" supIcon></i>
+  </a>
+</div>
+<ng-content select="p"/>
+<ng-content/>

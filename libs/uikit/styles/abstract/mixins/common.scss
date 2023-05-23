@@ -1,0 +1,118 @@
+@use "../functions/utils";
+
+/* -------------------------------- */
+/* For each */
+/* -------------------------------- */
+
+@mixin for-each($keys, $value) {
+  @each $key in $keys {
+    #{$key}: $value;
+  }
+}
+
+/* -------------------------------- */
+/* Support vendors */
+/* -------------------------------- */
+
+@mixin support-vendors($property, $value, $prefixes: all) {
+  @if $prefixes == all {
+    $prefixes: (webkit, moz, ms, o);
+  }
+
+  @if utils.assert-type($prefixes, list) {
+    @each $prefix in $prefixes {
+      #{'-' + $prefix + '-' + $property}: $value;
+    }
+
+    #{$property}: $value;
+  }
+}
+
+/* -------------------------------- */
+/* Reset props */
+/* -------------------------------- */
+
+@mixin reset-props($properties...) {
+  @include for-each($properties, none);
+}
+
+/* -------------------------------- */
+/* Inherit host */
+/* -------------------------------- */
+
+@mixin inherit-host($properties...) {
+  @include for-each($properties, inherit);
+}
+
+/* -------------------------------- */
+/* Transition */
+/* -------------------------------- */
+
+@mixin transition($properties, $duration, $function, $delay: 0) {
+  @if $delay != 0 {
+    transition-delay: $delay;
+  }
+
+  transition-timing-function: $function;
+  transition-duration: $duration;
+  transition-property: $properties;
+}
+
+/* -------------------------------- */
+/* Input placeholder with vendors */
+/* -------------------------------- */
+
+@mixin placeholder {
+  &::placeholder {
+    @content;
+  }
+
+  &::placeholder {
+    @content;
+  }
+
+  &::input-placeholder {
+    @content;
+  }
+
+  &:input-placeholder {
+    @content;
+  }
+}
+
+/* -------------------------------- */
+/* Size */
+/* -------------------------------- */
+
+@mixin size($value) {
+  width: $value;
+  height: $value;
+}
+
+/* -------------------------------- */
+/* Center by flex */
+/* -------------------------------- */
+
+@mixin center-by-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* -------------------------------- */
+/* Vendors */
+/* -------------------------------- */
+
+/** @link https://caniuse.com/?search=user-select */
+@mixin prefix-user-select($value: none) {
+  @if utils.assert-type($value, string) {
+    @include support-vendors(user-select, $value, (webkit, moz, ms));
+  }
+}
+
+/** @link https://caniuse.com/?search=appearance */
+@mixin prefix-appearance($value: none) {
+  @if utils.assert-type($value, string) {
+    @include support-vendors(appearance, $value, (webkit, moz));
+  }
+}

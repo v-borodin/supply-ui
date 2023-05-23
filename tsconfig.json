@@ -46,6 +46,7 @@
     "lib": [
       "es2017",
       "es2018.asynciterable",
+      "es2018.promise",
       "dom"
     ],
     "skipLibCheck": true,
@@ -63,6 +64,9 @@
       ],
       "@supply/uikit/*": [
         "libs/uikit/*"
+      ],
+      "@app/icons": [
+        "libs/icons/index"
       ]
     }
   }

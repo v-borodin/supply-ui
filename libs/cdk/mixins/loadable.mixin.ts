@@ -1,15 +1,16 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
-import { SupCanLoadable, SupElement } from '@supply/cdk/interfaces';
+import { SupCanLoadable, SupHasElementRef } from '@supply/cdk/interfaces';
 import { SupDomHandler } from '@supply/cdk/abstract';
 
 type LoadableCtor = SupAbstractConstructor<SupCanLoadable>;
 
-export function supMixinLoadable<
-  TSuper extends SupAbstractConstructor<SupElement>
->(Super: TSuper, defaultLoading?: boolean): LoadableCtor & TSuper;
-export function supMixinLoadable<TSuper extends SupConstructor<SupElement>>(
+export function supMixinLoadable<TSuper extends SupAbstractConstructor<SupHasElementRef>>(
   Super: TSuper,
-  defaultLoading = false
+  defaultLoading?: boolean,
+): LoadableCtor & TSuper;
+export function supMixinLoadable<TSuper extends SupConstructor<SupHasElementRef>>(
+  Super: TSuper,
+  defaultLoading = false,
 ): LoadableCtor & TSuper {
   return class MixinLoadable extends Super implements SupCanLoadable {
     private _loading = defaultLoading;
@@ -19,7 +20,9 @@ export function supMixinLoadable<TSuper extends SupConstructor<SupElement>>(
     }
 
     set loading(loading) {
-      SupDomHandler.toggleClass(this.element, 'loading', loading);
+      const { nativeElement } = this.elementRef;
+
+      SupDomHandler.toggleClass(nativeElement, 'sup-loading', loading);
 
       this._loading = loading;
     }

@@ -16,8 +16,7 @@ import {
   timer,
 } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
-
-export type SupFocusOrigin = 'touch' | 'mouse' | 'keyboard' | 'script' | null;
+import { SupFocusOrigin } from '@supply/cdk/types';
 
 function mapToOrigin(origin: SupFocusOrigin) {
   return function <T>(source: Observable<T>): Observable<SupFocusOrigin> {

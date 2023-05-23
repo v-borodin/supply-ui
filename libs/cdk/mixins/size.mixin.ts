@@ -1,16 +1,16 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
-import { SupElement, SupHasSize, SupSize } from '@supply/cdk/interfaces';
+import { SupHasElementRef, SupHasSize, SupSize } from '@supply/cdk/interfaces';
 import { SupDomHandler } from '@supply/cdk/abstract';
 
 type SizeCtor = SupAbstractConstructor<SupHasSize>;
 
-export function supMixinSize<TSuper extends SupAbstractConstructor<SupElement>>(
+export function supMixinSize<TSuper extends SupAbstractConstructor<SupHasElementRef>>(
   Super: TSuper,
-  defaultSize?: SupSize
+  defaultSize?: SupSize,
 ): SizeCtor & TSuper;
-export function supMixinSize<TSuper extends SupConstructor<SupElement>>(
+export function supMixinSize<TSuper extends SupConstructor<SupHasElementRef>>(
   Super: TSuper,
-  defaultSize?: SupSize
+  defaultSize?: SupSize,
 ): SizeCtor & TSuper {
   return class MixinSize extends Super implements SupHasSize {
     private _size: SupSize;
@@ -21,8 +21,9 @@ export function supMixinSize<TSuper extends SupConstructor<SupElement>>(
 
     set size(value: SupSize) {
       const size = value ?? defaultSize;
+      const { nativeElement } = this.elementRef;
 
-      SupDomHandler.changeClass(this.element, {
+      SupDomHandler.updateClass(nativeElement, {
         current: `sup-size-${size}`,
         previous: `sup-size-${this._size}`,
       });

@@ -27,7 +27,6 @@ export class SupCustomizerDirective
   @Input()
   @HostBinding('attr.shape')
   set shape(value: SupShape) {
-    console.log(value);
     this._shape = value;
   }
 

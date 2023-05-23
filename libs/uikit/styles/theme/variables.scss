@@ -1,35 +1,82 @@
+/**
+ * EN: The 'sup' prefix is used to prevent variable name conflicts in different modules. Prefix refactoring allowed.
+ * SK: Predpona 'sup' sa používa na zabránenie konfliktom názvov premenných v rôznych moduloch. Refaktoring predpony je povolený.
+ */
 :root {
-  // @core
-  --sup-color-primary: #4069FF;
-  --sup-color-primary-hover: #4D73FF;
-  --sup-color-primary-active: #305CFF;
-  --sup-color-accent: #FF7A27;
+  // @Colors base
+  --sup-color-scale-black: #181818;
+  --sup-color-scale-white: #FFF;
+  --sup-color-accent: #FA692B;
 
-  // @typography
-  --sup-color-text-1: #1F2123;
+  // @Colors gray-scale
+  --sup-color-scale-gray-0: #FCFCFC;
+  --sup-color-scale-gray-1: #F9F9F9;
+  --sup-color-scale-gray-2: #F6F6F6;
+  --sup-color-scale-gray-3: #F4F5F5;
+  --sup-color-scale-gray-4: #F2F3F3;
+  --sup-color-scale-gray-5: #EDEFEF;
+  --sup-color-scale-gray-6: #E3E5E6;
+  --sup-color-scale-gray-7: #DFE0E2;
+  --sup-color-scale-gray-8: #D6D9DB;
+  --sup-color-scale-gray-9: #CCD1D3;
+  --sup-color-scale-gray-10: #909193;
+  --sup-color-scale-gray-11: #87888A;
+  --sup-color-scale-gray-12: #707070;
+
+  // @Colors typography
+  --sup-color-text-1: #1F2122;
   --sup-color-text-2: #5B5B60;
-  --sup-color-text-3: #717477;
+  --sup-color-text-3: var(--sup-color-scale-gray-10);
 
-  // @neutrals
-  --sup-color-neutral-white: #fff;
-  --sup-color-neutral-1: #FBFBFC;
-  --sup-color-neutral-2: #F3F4F4;
-  --sup-color-neutral-3: #F0F1F3;
-  --sup-color-neutral-4: #E9EBED;
-  --sup-color-neutral-5: #DADCE3;
-  --sup-color-neutral-6: #C5C7CF;
+  // @Colors buttons
+  --sup-color-btn-primary-bg: #0182F9;
+  --sup-color-btn-primary-bg-hover: #007EF2;
+  --sup-color-btn-primary-bg-active: #007BEB;
+  --sup-color-btn-primary-text: var(--sup-color-scale-white);
+  --sup-color-btn-secondary-bg: var(--sup-color-scale-white);
+  --sup-color-btn-secondary-text: var(--sup-color-scale-black);
+  --sup-color-btn-secondary-border: #D5D7DE;
+  --sup-color-btn-secondary-border-hover: #CED0D6;
+  --sup-color-btn-tertiary-bg: var(--sup-color-scale-gray-4);
+  --sup-color-btn-tertiary-bg-hover: var(--sup-color-scale-gray-5);
+  --sup-color-btn-tertiary-bg-active: var(--sup-color-scale-gray-6);
+  --sup-color-btn-tertiary-text: var(--sup-color-text-1);
+  --sup-color-btn-icon-remove: #EE584E;
+  --sup-color-btn-shadow: 0 1px 1px #F1F1F1;
 
-  // @status
-  --sup-color-success-solid: #37B46B;
-  --sup-color-warning-solid: #F9A300;
-  --sup-color-error-solid: #E64030;
+  // @Colors tooltip
+  --sup-color-tooltip-bg: #202327;
+  --sup-color-tooltip-text: var(--sup-color-scale-white);
 
-  // @states
+  // @Colors dropdown
+  --sup-color-dropdown-border: var(--sup-color-btn-secondary-border);
+
+  // @Colors status
+  --sup-color-success-solid: #0A9A55;
+  --sup-color-warning-solid: #FBBB00;
+  --sup-color-error-solid: #F54C16;
+
+  // @State disabled
   --sup-disabled-opacity: 0.5;
 
-  // @radius
+  // @Radius sizes
   --sup-radius-xs: 0.25rem;
   --sup-radius-sm: 0.375rem;
   --sup-radius-md: 0.50rem;
   --sup-radius-lg: 0.75rem;
+
+  // @Font
+  --sup-heading-font: "Poppins", sans-serif;
+  --sup-text-font: "Inter", sans-serif;
+  --sup-text-xs: 0.815rem;
+  --sup-text-sm: 0.875rem;
+  --sup-text-md: 1rem;
+  --sup-text-lg: 1.25rem;
+  --sup-text-xl: 1.5rem;
+  --sup-font-text-xs: 400 var(--sup-text-xs) / 1.25rem var(--sup-text-font);
+  --sup-font-text-sm: 400 var(--sup-text-sm) / 1.4rem var(--sup-text-font);
+  --sup-font-text-md: 400 var(--sup-text-md) / 1.7rem var(--sup-text-font);
+  --sup-font-text-xs-bold: 600 var(--sup-text-xs) / 1.3rem var(--sup-text-font);
+  --sup-font-text-sm-bold: 600 var(--sup-text-sm) / 1.4rem var(--sup-text-font);
+  --sup-font-text-md-bold: 600 var(--sup-text-md) / 1.5rem var(--sup-text-font);
 }

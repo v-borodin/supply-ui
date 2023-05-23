@@ -1,94 +1,205 @@
-@use 'interactive' as *;
+@use "sass:color";
+@use "interactive" as *;
+@use "common" as *;
 
-@mixin _appearance-common {
+@mixin appearance-common {
   @include disabled($loading-prevent: true) {
     opacity: var(--sup-disabled-opacity);
   }
 }
 
+@mixin appearance-field-common {
+
+}
+
 @mixin appearance-primary {
   @include transition-context {
-    @include _appearance-common;
+    @include appearance-common;
 
     @include hover {
-      background-color: var(--sup-color-primary-hover);
+      background-color: var(--sup-color-btn-primary-bg-hover);
     }
 
     @include focus {
-      background-color: var(--sup-color-primary-hover);
-      outline: 2px solid #F9A300;
+      background-color: var(--sup-color-btn-primary-bg-hover);
     }
 
     @include active {
-      background-color: var(--sup-color-primary-active);
+      background-color: var(--sup-color-btn-primary-bg-active);
     }
 
-    background-color: var(--sup-color-primary);
-    color: var(--sup-color-neutral-white);
+    color: var(--sup-color-btn-primary-text);
+    background-color: var(--sup-color-btn-primary-bg);
   }
 }
 
 @mixin appearance-secondary {
   @include transition-context {
-    @include _appearance-common;
+    @include appearance-common;
 
     @include hover {
-      background-color: var(--sup-color-neutral-4);
+      background-color: var(--sup-color-scale-gray-0);
+      border-color: var(--sup-color-btn-secondary-border-hover);
     }
 
     @include focus {
-      outline: 2px solid #F9A300;
+      border-color: var(--sup-color-btn-secondary-border-hover);
     }
 
     @include active {
-      background-color: var(--sup-color-neutral-5);
+      background-color: var(--sup-color-scale-gray-2);
     }
 
-    border: 1px solid #D5D7DE;
-    background-color: var(--sup-color-neutral-white);
-    color: var(--sup-color-text-1);
-    box-shadow: 0 1px 1px #F1F1F1;
+    color: var(--sup-color-btn-secondary-text);
+    background-color: var(--sup-color-btn-secondary-bg);
+    border: 1px solid var(--sup-color-btn-secondary-border);
+    box-shadow: var(--sup-color-btn-shadow);
   }
 }
 
 @mixin appearance-tertiary {
   @include transition-context {
-    @include _appearance-common;
+    @include appearance-common;
 
     @include hover {
-      background-color: var(--sup-color-neutral-4);
-    }
-
-    @include focus {
-      outline: 2px solid #F9A300;
+      background-color: var(--sup-color-btn-tertiary-bg-hover);
     }
 
     @include active {
-      background-color: var(--sup-color-neutral-5);
+      background-color: var(--sup-color-btn-tertiary-bg-active);
     }
 
-    background-color: var(--sup-color-neutral-3);
-    color: var(--sup-color-text-1);
+    color: var(--sup-color-btn-tertiary-text);
+    background-color: var(--sup-color-btn-tertiary-bg);
+  }
+}
+
+@mixin appearance-flat {
+  @include transition-context {
+    @include appearance-common;
+
+    @include hover {
+      background-color: var(--sup-color-btn-tertiary-bg);
+    }
+
+    @include focus {
+      // @TODO
+    }
+
+    @include active {
+      background-color: var(--sup-color-btn-tertiary-bg-hover);
+    }
+
+    color: var(--sup-color-btn-tertiary-text);
+    background-color: transparent;
   }
 }
 
 @mixin appearance-accent {
   @include transition-context {
-    @include _appearance-common;
+    @include appearance-common;
 
     @include hover {
-      background-color: var(--sup-color-accent);
+      // @TODO
     }
 
     @include focus {
-      outline: 2px solid #F9A300;
+      // @TODO
     }
 
     @include active {
-      background-color: var(--sup-color-accent);
+      // @TODO
     }
 
+    color: var(--sup-color-scale-white);
     background-color: var(--sup-color-accent);
-    color: var(--sup-color-neutral-white);
+  }
+}
+
+@mixin appearance-field-primary {
+  @include transition-context {
+    @include hover {
+      background-color: var(--sup-color-scale-gray-5);
+    }
+
+    @include focus {
+      background-color: var(--sup-color-scale-white);
+
+      &::after {
+        color: var(--sup-color-accent);
+        border-width: 1px;
+      }
+    }
+
+    @include readonly {
+      @include focus {
+        background-color: var(--sup-color-scale-gray-6);
+
+        &::after {
+          color: var(--sup-color-scale-gray-8);
+        }
+      }
+
+      background-color: var(--sup-color-scale-gray-6);
+
+      &::after {
+        color: var(--sup-color-scale-gray-7);
+      }
+    }
+
+    @include disabled {
+      pointer-events: none;
+      opacity: var(--sup-disabled-opacity);
+    }
+
+    color: var(--sup-color-text-1);
+    background-color: var(--sup-color-scale-gray-4);
+
+    &::after {
+      @include inherit-host(border-radius, transition);
+
+      pointer-events: none;
+      content: '';
+
+      position: absolute;
+      inset: 0;
+
+      color: transparent;
+
+      border: 1px solid currentcolor;
+    }
+  }
+}
+
+
+@mixin appearance-field-secondary {
+  @include transition-context((properties: (border-color, background))) {
+    @include hover {
+      background-color: var(--sup-color-scale-gray-0);
+    }
+
+    @include focus {
+      background-color: var(--sup-color-scale-white);
+      border-color: var(--sup-color-accent);
+    }
+
+    @include readonly {
+      @include focus {
+        background-color: var(--sup-color-scale-gray-2);
+        border-color: var(--sup-color-scale-gray-9);
+      }
+
+      background-color: var(--sup-color-scale-gray-1);
+      border: 1px solid var(--sup-color-scale-gray-8);
+    }
+
+    @include disabled {
+      pointer-events: none;
+      opacity: var(--sup-disabled-opacity);
+    }
+
+    color: var(--sup-color-text-1);
+    background-color: var(--sup-color-scale-white);
+    border: 1px solid var(--sup-color-scale-gray-9);
   }
 }

@@ -1,0 +1,9 @@
+@use "../layout" as *;
+
+:host {
+  display: flex;
+}
+
+.page-wrapper {
+  @include page-wrapper;
+}

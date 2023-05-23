@@ -1,0 +1,123 @@
+@use "libs/uikit/styles/supply-internal" as sup;
+
+.tabs-header {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+
+  width: 100%;
+  height: 3.5rem;
+  padding: 0 0.95rem;
+
+  background-color: var(--sup-color-scale-gray-4);
+  border: 1px solid var(--sup-color-scale-gray-6);
+  border-bottom-color: transparent;
+  border-top-left-radius: var(--sup-radius-md);
+  border-top-right-radius: var(--sup-radius-md);
+}
+
+.tab-btn {
+  @include sup.reset-button;
+
+  @include sup.transition-context {
+    @include sup.hover {
+      background-color: var(--sup-color-scale-gray-6);
+    }
+
+    @include sup.active {
+      background-color: var(--sup-color-scale-gray-7);
+    }
+  }
+
+  cursor: pointer;
+
+  display: flex;
+  column-gap: 0.4rem;
+  align-items: center;
+
+  height: 1.75rem;
+  padding: 5px 11px;
+
+  font-size: 14px;
+  line-height: 1.125rem;
+
+  border-radius: 5px;
+
+  &.active {
+    background-color: #fff;
+    box-shadow: rgb(0 0 0 / 11.5%) 0 1px 2px 0;
+  }
+
+  i {
+    flex-shrink: 0;
+
+    width: 0.90rem;
+    height: 0.90rem;
+    margin-left: -0.2rem;
+
+    color: #1480EC;
+  }
+}
+
+.copy-btn {
+  @include sup.reset-button;
+
+  @include sup.transition-context {
+    @include sup.hover {
+      background-color: #323739;
+    }
+  }
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2rem;
+  height: 2rem;
+
+  background-color: #2E3334;
+  border-radius: var(--sup-radius-xs);
+
+  i {
+    width: 1rem;
+    height: 1rem;
+    color: var(--sup-color-scale-gray-0);
+  }
+}
+
+.preview-container {
+  margin-top: -1px;
+  padding: 1.5rem;
+
+  border: 1px solid var(--sup-color-scale-gray-6);
+  border-top: 1px solid #F2F3F3;
+  border-bottom-right-radius: var(--sup-radius-md);
+  border-bottom-left-radius: var(--sup-radius-md);
+}
+
+.code-btn {
+  @include sup.reset-button;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+
+  i {
+    width: 1.3rem;
+    height: 1.3rem;
+    color: var(--sup-color-scale-gray-10);
+  }
+}

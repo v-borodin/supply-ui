@@ -1,0 +1,14 @@
+<button [loading]="loading"
+        (click)="getTodos()"
+        appearance="secondary"
+        supButton>
+  Make error request
+</button>
+
+<sup-notification *ngIf="errorMsg"
+                  (close)="errorMsg = null"
+                  hasClose
+                  status="error"
+                  class="mt-4">
+  {{errorMsg}}
+</sup-notification>

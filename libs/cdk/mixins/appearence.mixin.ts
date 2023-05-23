@@ -1,20 +1,16 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
-import {
-  SupHasAppearance,
-  SupAppearance,
-  SupElement,
-} from '@supply/cdk/interfaces';
+import { SupHasAppearance, SupAppearance, SupHasElementRef } from '@supply/cdk/interfaces';
 import { SupDomHandler } from '@supply/cdk/abstract';
 
-type AppearanceCtor = SupConstructor<SupHasAppearance> &
-  SupAbstractConstructor<SupHasAppearance>;
+type AppearanceCtor = SupConstructor<SupHasAppearance> & SupAbstractConstructor<SupHasAppearance>;
 
-export function supMixinAppearance<
-  TSuper extends SupAbstractConstructor<SupElement>
->(Super: TSuper, defaultAppearance?: SupAppearance): AppearanceCtor & TSuper;
-export function supMixinAppearance<TSuper extends SupConstructor<SupElement>>(
+export function supMixinAppearance<TSuper extends SupAbstractConstructor<SupHasElementRef>>(
   Super: TSuper,
-  defaultAppearance?: SupAppearance
+  defaultAppearance?: SupAppearance,
+): AppearanceCtor & TSuper;
+export function supMixinAppearance<TSuper extends SupConstructor<SupHasElementRef>>(
+  Super: TSuper,
+  defaultAppearance?: SupAppearance,
 ): AppearanceCtor & TSuper {
   return class MixinAppearance extends Super implements SupHasAppearance {
     private _appearance: SupAppearance;
@@ -25,8 +21,9 @@ export function supMixinAppearance<TSuper extends SupConstructor<SupElement>>(
 
     set appearance(value: SupAppearance) {
       const appearance = value ?? defaultAppearance;
+      const { nativeElement } = this.elementRef;
 
-      SupDomHandler.changeClass(this.element, {
+      SupDomHandler.updateClass(nativeElement, {
         current: `sup-appearance-${appearance}`,
         previous: `sup-appearance-${this._appearance}`,
       });

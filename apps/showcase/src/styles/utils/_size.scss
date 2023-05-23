@@ -1,0 +1,27 @@
+@use "../abstract/variables" as *;
+
+@each $key, $val in $spaces {
+  .w-#{$key} {
+    width: $val !important;
+  }
+
+  .h-#{$key} {
+    height: $val !important;
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.w-screen {
+  width: 100vw;
+}
+
+.h-screen {
+  height: 100vh;
+}

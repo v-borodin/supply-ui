@@ -6,7 +6,6 @@ import {
   HostBinding,
   Inject,
   Input,
-  TemplateRef,
 } from '@angular/core';
 import { NgIf, NgTemplateOutlet } from '@angular/common';
 import { SUP_BUTTON_OPTIONS, SupButtonOptions } from './button.helpers';
@@ -18,23 +17,25 @@ import {
   supMixinLoadable,
 } from '@supply/cdk';
 import { SupLoaderComponent } from '@supply/uikit/components/loader';
+import { SupIconComponent } from '@supply/uikit/components';
+import { NgxContentOutlet, ReflectiveContent } from '@coreteq/ngx-projection';
 
 const ButtonMixin = supMixinInteractive(
   supMixinLoadable(
     supMixinCustomized(
       class {
-        constructor(readonly element: Element) {}
+        constructor(readonly elementRef: ElementRef) {}
       }
     )
   )
 );
 
 @Component({
-  selector: 'button[supButton], button[supIconButton], a[supButton]',
+  selector: 'button[supButton], button[supIconButton], a[supButton], a[supIconButton]',
   exportAs: 'supButton',
   templateUrl: './button.html',
   styleUrls: ['./button.scss'],
-  inputs: ['loading', 'disabled'],
+  inputs: ['loading', 'disabled', 'id'],
   host: {
     role: 'button',
     '[attr.aria-disabled]': '(disabled || loading).toString()',
@@ -47,7 +48,13 @@ const ButtonMixin = supMixinInteractive(
     },
   ],
   standalone: true,
-  imports: [NgIf, NgTemplateOutlet, SupLoaderComponent],
+  imports: [
+    NgIf,
+    NgTemplateOutlet,
+    SupLoaderComponent,
+    SupIconComponent,
+    NgxContentOutlet,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SupButtonComponent extends ButtonMixin {
@@ -61,10 +68,10 @@ export class SupButtonComponent extends ButtonMixin {
   override shape = this.options.shape;
 
   @Input()
-  icon: TemplateRef<any> | undefined | null;
+  icon: ReflectiveContent;
 
   @Input()
-  iconRight: TemplateRef<any> | undefined | null;
+  iconRight: ReflectiveContent;
 
   @HostBinding('attr.disabled')
   get isDisabled(): '' | null {
@@ -73,8 +80,8 @@ export class SupButtonComponent extends ButtonMixin {
 
   constructor(
     @Inject(SUP_BUTTON_OPTIONS) private readonly options: SupButtonOptions,
-    @Inject(ElementRef) { nativeElement }: ElementRef
+    @Inject(ElementRef) elementRef: ElementRef
   ) {
-    super(nativeElement);
+    super(elementRef);
   }
 }

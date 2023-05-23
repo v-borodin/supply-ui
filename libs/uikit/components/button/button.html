@@ -8,7 +8,9 @@
   <span *ngIf="icon"
         class="sup-left-mg">
      <div class="sup-icon">
-       <ng-container *ngTemplateOutlet="icon"/>
+       <ng-container *ngxContentOutlet="icon as name">
+         <i [src]="name" inline supIcon></i>
+       </ng-container>
      </div>
   </span>
 
@@ -17,7 +19,9 @@
   <span *ngIf="iconRight"
         class="sup-right-mg">
      <div class="sup-icon">
-       <ng-container *ngTemplateOutlet="iconRight"/>
+       <ng-container *ngxContentOutlet="iconRight as name">
+         <i [src]="name" inline supIcon></i>
+       </ng-container>
      </div>
   </span>
 

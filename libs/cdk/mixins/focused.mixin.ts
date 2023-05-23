@@ -1,15 +1,16 @@
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
-import { SupCanDisable, SupCanFocus, SupElement } from '@supply/cdk/interfaces';
+import { SupCanDisable, SupCanFocus, SupHasElementRef } from '@supply/cdk/interfaces';
 import { SupDomHandler } from '@supply/cdk/abstract';
 
 type CanFocusCtor = SupAbstractConstructor<SupCanFocus>;
 
 export function supMixinFocused<
-  TSuper extends SupAbstractConstructor<SupCanDisable & SupElement>
+  TSuper extends SupAbstractConstructor<SupCanDisable & SupHasElementRef>,
 >(Super: TSuper, defaultFocused?: boolean): CanFocusCtor & TSuper;
-export function supMixinFocused<
-  TSuper extends SupConstructor<SupCanDisable & SupElement>
->(Super: TSuper, defaultFocused = false): CanFocusCtor & TSuper {
+export function supMixinFocused<TSuper extends SupConstructor<SupCanDisable & SupHasElementRef>>(
+  Super: TSuper,
+  defaultFocused = false,
+): CanFocusCtor & TSuper {
   return class MixinFocused extends Super implements SupCanFocus {
     private _focused = defaultFocused;
 
@@ -22,7 +23,8 @@ export function supMixinFocused<
         return;
       }
 
-      SupDomHandler.toggleClass(this.element, 'focused', value);
+      const { nativeElement } = this.elementRef;
+      SupDomHandler.toggleClass(nativeElement, 'sup-focused', value);
 
       this._focused = value;
     }

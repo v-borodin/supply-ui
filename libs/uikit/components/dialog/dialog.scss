@@ -1,0 +1,101 @@
+@use "../../styles/supply-internal" as sup;
+
+$width-sm: 25rem;
+$width-md: 30rem;
+$width-lg: 35rem;
+$color-border: var(--sup-color-dropdown-border);
+$width-border: 1px;
+
+:host {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+  margin: auto;
+
+  border-radius: var(--sup-radius-md);
+  outline: none;
+
+  &.sup-size-auto {
+    width: auto;
+  }
+
+  &.sup-size-sm {
+    width: $width-sm;
+  }
+
+  &.sup-size-md {
+    width: $width-md;
+  }
+
+  &.sup-size-lg {
+    width: $width-lg;
+  }
+}
+
+.sup-dialog-label {
+  @include sup.inherit-host(border-top-left-radius, border-top-right-radius);
+
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  height: 3.25rem;
+  padding: 0 1rem;
+
+  background-color: var(--sup-color-scale-white);
+  border-bottom: $width-border solid $color-border;
+}
+
+.sup-dialog-label-text {
+  overflow: hidden;
+
+  width: 100%;
+  margin-bottom: -$width-border;
+
+  font: var(--sup-font-text-sm-bold);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sup-dialog-content {
+  background: var(--sup-color-scale-white);
+  border-radius: inherit;
+
+  &:not(:first-child) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
+
+.sup-dialog-btn-close {
+  @include sup.reset-button;
+  @include sup.center-by-flex;
+  @include sup.size(1.5rem);
+
+  @include sup.transition-context {
+    @include sup.hover {
+      color: var(--sup-color-scale-black);
+      background-color: var(--sup-color-scale-gray-4);
+    }
+
+    @include sup.active {
+      background-color: var(--sup-color-scale-gray-6);
+    }
+  }
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  color: var(--sup-color-scale-gray-12);
+
+  background-color: transparent;
+  border-radius: var(--sup-radius-xs);
+
+  i {
+    @include sup.size(1rem);
+  }
+}

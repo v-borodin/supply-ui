@@ -1,0 +1,35 @@
+<div appPage>
+  <header appPageHeader>
+    <h1>RXJS Operators</h1>
+    <p>
+      Custom operators that extend the functionality of RXJS
+    </p>
+    <sup-notification status="info">
+      Operators are supplied without the 'sup' prefix in the name
+    </sup-notification>
+  </header>
+
+  <hr [top]="1.75" appPageDivider/>
+
+  <div appSectionWrapper>
+    <section appSection>
+      <h2>From Router Event</h2>
+      <app-from-router-event-demo/>
+    </section>
+
+    <section appSection>
+      <h2>Outside Angular</h2>
+      <app-outside-angular-demo/>
+    </section>
+
+    <section appSection>
+      <h2>Prevent Default</h2>
+      <app-prevent-default-demo/>
+    </section>
+
+    <section appSection>
+      <h2>Stop Propagation</h2>
+      <app-stop-propagation-demo/>
+    </section>
+  </div>
+</div>

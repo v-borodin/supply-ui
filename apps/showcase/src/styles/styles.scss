@@ -1,0 +1,10 @@
+@use "base";
+@use "components";
+@use "utils";
+@use "vendors";
+
+body {
+  font-family: var(--sup-text-font);
+  color: var(--sup-color-scale-black);
+  background-color: var(--sup-color-scale-white);
+}

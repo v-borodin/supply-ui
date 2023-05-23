@@ -1,0 +1,19 @@
+<div *ngIf="controller.title as content"
+     class="sup-dropdown-title">
+  <ng-container *ngxContentOutlet="content as text">
+    <span class="sup-dropdown-title-text">
+      {{text}}
+    </span>
+  </ng-container>
+  <button *ngIf="controller.hasClose"
+          [supTooltip]="closeWord"
+          (click)="onClose()"
+          supTooltipPosition="above"
+          type="button"
+          class="sup-dropdown-btn-close">
+    <i src="appClose" supIcon></i>
+  </button>
+</div>
+<ng-container *ngxContentOutlet="controller.content as text; injector: this.injector">
+  {{text}}
+</ng-container>

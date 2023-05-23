@@ -1,0 +1,20 @@
+@use "../layout" as *;
+
+$offset-top: 2rem;
+
+:host {
+  position: relative;
+
+  display: block;
+  order: 2;
+
+  width: $width-aside-page;
+  padding-left: 96px;
+}
+
+.aside-container {
+  position: sticky;
+  top: $height-header + $offset-top;
+  bottom: 0;
+  width: 224px;
+}

@@ -1,0 +1,10 @@
+<div #headingRef class="d-flex flex-items-center mb-2">
+  <ng-content select="h2"/>
+  <ng-container *ngIf="!!icon">
+    <ng-container *ngxContentOutlet="icon as name">
+      <i class="icon" [src]="name" supIcon></i>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-content/>

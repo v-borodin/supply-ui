@@ -1,5 +1,30 @@
-<ng-content/>
+<ng-container *ngIf="hasIcon">
+  <div class="sup-icon">
+    <ng-container *ngIf="!!icon; else defaultIcon">
+      <ng-container *ngxContentOutlet="icon as name">
+        <i [src]="name" supIcon></i>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-template #defaultIcon>
+  <i [src]="statusIcon"
+     class="sup-icon__default-size"
+     supIcon>
+  </i>
+</ng-template>
+
+<span class="sup-text">
+  <ng-content/>
+</span>
 
 <button *ngIf="hasClose"
-        type="button">
+        (click)="close.emit()"
+        type="button"
+        class="sup-btn-close">
+  <i class="sup-btn-close__icon"
+     src="appClose"
+     supIcon>
+  </i>
 </button>

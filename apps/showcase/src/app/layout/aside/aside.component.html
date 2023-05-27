@@ -1,0 +1,17 @@
+<div class="aside-container">
+  <div class="aside-title">On this page</div>
+  <ul class="aside-list">
+    <li *ngFor="let section of sections">
+      <!--      <div [style.top.px]="getMarkerPosition()"-->
+      <!--           *ngIf="currentSection"-->
+      <!--           class="li-marker">-->
+      <!--      </div>-->
+      <a [id]="section.id"
+         [class.active]="section.id === currentSection"
+         (click)="scrollToSection(section)"
+         class="aside-link">
+        {{section.title}}
+      </a>
+    </li>
+  </ul>
+</div>

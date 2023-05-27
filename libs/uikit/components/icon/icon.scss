@@ -1,0 +1,28 @@
+@use "../../styles/supply-internal" as sup;
+
+$size-default: 1.5rem;
+
+:host {
+  overflow: hidden;
+  display: inline-block;
+  flex-shrink: 0;
+
+  width: $size-default;
+  height: $size-default;
+
+  font-size: 1rem;
+  line-height: 0;
+
+  fill: currentcolor;
+  stroke: transparent;
+
+  &.inline {
+    @include sup.inherit-host(width, height, font-size, line-height);
+  }
+}
+
+.sup-svg-container {
+  @include sup.inherit-host(width, height);
+
+  display: flex;
+}

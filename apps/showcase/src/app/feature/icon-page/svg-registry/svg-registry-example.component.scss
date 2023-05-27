@@ -1,0 +1,14 @@
+.sup-icon {
+  display: block;
+
+  width: 2rem;
+  height: 2rem;
+
+  color: var(--sup-color-accent);
+
+  transition: .15s ease-in-out color;
+
+  &:hover {
+    color: var(--sup-color-warning-solid);
+  }
+}

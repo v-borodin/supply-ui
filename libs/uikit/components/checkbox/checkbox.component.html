@@ -1,0 +1,11 @@
+<input [id]="inputId"
+       [attr.value]="value"
+       [checked]="checked"
+       class="checkbox"
+       type="checkbox"
+       (change)="onChangeEvent($event)"
+       (click)="toggle()">
+<label [for]="inputId"
+       class="checkbox__label">
+  <ng-content></ng-content>
+</label>

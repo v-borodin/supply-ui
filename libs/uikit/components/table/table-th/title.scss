@@ -1,0 +1,87 @@
+@use "../../../styles/supply-internal" as sup;
+
+$padding-side: 0.75rem;
+
+@mixin current-sorter {
+  color: var(--sup-color-scale-black);
+  background-color: var(--sup-color-scale-gray-6);
+}
+
+:host {
+  @include sup.transition((background), .2s, ease-in-out);
+
+  cursor: default;
+
+  position: relative;
+  top: 0;
+
+  box-sizing: border-box;
+  height: 2.75rem;
+  padding: 0 $padding-side;
+
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  white-space: nowrap;
+  vertical-align: inherit;
+
+  background: var(--sup-color-scale-gray-1);
+  border: 1px solid var(--sup-color-scale-gray-7);
+
+  &.current-sorter {
+    background: var(--sup-color-scale-gray-4);
+  }
+
+  &:not(:first-child) {
+    border-left: none;
+  }
+}
+
+:host-context(tr:not(:first-child)) {
+  border-top: none;
+}
+
+.sup-sort {
+  @include sup.reset-button;
+  @include sup.size(1.5rem);
+
+  @include sup.transition-context {
+    @include sup.hover {
+      color: var(--sup-color-scale-black);
+      background-color: var(--sup-color-scale-gray-5);
+    }
+
+    @include sup.focus {
+      @include current-sorter;
+    }
+
+    @include sup.active {
+      background-color: var(--sup-color-scale-gray-6);
+    }
+  }
+
+  cursor: pointer;
+
+  position: absolute;
+  top: 0;
+  right: $padding-side;
+  bottom: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: auto 0;
+
+  color: var(--sup-color-scale-gray-10);
+
+  border-radius: var(--sup-radius-xs);
+
+  :host.current-sorter & {
+    @include current-sorter;
+  }
+}
+
+.sup-sort-icon {
+  @include sup.size(1.15rem);
+}

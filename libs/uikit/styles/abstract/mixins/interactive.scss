@@ -1,6 +1,6 @@
-@use 'sass:map';
-@use 'utils';
-@use '../functions/internal';
+@use "sass:map";
+@use "../functions/utils";
+@use "common";
 
 /* -------------------------------- */
 /* Variables */
@@ -10,10 +10,10 @@
  @private default transition options
  */
 $_default-transition-options: (
-  properties: (color, background, opacity),
+  properties: (color, background, background-color, opacity),
   duration: 0.2s,
   function: ease-in-out,
-  /* @see utils.scss (@mixin transition) for details*/
+  /* @see common.scss (@mixin transition) for details*/
   delay: 0
 );
 
@@ -39,10 +39,10 @@ $_default-interactive-classes: (
  * @mixin {transition-context} - mixes the constituent transition properties (property, duration, function, delay) to the class
  */
 @mixin transition-context($transition: $_default-transition-options) {
-  @if internal.assert-type($transition, map) {
-    $props: internal.get-options($transition, $_default-transition-options);
+  @if utils.assert-type($transition, map) {
+    $props: utils.get-options($transition, $_default-transition-options);
 
-    @include utils.transition($props...);
+    @include common.transition($props...);
   }
 
   @content;
@@ -61,7 +61,7 @@ $_default-interactive-classes: (
 }
 
 @mixin focus {
-  &:focus, &.focused {
+  &:focus, &.sup-focused {
     @content;
   }
 }
@@ -123,18 +123,13 @@ $_default-interactive-classes: (
 }
 
 @mixin disabled($native: false, $loading-prevent: false) {
-  @if (internal.assert-type($native, bool)) and $native {
+  @if $native {
     &:disabled {
       @content;
     }
-  }
-
-  @if internal.assert-type($loading-prevent, bool) and not $native {
-    $class-disabled: map.get($_default-interactive-classes, disabled);
-    $class-loading: map.get($_default-interactive-classes, loading);
-
-    &:disabled#{if($loading-prevent, ':not(.#{$class-loading})', null)},
-    &.#{$class-disabled} {
+  } @else {
+    &:disabled#{if($loading-prevent, ':not(.sup-loading)', null)},
+    &.sup-disabled {
       @content;
     }
   }
@@ -147,7 +142,7 @@ $_default-interactive-classes: (
 }
 
 @mixin invalid($native: false) {
-  @if (internal.assert-type($native, bool)) and $native {
+  @if (utils.assert-type($native, bool)) and $native {
     &:invalid {
       @content;
     }
@@ -161,7 +156,7 @@ $_default-interactive-classes: (
 }
 
 @mixin readonly($native: false) {
-  @if (internal.assert-type($native, bool)) and $native {
+  @if (utils.assert-type($native, bool)) and $native {
     &:read-only {
       @content;
     }
@@ -189,9 +184,7 @@ $_default-interactive-classes: (
 }
 
 @mixin loading {
-  $class-loading: map.get($_default-interactive-classes, loading);
-
-  &.#{$class-loading} {
+  &.sup-loading {
     @content;
   }
 }

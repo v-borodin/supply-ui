@@ -1,0 +1,16 @@
+<label class="label">
+  <ng-content select="sup-label, [supLabel]"></ng-content>
+</label>
+
+<ng-content></ng-content>
+
+<sup-loader *ngIf="showLoader"
+            class="field-loader"
+            appearance="primary">
+</sup-loader>
+
+<div *ngIf="!!hint"
+     class="hint-field-wrap">
+  <ng-content select="sup-hint, [supHint]"></ng-content>
+</div>
+

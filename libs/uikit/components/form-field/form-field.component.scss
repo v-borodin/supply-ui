@@ -1,0 +1,16 @@
+:host {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+
+  > .field-loader {
+    position: absolute;
+    top: 1.125rem;
+    right: 1.25rem;
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+}

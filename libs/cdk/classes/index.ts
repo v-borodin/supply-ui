@@ -1,1 +1,1 @@
-export * from './element-binder';
+export * from './dialog-ref';

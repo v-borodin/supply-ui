@@ -1,20 +1,17 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Inject,
-  Input,
-} from '@angular/core';
-import {
-  SupAbstractElementBase,
-  supMixinAppearance,
-  supMixinLoadable,
-  supMixinSize,
-} from '@supply/cdk';
+import { ChangeDetectionStrategy, Component, ElementRef, Inject, Input } from '@angular/core';
+import { supMixinAppearance, supMixinLoadable, supMixinSize } from '@supply/cdk';
 import { SUP_LOADER_OPTIONS, SupLoaderOptions } from './loader.helpers';
 import { NgIf } from '@angular/common';
 
 const LoaderMixin = supMixinAppearance(
-  supMixinSize(supMixinLoadable(SupAbstractElementBase, true))
+  supMixinSize(
+    supMixinLoadable(
+      class {
+        constructor(readonly elementRef: ElementRef) {}
+      },
+      true
+    )
+  )
 );
 
 @Component({
@@ -40,8 +37,9 @@ export class SupLoaderComponent extends LoaderMixin {
   hasOverlay = this.options.hasOverlay;
 
   constructor(
-    @Inject(SUP_LOADER_OPTIONS) private readonly options: SupLoaderOptions
+    @Inject(SUP_LOADER_OPTIONS) private readonly options: SupLoaderOptions,
+    @Inject(ElementRef) elementRef: ElementRef
   ) {
-    super();
+    super(elementRef);
   }
 }

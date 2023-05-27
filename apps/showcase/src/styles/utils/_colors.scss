@@ -1,0 +1,30 @@
+@use "../abstract/mixins" as mixin;
+
+.bg-white {
+  background-color: var(--sup-color-scale-white, #fff);
+}
+
+.color-white {
+  @include mixin.color(var(--sup-color-scale-white, #fff));
+}
+
+.bg-black {
+  background-color: var(--sup-color-scale-black, #181818);
+}
+
+.color-black {
+  @include mixin.color(var(--sup-color-scale-black, #181818));
+}
+
+.sup-text-paragraph {
+  @include mixin.color(var(--sup-color-scale-gray-12));
+}
+
+.sup-text-muted {
+  @include mixin.color(var(--sup-color-scale-gray-10));
+}
+
+.sup-text-dashed {
+  text-decoration: underline dashed var(--sup-color-scale-gray-9);
+  text-underline-offset: 0.25rem;
+}

@@ -1,0 +1,24 @@
+@use "libs/uikit/styles/supply-internal" as sup;
+
+[supButton].sup-appearance-custom {
+  @include sup.transition-context {
+    @include sup.hover {
+      background-image: linear-gradient(
+          to right,
+          rgb(240 19 77) 22.2%,
+          rgb(228 0 124) 88.7%
+      )
+    }
+
+    @include sup.active {
+      background-color: #0E9954;
+    }
+
+    color: #fff;
+    background-image: linear-gradient(
+        to right,
+        rgb(252 56 56) 11.7%,
+        rgb(252 56 71) 81.7%
+    )
+  }
+}

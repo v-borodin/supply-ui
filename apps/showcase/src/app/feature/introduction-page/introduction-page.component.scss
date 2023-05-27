@@ -1,0 +1,10 @@
+:host {
+  display: block;
+  max-width: 75ch;
+}
+
+.block-container {
+  padding: 1rem;
+  background-color: var(--sup-color-scale-gray-4);
+  border-radius: var(--sup-radius-md);
+}

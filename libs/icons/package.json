@@ -1,0 +1,27 @@
+{
+  "name": "@app/icons",
+  "version": "0.0.1",
+  "scripts": {
+    "generate": "svg-to-ts-object"
+  },
+  "svg-to-ts": {
+    "srcFiles": [
+      "./src/**/*.svg"
+    ],
+    "outputDirectory": "./generated/core",
+    "interfaceName": "IconViewModel",
+    "generateType": false,
+    "generateTypeObject": false,
+    "delimiter": "CAMEL",
+    "generateCompleteIconSet": true,
+    "exportCompleteIconSet": true,
+    "barrelFileName": "index",
+    "completeIconSetName": "appCoreIcons",
+    "prefix": "icon",
+    "iconsFolderName": "generated",
+    "objectName": "appCoreIcons",
+    "fileName": "icons",
+    "compileSources": false,
+    "verbose": true
+  }
+}

@@ -1,0 +1,76 @@
+@mixin h1-default {
+  // rules
+}
+
+@mixin h2-default {
+  // rules
+}
+
+@mixin h3-default {
+  // rules
+}
+
+@mixin h4-default {
+  // rules
+}
+
+@mixin h5-default {
+  font: var(--sup-font-text-md-bold);
+}
+
+@mixin h6-default {
+  // rules
+}
+
+@mixin paragraph-default {
+  // rules
+}
+
+h1, .h1 {
+  font-family: Poppins, sans-serif;
+  font-size: 2.25rem;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 3rem;
+}
+
+h2, .h2 {
+  font-family: Poppins, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 2rem;
+}
+
+.h3 {
+
+}
+
+.h4 {
+
+}
+
+.h5 {
+  @include h5-default;
+}
+
+.h6 {
+
+}
+
+p {
+  font: var(--sup-font-text-md);
+  color: var(--sup-color-scale-gray-12);
+}
+
+.sup-text-body-sm {
+  font: var(--sup-font-text-sm);
+}
+
+.sup-text-body-md {
+  font: var(--sup-font-text-md);
+}
+
+.bold {
+  font-weight: 600;
+}

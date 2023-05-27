@@ -1,0 +1,11 @@
+{
+  "repository": {
+    "baseUrl": "https://github.com/v-borodin/supply-ui",
+    "actualBranch": "main",
+    "baseDirectory": "libs",
+    "projects": [
+      "cdk",
+      "uikit"
+    ]
+  }
+}

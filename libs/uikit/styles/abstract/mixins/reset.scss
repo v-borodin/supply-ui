@@ -1,5 +1,4 @@
-@use "prefixers" as *;
-@use "utils" as *;
+@use "common" as *;
 
 @mixin reset-button {
   @include prefix-appearance(none);

@@ -1,0 +1,50 @@
+<ng-container *ngIf="clickOutside$ | async"></ng-container>
+
+<div class="dropped-input combobox {{size}}"
+     [class.dropped]="dropped"
+     [class.multiple]="multiple"
+     [class.ng-invalid]="ngControl?.invalid"
+     [class.ng-touched]="ngControl?.touched"
+     (click)="toggleDropdown(!dropped)">
+
+  <span *ngIf="!selection.size">{{placeholder}}</span>
+
+  <ng-container *ngFor="let option of selection; trackBy: trackByFn">
+    <span *ngIf="!multiple; else multipleSelectionRenderer">{{option.text}}</span>
+    <ng-template #multipleSelectionRenderer>
+      <span class="combobox__multiple-option">
+        {{option.text}}
+        <i (click)="deselect(option)"
+           class="combobox__multiple-option-close"
+           src="supCloseSmall"
+           supIcon>
+        </i>
+      </span>
+    </ng-template>
+  </ng-container>
+
+  <i class="dropped-input__arrow"
+     [class.flipped]="dropped"
+     src="supArrowDown"
+     supIcon>
+  </i>
+</div>
+
+<ul *ngIf="dropped" class="combobox-list">
+
+  <ng-container *ngFor="let option of options; trackBy: trackByFn">
+
+    <li *ngIf="!option.hidden" class="combobox-list__item"
+        [class.disabled]="option.disabled"
+        [class.selected]="option.selected"
+        (click)="select(option)">
+      {{option.text}}
+    </li>
+
+  </ng-container>
+
+  <ng-container *ngIf="!options?.length">
+    Nie sú žiadne data
+  </ng-container>
+
+</ul>

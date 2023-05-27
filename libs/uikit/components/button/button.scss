@@ -1,32 +1,85 @@
-@use "../../styles/supply-base" as sup;
+@use "../../styles/supply-internal" as sup;
 
-$icon-margin: 0.5rem;
+$margin-icon-md: 0.5rem;
+$margin-icon-sm: 0.35rem;
+$height-sm: 2.125rem;
+$height-md: 2.50rem;
+$height-lg: 2.75rem;
+$size-icon-sm: 1.15rem;
+$size-icon-md: 1.25rem;
+$size-icon-lg: 1.5rem;
 
 :host {
   @include sup.reset-button;
 
-  @include sup.attr-disabled {
-    cursor: default;
-    pointer-events: none;
-  }
+  touch-action: manipulation;
+  cursor: pointer;
 
   position: relative;
+
   display: inline-block;
   flex-shrink: 0;
+
   box-sizing: border-box;
+
   white-space: nowrap;
-  cursor: pointer;
-  touch-action: manipulation;
+
+  &[disabled] {
+    pointer-events: none;
+    cursor: default;
+  }
+
+  &.sup-size-inherit {
+    @include sup.inherit-host(width, height);
+
+    padding: 0;
+  }
+
+  &.sup-size-sm {
+    height: $height-sm;
+    padding: 0 0.75rem;
+    font: var(--sup-font-text-xs-bold);
+
+    &[supIconButton] {
+      width: $height-sm;
+    }
+
+    &.sup-shape-rounded {
+      border-radius: var(--sup-radius-sm);
+    }
+  }
 
   &.sup-size-md {
-    height: 2.75rem;
+    height: $height-md;
+    padding: 0 1rem;
+    font: var(--sup-font-text-sm-bold);
+
+    &[supIconButton] {
+      width: $height-md;
+    }
+  }
+
+  &.sup-size-lg {
+    height: $height-lg;
     padding: 0 1.25rem;
-    font-weight: 600;
-    font-size: 14px;
+    font: var(--sup-font-text-sm-bold);
+
+    &[supIconButton] {
+      width: $height-lg;
+    }
+  }
+
+  &[supIconButton] {
+    padding: 0;
+  }
+
+  &[supIconButton] .sup-right-mg,
+  &[supIconButton] .sup-left-mg {
+    margin: 0;
   }
 
   &.sup-shape-rounded {
-    border-radius: var(--sup-radius-medium, 0.50rem);
+    border-radius: var(--sup-radius-md, 0.50rem);
   }
 
   &.sup-shape-square {
@@ -44,6 +97,18 @@ $icon-margin: 0.5rem;
   &.sup-appearance-secondary {
     @include sup.appearance-secondary;
   }
+
+  &.sup-appearance-tertiary {
+    @include sup.appearance-tertiary;
+  }
+
+  &.sup-appearance-flat {
+    @include sup.appearance-flat;
+  }
+
+  &.sup-appearance-accent {
+    @include sup.appearance-accent;
+  }
 }
 
 .sup-inner {
@@ -52,26 +117,42 @@ $icon-margin: 0.5rem;
   height: 100%;
   text-align: center;
 
-  :host.loading & {
+  :host.sup-loading & {
     opacity: 0;
   }
-
 }
 
 .sup-right-mg {
+  margin: 0 calc(-0.5rem / 2) 0 0.5rem;
 }
 
 .sup-left-mg {
+  margin: 0 0.4rem 0 calc(-0.5rem / 2);
 }
 
 .sup-icon {
+  @include sup.size($size-icon-sm);
+
   display: block;
+
+  :host.sup-size-inherit & {
+    @include sup.size(1em);
+  }
+
+  :host.sup-size-md & {
+    @include sup.size($size-icon-md);
+  }
+
+  :host.sup-size-lg & {
+    @include sup.size($size-icon-lg);
+  }
 }
 
 .sup-loader {
   position: absolute;
   top: 0;
   left: 0;
+
   width: 100%;
   height: 100%;
 }

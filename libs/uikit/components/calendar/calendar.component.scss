@@ -1,0 +1,35 @@
+:host {
+  $border-width: 2px;
+
+  position: absolute;
+  top: calc(100% - $border-width);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  border: $border-width solid #DEDEE0;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+  background: #fff;
+  box-shadow: rgb(0 0 0 / 3%) 0 1px 2px 0;
+  user-select: none;
+
+  &.left {
+    left: 0;
+
+    &.overlap {
+      border-top-right-radius: 7px;
+    }
+  }
+
+  &.right {
+    right: 0;
+
+    &.overlap {
+      border-top-left-radius: 7px;
+    }
+  }
+
+}

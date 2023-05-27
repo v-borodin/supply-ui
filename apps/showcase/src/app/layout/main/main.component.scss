@@ -1,0 +1,11 @@
+@use "../layout" as *;
+
+:host {
+  width: 100%;
+  padding-top: $height-header;
+  padding-left: $width-sidebar;
+}
+
+.main-wrapper {
+  @include main-wrapper;
+}

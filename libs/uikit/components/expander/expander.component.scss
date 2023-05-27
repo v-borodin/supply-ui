@@ -1,0 +1,24 @@
+:host {
+  display: block;
+  opacity: 0.01;
+  transition-duration: .3s;
+  transition-property: opacity, height, visibility;
+
+  &._overflow {
+    overflow: hidden;
+  }
+
+  &._expanded {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+
+  &._loading {
+    opacity: 0.99;
+  }
+
+}
+
+.content-wrapper {
+  display: block;
+}

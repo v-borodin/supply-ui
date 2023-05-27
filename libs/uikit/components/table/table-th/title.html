@@ -1,0 +1,16 @@
+<ng-container *ngIf="sortable && table; else content">
+  <ng-container *ngTemplateOutlet="content"/>
+  <button (click)="table.updateSorterAndDirection(key)"
+          type="button"
+          class="sup-sort">
+    {{table.change$ | async}}
+    <i [src]="icon"
+       class="sup-sort-icon"
+       supIcon>
+    </i>
+  </button>
+</ng-container>
+
+<ng-template #content>
+  <ng-content/>
+</ng-template>

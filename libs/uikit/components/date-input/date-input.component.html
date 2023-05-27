@@ -1,0 +1,30 @@
+<ng-container *ngIf="clickOutside$ | async"></ng-container>
+<div (click)="toggleDropdown()"
+     [class.dropped]="dropped"
+     class="input-box {{size}}
+     dropped-input pos-relative
+     readonly-input text-left">
+
+  {{value?.toJSDate() | date: dateFormat}}
+
+  <span *ngIf="withOverlap && dropped"
+        class="input-box__bottom-line">
+  </span>
+
+  <i class="dropped-input__arrow"
+     [class.flipped]="dropped"
+     src="supArrowDown"
+     supIcon>
+  </i>
+</div>
+
+<sup-calendar *ngIf="dropped"
+              (dayClick)="onDayChange($event)"
+              [class.overlap]="withOverlap"
+              [class.left]="align === 'left'"
+              [class.right]="align === 'right'"
+              [calendarWidth]="calendarWidth"
+              [value]="value">
+</sup-calendar>
+
+

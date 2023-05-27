@@ -4,25 +4,23 @@ import { supMixinTabIndex } from './tabindex.mixin';
 import { SupAbstractConstructor, SupConstructor } from '@supply/cdk/utils';
 import { inject } from '@angular/core';
 import { SupIdGeneratorStrategy } from '@supply/cdk/services';
-import {
-  SupManipulativeElement,
-  SupInteractiveElement,
-} from '@supply/cdk/interfaces';
+import { SupHasElementRef, SupInteractiveElement } from '@supply/cdk/interfaces';
+import { SupPrefixed } from '@supply/cdk/types';
 
-type InteractiveConstructor = SupConstructor<SupInteractiveElement> &
+type InteractiveCtor = SupConstructor<SupInteractiveElement> &
   SupAbstractConstructor<SupInteractiveElement>;
 
-export function supMixinInteractive<
-  TSuper extends SupAbstractConstructor<SupManipulativeElement>
->(Super: TSuper): InteractiveConstructor & TSuper;
-export function supMixinInteractive<
-  TSuper extends SupConstructor<SupManipulativeElement>
->(Super: TSuper): InteractiveConstructor & TSuper {
+export function supMixinInteractive<TSuper extends SupAbstractConstructor<SupHasElementRef>>(
+  Super: TSuper,
+): InteractiveCtor & TSuper;
+export function supMixinInteractive<TSuper extends SupConstructor<SupHasElementRef>>(
+  Super: TSuper,
+): InteractiveCtor & TSuper {
   return class MixinInteractive
     extends supMixinFocused(supMixinTabIndex(supMixinDisabled(Super)))
     implements SupInteractiveElement
   {
-    private readonly idGenerator = inject(SupIdGeneratorStrategy);
+    private readonly idGenerator = inject(SupIdGeneratorStrategy<SupPrefixed>);
 
     private readonly autoId: string;
 

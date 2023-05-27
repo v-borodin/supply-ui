@@ -1,0 +1,67 @@
+@use "../../styles/supply-internal" as sup;
+
+$color-border: var(--sup-color-dropdown-border);
+
+:host {
+  overflow: hidden;
+
+  width: 100%;
+
+  background: var(--sup-color-scale-white);
+  border: 1px solid $color-border;
+  box-shadow: rgb(17 12 46 / 18%) 0 48px 100px 0;
+
+  &.sup-shape-rounded {
+    border-radius: var(--sup-radius-md, 0.50rem);
+  }
+
+  &.sup-shape-square {
+    border-radius: 0;
+  }
+}
+
+
+.sup-dropdown-title {
+  display: flex;
+  align-items: center;
+
+  height: 2.75rem;
+  padding: 0 0.75rem;
+
+  background: transparent;
+  border-bottom: 1px solid $color-border;
+}
+
+.sup-dropdown-title-text {
+  font: var(--sup-font-text-sm-bold);
+}
+
+.sup-dropdown-btn-close {
+  @include sup.reset-button;
+  @include sup.center-by-flex;
+  @include sup.size(1.5rem);
+
+  @include sup.transition-context {
+    @include sup.hover {
+      color: var(--sup-color-scale-black);
+      background-color: var(--sup-color-scale-gray-4);
+    }
+
+    @include sup.active {
+      background-color: var(--sup-color-scale-gray-6);
+    }
+  }
+
+  cursor: pointer;
+
+  margin-left: auto;
+
+  color: var(--sup-color-scale-gray-12);
+
+  background-color: transparent;
+  border-radius: var(--sup-radius-xs);
+
+  i {
+    @include sup.size(1rem);
+  }
+}

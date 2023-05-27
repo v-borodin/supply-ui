@@ -1,0 +1,83 @@
+@use "../abstract/variables" as *;
+
+$dirs: (
+  row,
+  row-reverse,
+  column,
+  column-reverse
+);
+$wraps: (
+  wrap,
+  nowrap,
+  wrap-reverse
+);
+$justify: (
+  justify-start: flex-start,
+  justify-end: flex-end,
+  justify-center: center,
+  justify-between: space-between,
+  justify-around: space-around
+);
+$item-aligns: (
+  items-start: flex-start,
+  items-end: flex-end,
+  items-center: center,
+  items-baseline: baseline,
+  items-stretch: stretch
+);
+$content-aligns: (
+  content-start: flex-start,
+  content-end: flex-end,
+  content-center: center,
+  content-between: space-between,
+  content-around: space-around,
+  content-stretch: stretch
+);
+
+@each $dir in $dirs {
+  .flex-#{$dir} {
+    flex-direction: $dir;
+  }
+}
+
+@each $wrap in $wraps {
+  .flex-#{$wrap} {
+    flex-wrap: $wrap;
+  }
+}
+
+@each $key, $value in $justify {
+  .flex-#{$key} {
+    justify-content: $value;
+  }
+}
+
+@each $key, $value in $item-aligns {
+  .flex-#{$key} {
+    align-items: $value;
+  }
+}
+
+@each $key, $value in $content-aligns {
+  .flex-#{$key} {
+    align-content: $value;
+  }
+}
+
+@each $key, $val in $spaces {
+  .gap-#{$key} {
+    gap: $val;
+  }
+
+  .gap-x-#{$key} {
+    column-gap: $val;
+  }
+
+  .gap-y-#{$key} {
+    row-gap: $val;
+  }
+}
+
+.flex-1 {
+  flex: 1;
+}

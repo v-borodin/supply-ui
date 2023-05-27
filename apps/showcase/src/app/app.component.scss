@@ -1,0 +1,25 @@
+
+
+.parent {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 100vh;
+  padding: 42px;
+}
+
+.child {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+
+  > * {
+    width: auto;
+  }
+
+}
+
+.sup-left-mg {
+  margin-left: 40px;
+}

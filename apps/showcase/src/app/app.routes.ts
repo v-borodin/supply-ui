@@ -108,7 +108,7 @@ export const appRoutes: Route[] = [
           {
             path: 'date-picker',
             title: 'Date Picker',
-            providers: [githubUrlProvider('components/date-picker')],
+            providers: [githubUrlProvider('components/date-input')],
             loadChildren: () =>
               import('./feature/date-picker-page/date-picker-page.module').then(
                 m => m.DatePickerPageModule
@@ -126,7 +126,7 @@ export const appRoutes: Route[] = [
           {
             path: 'textarea',
             title: 'Textarea',
-            providers: [githubUrlProvider('components/textarea-page')],
+            providers: [githubUrlProvider('components/textarea')],
             loadChildren: () =>
               import('./feature/textarea-page/textarea-page.module').then(
                 m => m.TextareaPageModule
@@ -177,6 +177,15 @@ export const appRoutes: Route[] = [
           },
         ],
         children: [
+          {
+            path: 'type-guards',
+            title: 'Type Guards',
+            providers: [githubUrlProvider('utils/type-guards')],
+            loadChildren: () =>
+              import('./feature/type-guards-page/type-guards-page.module').then(
+                m => m.TypeGuardsPageModule
+              ),
+          },
           {
             path: 'memoize',
             title: 'Memoize Decorator',

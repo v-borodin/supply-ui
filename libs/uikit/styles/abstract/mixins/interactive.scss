@@ -156,7 +156,7 @@ $_default-interactive-classes: (
 }
 
 @mixin readonly($native: false) {
-  .sup-readonly {
+  &.sup-readonly {
     @content;
   }
 }

@@ -12,7 +12,9 @@
     "uikit",
     "component-library"
   ],
-  "scripts": {},
+  "scripts": {
+    "start": "npx nx serve"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "15.2.2",

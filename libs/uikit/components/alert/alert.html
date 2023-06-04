@@ -1,0 +1,10 @@
+<sup-notification [status]="context.status"
+                  [hasClose]="context.hasClose"
+                  [hasIcon]="context.hasIcon"
+                  [appearance]="context.appearance"
+                  [shape]="context.shape"
+                  (close)="close()">
+  <ng-container *ngxContentOutlet="context.content as text;">
+    <div [innerHTML]="text"></div>
+  </ng-container>
+</sup-notification>

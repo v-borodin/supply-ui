@@ -1,19 +1,15 @@
 import { SupPrefixed } from '@supply/cdk/types';
 
 export abstract class SupDomHandler {
-  static setAttribute(
-    element: Element,
-    attributeName: string,
-    value: string
-  ): void {
+  static isTextArea(element: HTMLElement): boolean {
+    return element instanceof HTMLTextAreaElement;
+  }
+
+  static setAttribute(element: Element, attributeName: string, value: string): void {
     element.setAttribute(attributeName, value);
   }
 
-  static toggleClass(
-    element: Element,
-    className: SupPrefixed,
-    force: boolean
-  ): void {
+  static toggleClass(element: Element, className: SupPrefixed, force: boolean): void {
     element.classList.toggle(className, force);
   }
 

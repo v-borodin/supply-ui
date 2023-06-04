@@ -1,0 +1,34 @@
+@use "../../styles/supply-internal" as sup;
+
+:host {
+  @include sup.reset-button;
+
+  @include sup.transition-context {
+    @include sup.hover {
+      background-color: var(--sup-color-scale-gray-4);
+    }
+  }
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  padding: 0.35rem 0.5rem;
+
+  color: var(--sup-color-text-1);
+  text-align: left;
+  text-decoration: none;
+
+  background-clip: padding-box;
+  border-radius: var(--sup-radius-sm);
+  outline: none;
+}
+
+.sup-content {
+  display: flex;
+  align-items: center;
+  min-height: 1.45rem;
+}

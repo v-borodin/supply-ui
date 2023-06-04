@@ -1,18 +1,20 @@
-<div class="grid">
+<div class="sup-calendar-grid">
   <div *ngFor="let shortWeekday of weekdays"
-       class="grid__title">{{shortWeekday | titlecase}}
+       class="sup-text">
+    {{shortWeekday | titlecase}}
   </div>
 </div>
 
-<div class="grid">
+<div class="sup-calendar-grid">
   <button *ngFor="let unit of month | calendarGrid: showAdjacent; trackBy: trackByFn"
           (click)="dayClick.emit(unit)"
+          [class._today]="isToday(unit)"
           [class._pressed]="isPressed(unit)"
           [class._weekend]="isWeekend(unit)"
           [class._adjacent]="isAdjacent(unit)"
           type="button"
           role="button"
-          class="grid__item circle center-by-flex">
+          class="sup-calendar-cell">
     {{unit.day}}
   </button>
 </div>

@@ -1,0 +1,15 @@
+<div class="d-flex gap-x-3">
+  <sup-select [formControl]="control" class="w-11">
+    <input supTextInput>
+    <sup-data-list *supDataList>
+      <button value="info" supOption>info</button>
+      <button value="success" supOption>success</button>
+      <button value="warning" supOption>warning</button>
+      <button value="error" supOption>error</button>
+    </sup-data-list>
+  </sup-select>
+
+  <button (click)="push()" appearance="accent" supButton>
+    Show alert
+  </button>
+</div>

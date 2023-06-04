@@ -10,4 +10,7 @@ import { SupDropdownModule } from '@supply/uikit/components/dropdown';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [SupButtonComponent, SupDropdownModule],
 })
-export class DropdownTemplateExampleComponent {}
+export class DropdownTemplateExampleComponent {
+  readonly imgSrc =
+    'https://eu-images.contentstack.com/v3/assets/blt95b381df7c12c15d/blt36251e0ba0a6e7ae/643d26a11c0a4f0561e1bd84/Rovio_Header.png?quality=80&format=jpg&width=828';
+}

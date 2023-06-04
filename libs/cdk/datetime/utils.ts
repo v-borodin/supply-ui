@@ -1,10 +1,12 @@
 import { DateTime } from 'luxon';
 
-export const supIsWeekend = (day: DateTime) =>
-  day.weekday === 6 || day.weekday === 7;
+export const supIsWeekend = (day: DateTime) => day.weekday === 6 || day.weekday === 7;
 
 export const supIsAdjacent = (month: DateTime, day: DateTime) =>
   !month.hasSame(day, `month`);
+
+export const supIsToday = (day: DateTime) =>
+  day.toISODate() === DateTime.local().toISODate();
 
 export const supIsTheSameDate = (first: DateTime, second: DateTime) =>
   first.toMillis() === second.toMillis();

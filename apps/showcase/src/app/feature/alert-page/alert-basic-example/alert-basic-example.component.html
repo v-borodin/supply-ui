@@ -1,0 +1,9 @@
+<div class="d-flex flex-items-center gap-x-2">
+  <sup-text-field #field [formControl]="control" class="w-full">
+    <input placeholder="Type your message..." supTextInput>
+  </sup-text-field>
+
+  <button (click)="push(control.value)" iconRight="appEye" supButton>
+    Push message
+  </button>
+</div>

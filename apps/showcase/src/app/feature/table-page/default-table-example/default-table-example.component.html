@@ -1,4 +1,6 @@
-<table width="100%" supTable>
+<table (directionChange)="onDirectionChange($event)"
+       (sorterChange)="onSorterChange($event)"
+       width="100%" supTable>
   <thead>
   <tr>
     <th supTitle="user">User</th>

@@ -8,7 +8,7 @@ import * as html from '!!raw-loader!./svg-registry-example.component.html';
 
 @Component({
   selector: 'app-svg-registry-demo',
-  template: '<app-demo [example]="example"/>',
+  template: '<app-demo [activeTab]="1" [example]="example"/>',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SvgRegistryDemoComponent extends AbstractShowcase {

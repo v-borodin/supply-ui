@@ -1,0 +1,66 @@
+@use "../../styles/supply-internal" as sup;
+
+$size-cell: 2.15rem;
+
+@mixin grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  justify-content: center;
+}
+
+:host {
+  padding: 0.5rem;
+}
+
+.sup-calendar-grid {
+  @include grid;
+
+  &:first-child {
+    margin: 0.75rem 0;
+  }
+}
+
+.sup-text {
+  align-self: center;
+  justify-self: center;
+
+  width: $size-cell;
+
+  font: var(--sup-font-text-sm);
+  font-weight: 600;
+  text-align: center;
+}
+
+.sup-calendar-cell {
+  @include sup.reset-button;
+  @include sup.center-by-flex;
+  @include sup.size($size-cell);
+
+  @include sup.transition-context {
+    @include sup.hover {
+      background-color: var(--sup-color-scale-gray-5);
+    }
+
+    background-color: transparent;
+  }
+
+  cursor: pointer;
+  margin: 0.075rem 0.25rem;
+  font: var(--sup-font-text-sm);
+  border-radius: var(--sup-radius-sm);
+
+  &._today {
+    font-weight: 600;
+    color: var(--sup-color-accent);
+  }
+
+  &._pressed {
+    color: var(--sup-color-scale-white);
+    background-color: var(--sup-color-accent);
+  }
+
+  &._adjacent {
+    color: var(--sup-color-scale-gray-10);
+  }
+}

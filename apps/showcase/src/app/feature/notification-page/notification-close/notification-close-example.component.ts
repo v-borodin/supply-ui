@@ -7,7 +7,7 @@ import {
 import { NgIf } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { SupButtonComponent, SupNotificationComponent } from '@supply/uikit';
-import { finalize, retry } from 'rxjs';
+import { finalize, first, retry } from 'rxjs';
 
 const API_URL = 'https://jsonplaceholder.typicode.com';
 
@@ -39,7 +39,8 @@ export class NotificationCloseExampleComponent implements OnInit {
         finalize(() => {
           this.loading = false;
           this.cdr.markForCheck();
-        })
+        }),
+        first()
       )
       .subscribe({
         error: err => (this.errorMsg = err.message),

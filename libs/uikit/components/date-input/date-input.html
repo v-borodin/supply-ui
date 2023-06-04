@@ -1,0 +1,28 @@
+<label *ngIf="!!label" [for]="id" class="sup-label">
+  <span class="sup-label-text">
+    <ng-content select="[supLabel], sup-label"/>
+  </span>
+</label>
+
+<sup-input
+  [supDropdown]="calendar"
+  [(open)]="open"
+  [appearance]="appearance"
+  [size]="size"
+  [shape]="shape"
+  [hasClear]="hasClear"
+  [disabled]="disabled"
+  [invalid]="invalid"
+  [iconRight]="iconRight"
+  [readOnly]="readOnly"
+  [loading]="loading"
+  [value]="computedValue"
+  (valueChange)="onValueChange($any($event))">
+  <ng-content select="input" ngProjectAs="input"/>
+</sup-input>
+
+<ng-template #calendar>
+  <sup-calendar [value]="value"
+                (dayClick)="onValueChange($event, true)">
+  </sup-calendar>
+</ng-template>

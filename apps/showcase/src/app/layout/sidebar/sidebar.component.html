@@ -3,14 +3,15 @@
     Documentation
     <app-nav-group>
       <app-nav-item routerLink="introduction">Introduction</app-nav-item>
-      <app-nav-item>Quick Start</app-nav-item>
-      <app-nav-item>Changelog</app-nav-item>
+      <app-nav-item [disabled]="true">Quick Start</app-nav-item>
+      <app-nav-item [disabled]="true">Changelog</app-nav-item>
     </app-nav-group>
     <app-nav-divider/>
   </app-nav-item>
   <app-nav-item showCounter icon="appComponent">
     Components
     <app-nav-group label="Core">
+      <app-nav-item marked routerLink="components/alert">Alert</app-nav-item>
       <app-nav-item marked routerLink="components/button">Button</app-nav-item>
       <app-nav-item marked routerLink="components/notification">Notification</app-nav-item>
       <app-nav-item routerLink="components/icon">Icon</app-nav-item>
@@ -21,9 +22,9 @@
 
     <app-nav-group label="Form">
       <app-nav-item routerLink="components/text-field">Textfield</app-nav-item>
-      <app-nav-item routerLink="components/label">Label</app-nav-item>
+      <app-nav-item [disabled]="true">Label</app-nav-item>
       <app-nav-item routerLink="components/textarea">Textarea</app-nav-item>
-      <app-nav-item>Autocomplete</app-nav-item>
+      <app-nav-item [disabled]="true">Autocomplete</app-nav-item>
       <app-nav-item routerLink="components/date-picker">Date Picker</app-nav-item>
       <app-nav-item routerLink="components/select">Select</app-nav-item>
     </app-nav-group>
@@ -38,8 +39,8 @@
     CDK (Dev Kit)
     <app-nav-group>
       <app-nav-item routerLink="tools/operators">RXJS Operators</app-nav-item>
-      <app-nav-item>Dom Handler</app-nav-item>
-      <app-nav-item>TS Mixins</app-nav-item>
+      <app-nav-item [disabled]="true">Dom Handler</app-nav-item>
+      <app-nav-item [disabled]="true">TS Mixins</app-nav-item>
       <app-nav-item routerLink="tools/memoize">Memoize Decorator</app-nav-item>
     </app-nav-group>
   </app-nav-item>

@@ -1,14 +1,20 @@
-<div class="c-pagination center-by-flex mb-8 mt-4">
-  <button type="button" class="c-pagination__btn center-by-flex" (click)="previous()">
-    <i class="icon" src="supArrowLeft" supIcon></i>
-  </button>
-  <button (click)="clickDateSignature(value.year, $event)"
-          type="button"
-          class="c-pagination__title">
-    {{value | supMonth: monthLength | titlecase}}
-    {{value.year}}
-  </button>
-  <button type="button" class="c-pagination__btn center-by-flex" (click)="next()">
-    <i class="icon" src="supArrowRight" supIcon></i>
-  </button>
-</div>
+<button (click)="previous()"
+        type="button"
+        icon="appArrowLeft"
+        appearance="secondary"
+        supIconButton>
+</button>
+<button (click)="clickDateSignature(value.year, $event)"
+        type="button"
+        style="flex: 1"
+        appearance="secondary"
+        supButton>
+  {{value | supMonth: monthLength | titlecase}}
+  {{value.year}}
+</button>
+<button (click)="next()"
+        type="button"
+        icon="appArrowRight"
+        appearance="secondary"
+        supIconButton>
+</button>

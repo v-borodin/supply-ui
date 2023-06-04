@@ -2,9 +2,13 @@
   <header appPageHeader>
     <h1>Dropdown</h1>
     <p>
-      SupIconComponent is a standalone component that allows you to work with svg content. The content is extracted by a
-      key from the register represented by SupSvgService, which can be provided at any level of the injector
+      SupDropdown allows you to display certain content (Reflective Content) passed as an Input property in a separate
+      overlay container. Additionally, you can adjust the position of the
+      dropdown and its size relative to the trigger
     </p>
+    <sup-notification [hasClose]="false" status="warning">
+      The dropdown is opened by 'click' event only
+    </sup-notification>
   </header>
 
   <hr appPageDivider/>

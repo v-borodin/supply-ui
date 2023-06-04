@@ -1,0 +1,42 @@
+<label *ngIf="!!label" [for]="id" class="sup-label">
+  <span class="sup-label-text">
+    <ng-content select="[supLabel], sup-label"/>
+  </span>
+</label>
+
+<div class="sup-input">
+  <sup-input
+    *ngIf="textControlType === 'input'"
+    [supDropdown]="dataList"
+    supDropdownMaxWidth="triggerWidth"
+    [appearance]="appearance"
+    [size]="size"
+    [shape]="shape"
+    [iconLeft]="iconLeft"
+    [iconRight]="iconRight"
+    [hasClear]="hasClear"
+    [disabled]="disabled"
+    [invalid]="invalid"
+    [readOnly]="readOnly"
+    [loading]="loading"
+    [value]="value"
+    (valueChange)="onValueChange($event)">
+    <ng-content select="input" ngProjectAs="input"/>
+  </sup-input>
+
+  <sup-textarea
+    *ngIf="textControlType === 'textarea'"
+    [appearance]="appearance"
+    [size]="size"
+    [shape]="shape"
+    [hasClear]="hasClear"
+    [disabled]="disabled"
+    [invalid]="invalid"
+    [readOnly]="readOnly"
+    [loading]="loading"
+    [value]="value">
+    <ng-content select="textarea" ngProjectAs="textarea"/>
+  </sup-textarea>
+
+  <ng-content/>
+</div>

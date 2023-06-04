@@ -45,6 +45,15 @@ export const appRoutes: Route[] = [
         ],
         children: [
           {
+            path: 'alert',
+            title: 'Alert',
+            providers: [githubUrlProvider('components/alert')],
+            loadChildren: () =>
+              import('./feature/alert-page/alert-page.module').then(
+                m => m.AlertPageModule
+              ),
+          },
+          {
             path: 'button',
             title: 'Button',
             providers: [githubUrlProvider('components/button')],

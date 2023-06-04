@@ -1,27 +1,27 @@
-<button [disabled]="disabled"
+<button [class.collapsed]="collapse"
+        [disabled]="disabled"
         (click)="toggle()"
         type="button"
-        class="acc-header">
+        class="sup-button">
+
+  <span class="sup-text">
+    <ng-content select="[supTitle], supTitle"/>
+  </span>
 
   <i *ngIf="withArrow"
-     [class.open]="collapse"
-     class="acc-header__icon"
-     src="supArrowDown"
+     class="sup-icon"
+     src="appArrowDown"
      supIcon>
   </i>
-
-  <span class="acc-header__title fw-700">
-    <ng-content select="[supTitle], supTitle"></ng-content>
-  </span>
 
 </button>
 
 <sup-expander [expanded]="collapse">
   <ng-template #expandedContent>
-    <div class="acc-content">
-      <ng-container *ngTemplateOutlet="lazyContent || $implicit"></ng-container>
+    <div class="sup-content">
+      <ng-container *ngTemplateOutlet="lazyContent || $implicit"/>
       <ng-template #$implicit>
-        <ng-content></ng-content>
+        <ng-content/>
       </ng-template>
     </div>
   </ng-template>

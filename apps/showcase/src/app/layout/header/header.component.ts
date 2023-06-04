@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, TemplateRef } from '@angular/core';
+import { SupDialogService } from '@supply/uikit';
 
 @Component({
   selector: 'header[appHeader]',
@@ -10,4 +11,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent {}
+export class HeaderComponent {
+  modal = inject(SupDialogService);
+
+  showModal(template: TemplateRef<any>): void {
+    this.modal.open(template, {
+      label: '© Licence',
+    });
+  }
+}

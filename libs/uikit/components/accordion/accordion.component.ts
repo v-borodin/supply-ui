@@ -13,13 +13,13 @@ import { filter, mapTo, merge } from 'rxjs';
   selector: 'sup-accordion',
   templateUrl: './accordion.component.html',
   styleUrls: ['./accordion.component.scss'],
+  inputs: ['multiple'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AccordionComponent implements AfterContentInit {
   @ContentChildren(AccordionItemComponent)
-  readonly items = new QueryList<AccordionItemComponent>();
+  private readonly items = new QueryList<AccordionItemComponent>();
 
-  @Input()
   multiple = false;
 
   ngAfterContentInit() {

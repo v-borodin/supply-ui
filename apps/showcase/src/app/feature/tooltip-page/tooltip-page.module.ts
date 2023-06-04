@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TooltipPageComponent } from './tooltip-page.component';
 import { LayoutModule } from '../../layout/layout.module';
+import { TooltipBasicDemoComponent } from './tooltip-basic-example/tooltip-basic-demo.component';
+import { SharedModule } from '../../common/shared.module';
 
 @NgModule({
-  declarations: [TooltipPageComponent],
+  declarations: [TooltipPageComponent, TooltipBasicDemoComponent],
   imports: [
     RouterModule.forChild([
       {
@@ -13,6 +15,7 @@ import { LayoutModule } from '../../layout/layout.module';
       },
     ]),
     LayoutModule,
+    SharedModule,
   ],
 })
 export class TooltipPageModule {}

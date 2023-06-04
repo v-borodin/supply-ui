@@ -1,0 +1,65 @@
+@use "../../styles/supply-internal" as sup;
+
+$size-icon: 1.25rem;
+$gap-icon: 0.25rem;
+$padding-spare-icon: 1rem;
+$max-icons-in-position: 2;
+$positions-icon: (left, right);
+
+:host {
+  @include sup.reset-input;
+
+  @include sup.placeholder {
+    color: var(--sup-color-scale-gray-12);
+  }
+
+  resize: none;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+  display: flex;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+
+  text-indent: 0;
+  white-space: nowrap;
+
+  border: solid transparent;
+}
+
+:host-context(.sup-disabled, [disabled]) {
+  pointer-events: none;
+}
+
+:host-context(.sup-size-sm) {
+  padding: 0 0.55rem;
+}
+
+:host-context(.sup-size-md) {
+  padding: 0 0.75rem;
+
+  textarea:host {
+    line-height: 1.5rem;
+  }
+}
+
+@each $position in $positions-icon {
+  @for $count from 1 through $max-icons-in-position {
+    $gap: if($count == 1, 0, $gap-icon);
+
+    :host-context(.sup-size-md[data-icons-#{$position}='#{$count}']) {
+      padding-#{$position}: $size-icon * $count + $padding-spare-icon + $gap;
+    }
+  }
+}
+
+textarea:host {
+  position: relative;
+  overflow: auto;
+  white-space: pre-wrap;
+}

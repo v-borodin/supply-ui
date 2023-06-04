@@ -1,0 +1,14 @@
+<sup-select>
+  <sup-label>
+    Select the university
+  </sup-label>
+  <input placeholder="Click to select" supTextInput>
+  <sup-data-list *supDataList>
+    <button *ngFor="let option of options"
+            [value]="option"
+            (click)="notify(option)"
+            supOption>
+      {{option}}
+    </button>
+  </sup-data-list>
+</sup-select>

@@ -5,6 +5,8 @@ import { animate, AnimationTriggerMetadata, style, transition, trigger } from '@
 export type SupStatusType = 'info' | 'success' | 'warning' | 'error';
 
 export interface SupNotificationOptions {
+  readonly appearance: 'primary' | 'secondary';
+
   readonly status: SupStatusType;
 
   readonly hasIcon: boolean;
@@ -15,9 +17,11 @@ export interface SupNotificationOptions {
 }
 
 const defaultNotificationOptions: Readonly<SupNotificationOptions> = {
+  appearance: 'primary',
+
   hasIcon: true,
 
-  hasClose: false,
+  hasClose: true,
 
   status: 'info',
 
@@ -28,7 +32,11 @@ export const SUP_NOTIFICATION_OPTIONS = new InjectionToken('@notification:OPTION
   factory: () => defaultNotificationOptions,
 });
 
-export function FadeInOut(timingIn: number, timingOut: number, height = false): AnimationTriggerMetadata {
+export function FadeInOut(
+  timingIn: number,
+  timingOut: number,
+  height = false,
+): AnimationTriggerMetadata {
   return trigger('fadeInOut', [
     transition(':enter', [
       style(height ? { opacity: 0 } : { opacity: 0 }),

@@ -1,0 +1,8 @@
+:host {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid var(--sup-color-scale-gray-7);
+  border-radius: var(--sup-radius-md);
+}

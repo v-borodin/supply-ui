@@ -1,3 +1,12 @@
-<button (click)="open()" supButton>
-  Open dialog
+<sup-text-field #field
+                value="Data for the component"
+                appearance="secondary"
+                class="mb-4 w-full">
+  <sup-label>Input Data</sup-label>
+  <input placeholder="Type your text..." supTextInput>
+</sup-text-field>
+<button (click)="open(field.value)"
+        icon="appFormArrow"
+        supButton>
+  Open dialog with data
 </button>

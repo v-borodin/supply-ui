@@ -5,18 +5,19 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { DateTime, UnitLength } from 'luxon';
-import { SupCalendarMonthPipe } from '../../pipes';
 import { TitleCasePipe } from '@angular/common';
+import { SupButtonComponent } from '@supply/uikit/components/button';
+import { SupCalendarMonthPipe } from '@supply/uikit/pipes';
 import { SupIconComponent } from '@supply/uikit/components/icon';
+import { DateTime, UnitLength } from 'luxon';
 
 @Component({
+  standalone: true,
   selector: 'sup-calendar-pagination',
   templateUrl: './calendar-pagination.component.html',
   styleUrls: ['./calendar-pagination.component.scss'],
-  standalone: true,
-  imports: [SupCalendarMonthPipe, TitleCasePipe, SupIconComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [SupCalendarMonthPipe, TitleCasePipe, SupIconComponent, SupButtonComponent],
 })
 export class CalendarPaginationComponent {
   @Input()

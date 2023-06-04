@@ -1,8 +1,14 @@
 <div class="d-flex flex-column p-4">
   <div class="mb-5">Hi! 🥳 This is the component</div>
 
+  <div class="data-placeholder mb-5">
+    <div class="wrapper">
+      <h2>Your data: {{dialogRef.data}}</h2>
+    </div>
+  </div>
+
   <div class="d-flex gap-x-2">
-    <button class="flex-1"
+    <button (click)="dialogRef.close()" class="flex-1"
             supButton>
       Complete
     </button>

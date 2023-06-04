@@ -1,0 +1,3 @@
+<ng-container *ngFor="let alert of alerts$ | async">
+  <ng-container *ngxContentOutlet="alert.component; injector: alert.injector"/>
+</ng-container>

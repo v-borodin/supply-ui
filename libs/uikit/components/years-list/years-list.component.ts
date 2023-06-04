@@ -8,19 +8,20 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { DateTime } from 'luxon';
 import { NgForOf, NgIf } from '@angular/common';
+import {
+  SUP_SCROLL_INTO_VIEW,
+  supIsHTMLElement,
+  supMemo,
+  SupScrollIntoViewDirective,
+} from '@supply/cdk';
+import { DateTime } from 'luxon';
 import { YearPipe } from './year.pipe';
-import { SUP_SCROLL_INTO_VIEW, SupScrollIntoViewDirective } from '@supply/cdk';
 
 const MIN_YEAR = DateTime.fromObject({ year: 1900 });
 const MAX_YEAR = DateTime.local();
 
 export const YEARS_PER_ROW = 4;
-
-export function supIsHTMLElement(node: unknown): node is HTMLElement {
-  return node instanceof HTMLElement;
-}
 
 export function supGetElementOffset(
   host: Element,
@@ -45,7 +46,7 @@ export function supGetElementOffset(
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [NgForOf, YearPipe, NgIf, SupScrollIntoViewDirective],
 })
-export class YearsListComponent {
+export class SupYearsListComponent {
   @Input()
   value: DateTime | null = null;
 
@@ -63,16 +64,18 @@ export class YearsListComponent {
 
   readonly browserScrollRef = new ElementRef(this.elementRef.nativeElement);
 
-  get countOfRows(): number {
-    return Math.floor((this.max.year - this.min.year) / YEARS_PER_ROW);
-  }
-
+  @supMemo
   get rows(): number[] {
     return Array.from({ length: this.countOfRows }, (_, i) => i + 1);
   }
 
+  @supMemo
   get columns(): number[] {
     return Array.from({ length: YEARS_PER_ROW }, (_, i) => i + 1);
+  }
+
+  private get countOfRows(): number {
+    return Math.floor((this.max.year - this.min.year) / YEARS_PER_ROW);
   }
 
   constructor(@Inject(ElementRef) private readonly elementRef: ElementRef) {}
@@ -81,11 +84,7 @@ export class YearsListComponent {
   scrollIntoView(detail: HTMLElement): void {
     const { nativeElement } = this.browserScrollRef;
 
-    const { offsetTop, offsetLeft } = supGetElementOffset(
-      nativeElement,
-      detail
-    );
-
+    const { offsetTop, offsetLeft } = supGetElementOffset(nativeElement, detail);
     const { clientHeight, clientWidth } = nativeElement;
     const { offsetHeight, offsetWidth } = detail;
     const scrollTop = offsetTop + offsetHeight / 2 - clientHeight / 2;

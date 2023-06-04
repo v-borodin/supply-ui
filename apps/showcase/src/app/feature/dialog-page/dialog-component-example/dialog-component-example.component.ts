@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { SupButtonComponent, SupDialogService } from '@supply/uikit';
+import { SupButtonComponent, SupDialogService, SupTextFieldModule } from '@supply/uikit';
 import { TestDialogComponent } from './test-dialog-component/test-dialog.component';
+import { SupLabelDirective } from '@supply/uikit/directives';
 
 @Component({
   standalone: true,
   selector: 'app-dialog-component-example',
-  imports: [SupButtonComponent],
+  imports: [SupButtonComponent, SupTextFieldModule, SupLabelDirective],
   templateUrl: './dialog-component-example.component.html',
   styleUrls: ['./dialog-component-example.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -13,11 +14,11 @@ import { TestDialogComponent } from './test-dialog-component/test-dialog.compone
 export class DialogComponentExampleComponent {
   private readonly dialog = inject(SupDialogService);
 
-  open(): void {
+  open(data: string): void {
     this.dialog
       .open<string, string>(TestDialogComponent, {
-        label: 'Component dialog with result',
-        data: 'Data from .ts',
+        label: 'Component dialog with input data',
+        data: data,
       })
       .subscribe(result => {});
   }

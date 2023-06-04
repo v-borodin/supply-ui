@@ -4,9 +4,15 @@ import { RouterModule } from '@angular/router';
 import { LayoutModule } from '../../layout/layout.module';
 import { DefaultTableDemoComponent } from './default-table-example/default-table-demo.component';
 import { SharedModule } from '../../common/shared.module';
+import { SupAlertModule, SupTableModule } from '@supply/uikit';
+import { DefaultTableExampleComponent } from './default-table-example/default-table-example.component';
 
 @NgModule({
-  declarations: [TablePageComponent, DefaultTableDemoComponent],
+  declarations: [
+    TablePageComponent,
+    DefaultTableExampleComponent,
+    DefaultTableDemoComponent,
+  ],
   imports: [
     RouterModule.forChild([
       {
@@ -16,6 +22,8 @@ import { SharedModule } from '../../common/shared.module';
     ]),
     LayoutModule,
     SharedModule,
+    SupAlertModule.forRoot(),
+    SupTableModule,
   ],
 })
 export class TablePageModule {}

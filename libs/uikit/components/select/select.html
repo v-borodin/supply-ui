@@ -1,0 +1,24 @@
+<label *ngIf="!!label" [for]="id" class="sup-label">
+  <span class="sup-label-text">
+    <ng-content select="[supLabel], sup-label"/>
+  </span>
+</label>
+
+<div class="sup-input">
+  <sup-input
+    [supDropdown]="dataList"
+    [appearance]="appearance"
+    [size]="size"
+    [shape]="shape"
+    [hasClear]="hasClear"
+    [disabled]="disabled"
+    [invalid]="invalid"
+    [readOnly]="readOnly"
+    [loading]="loading"
+    [value]="computedValue"
+    (valueChange)="onValueChange($any($event))">
+    <ng-content select="input" ngProjectAs="input"/>
+  </sup-input>
+
+  <ng-content/>
+</div>

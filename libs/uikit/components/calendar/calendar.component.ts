@@ -3,31 +3,18 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
-  HostBinding,
   Inject,
   Input,
   Output,
 } from '@angular/core';
 import { DateTime } from 'luxon';
-import { SUP_CALENDAR_OPTIONS, CalendarOptions } from './calendar-options';
-import { supIsNumber, supIsString, toPx } from '@supply/cdk';
-import { CalendarPaginationComponent } from '@supply/uikit/components/calendar-pagination';
-import { SupCalendarGridComponent } from '@supply/uikit/components/calendar-grid';
-import { YearsListComponent } from '@supply/uikit/components/years-list';
-import { NgIf } from '@angular/common';
+import { SUP_CALENDAR_OPTIONS, CalendarHelpers } from './calendar.helpers';
 
 @Component({
   selector: 'sup-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CalendarPaginationComponent,
-    SupCalendarGridComponent,
-    YearsListComponent,
-    NgIf,
-  ],
 })
 export class SupCalendarComponent {
   @Input()
@@ -40,22 +27,6 @@ export class SupCalendarComponent {
   showAdjacent = this.options.showAdjacent;
 
   @Input()
-  @HostBinding(`style.width`)
-  get calendarWidth(): string | number {
-    return this.panelWidth;
-  }
-
-  set calendarWidth(value: number | string) {
-    if (supIsString(value)) {
-      this.panelWidth = value;
-    }
-
-    if (supIsNumber(value)) {
-      this.panelWidth = toPx(value);
-    }
-  }
-
-  @Input()
   month: DateTime = DateTime.local();
 
   @Output()
@@ -65,28 +36,26 @@ export class SupCalendarComponent {
   readonly monthChange = new EventEmitter<DateTime>();
 
   @Input()
-  set value(value: DateTime | null) {
-    this._value = value;
+  set value(value: string | null) {
+    this._value = value ? DateTime.fromISO(value) : null;
 
-    if (this.showAdjacent && value instanceof DateTime) {
-      this.month = value;
+    if (this.showAdjacent && this._value) {
+      this.month = this._value;
     }
   }
 
-  get value(): DateTime | null {
+  get computedValue(): DateTime | null {
     return this._value;
   }
 
   year: number | null = null;
 
-  private panelWidth = `100%`;
-
   private _value: DateTime | null = null;
 
   constructor(
-    @Inject(SUP_CALENDAR_OPTIONS) private readonly options: CalendarOptions,
+    @Inject(SUP_CALENDAR_OPTIONS) private readonly options: CalendarHelpers,
     @Inject(ChangeDetectorRef)
-    private readonly changeDetectorRef: ChangeDetectorRef
+    private readonly changeDetectorRef: ChangeDetectorRef,
   ) {}
 
   onDayClick(day: DateTime): void {
@@ -98,9 +67,7 @@ export class SupCalendarComponent {
   }
 
   onYearChange(year: number): void {
-    this.updateViewedMonth(
-      DateTime.fromObject({ year, month: this.month.month })
-    );
+    this.updateViewedMonth(DateTime.fromObject({ year, month: this.month.month }));
     this.year = null;
   }
 

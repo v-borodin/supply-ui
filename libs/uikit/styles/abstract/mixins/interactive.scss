@@ -156,16 +156,8 @@ $_default-interactive-classes: (
 }
 
 @mixin readonly($native: false) {
-  @if (utils.assert-type($native, bool)) and $native {
-    &:read-only {
-      @content;
-    }
-
-  } @else {
-    $class-readonly: map.get($_default-interactive-classes, readonly);
-    &:read-only, &.#{$class-readonly} {
-      @content;
-    }
+  .sup-readonly {
+    @content;
   }
 }
 

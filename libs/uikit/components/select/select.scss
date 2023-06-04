@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  text-align: left;
+
+  &:not(.sup-readonly) ::ng-deep input:not(:disabled) {
+    cursor: pointer;
+  }
+
+  &.sup-readonly ::ng-deep input {
+    cursor: default;
+  }
+}
+
+.sup-input {
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.sup-label {
+  display: inline-flex;
+  margin-bottom: 0.5em;
+}
+
+.sup-label-text {
+  font: var(--sup-font-text-me);
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--sup-color-text-2);
+}

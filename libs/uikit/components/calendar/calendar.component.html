@@ -1,5 +1,5 @@
 <sup-years-list *ngIf="year; else calendar"
-                [value]="value"
+                [value]="computedValue"
                 [initYear]="year"
                 (yearSelect)="onYearChange($event)">
 </sup-years-list>
@@ -11,7 +11,7 @@
   </sup-calendar-pagination>
 
   <sup-calendar-grid [month]="month"
-                     [value]="value"
+                     [value]="computedValue"
                      [showAdjacent]="showAdjacent"
                      (dayClick)="onDayClick($event)">
   </sup-calendar-grid>

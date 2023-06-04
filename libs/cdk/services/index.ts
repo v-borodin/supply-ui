@@ -5,3 +5,5 @@ export * from './target-observer.service';
 export * from './destroy.service';
 export * from './router-events.service';
 export * from './click-outside.service';
+export * from './mutation-observer.service';
+export * from './router-link-active.service';

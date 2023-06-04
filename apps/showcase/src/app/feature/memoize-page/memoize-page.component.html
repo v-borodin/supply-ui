@@ -2,8 +2,8 @@
   <header appPageHeader>
     <h1>Memoize Decorator</h1>
     <p>
-      SupIconComponent is a standalone component that allows you to work with svg content. The content is extracted by a
-      key from the register represented by SupSvgService, which can be provided at any level of the injector
+      Memorize Decorator wraps the original getter function with a memorization function, a single getter call. This is
+      especially useful for resource-intensive calculations in the template using getters
     </p>
   </header>
 
@@ -11,7 +11,8 @@
 
   <div appSectionWrapper>
     <section appSection>
-      <h2>Svg Registry</h2>
+      <h2>Memoize</h2>
+      <app-memoize-basic-demo/>
     </section>
   </div>
 </div>

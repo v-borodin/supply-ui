@@ -7,10 +7,7 @@ import { YEARS_PER_ROW } from './years-list.component';
   standalone: true,
 })
 export class YearPipe implements PipeTransform {
-  transform(
-    value: DateTime,
-    [rowIndex, columnIndex]: [row: number, column: number]
-  ) {
+  transform(value: DateTime, [rowIndex, columnIndex]: [row: number, column: number]) {
     return rowIndex * YEARS_PER_ROW + columnIndex + value.year;
   }
 }

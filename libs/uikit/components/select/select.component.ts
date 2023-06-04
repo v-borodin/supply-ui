@@ -1,319 +1,96 @@
 import {
-  AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
-  ContentChildren,
-  Inject,
+  ContentChild,
+  ElementRef,
   inject,
-  Input,
-  OnInit,
-  QueryList,
+  Inject,
+  Optional,
+  Self,
+  TemplateRef,
+  ViewChild,
 } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
-import { SupOptionDirective } from '@supply/uikit/directives/option';
+import { NgControl } from '@angular/forms';
 import {
-  runOutsideAngular,
-  SupClickOutsideHandler,
-  supCoerceBooleanProperty,
-  SupDestroyService,
-  SupFieldSimpleDirective,
-  SupImplicitBoolean,
+  SUP_DATA_LIST_CONTROLLER,
+  SupAbstractNullableControl,
+  SupDataListController,
 } from '@supply/cdk';
-import { Observable, skipWhile, startWith, takeUntil, tap } from 'rxjs';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
-import { SupIconComponent } from '@supply/uikit/components/icon';
+import { SupSelectOptions, SUP_SELECT_OPTIONS } from './select.helpers';
+import { SupDropdownDirective } from '../dropdown';
+import { SupDataListDirective } from '../data-list';
+import { SUP_LABEL, SupLabelDirective } from '../../directives';
+import { SUP_INPUT_OPTIONS } from '../input';
 
 @Component({
   selector: 'sup-select',
-  templateUrl: './select.component.html',
-  styleUrls: ['./select.component.scss'],
-  host: {
-    role: 'combobox',
-    'aria-autocomplete': 'none',
-    'aria-haspopup': 'listbox',
-    '[attr.aria-expanded]': 'dropped',
-    '[attr.aria-disabled]': 'disabled.toString()',
-  },
-  providers: [SupClickOutsideHandler],
-  standalone: true,
+  templateUrl: './select.html',
+  styleUrls: ['./select.scss'],
+  inputs: ['appearance', 'size', 'shape', 'hasClear', 'stringify'],
+  providers: [
+    {
+      provide: SUP_DATA_LIST_CONTROLLER,
+      useExisting: SupSelectComponent,
+    },
+    {
+      provide: SUP_INPUT_OPTIONS,
+      useFactory: () => {
+        return inject(SUP_SELECT_OPTIONS);
+      },
+    },
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [AsyncPipe, NgIf, SupIconComponent, NgForOf],
 })
-export class SelectComponent
-  extends SupFieldSimpleDirective
-  implements OnInit, AfterContentInit, ControlValueAccessor
+export class SupSelectComponent<TValue>
+  extends SupAbstractNullableControl<TValue>
+  implements SupDataListController<any>
 {
-  @ContentChildren(SupOptionDirective, { descendants: true })
-  options?: QueryList<SupOptionDirective>;
+  hasClear = this.options.hasClear;
 
-  @Input()
-  size = `medium`;
+  appearance = this.options.appearance;
 
-  @Input()
-  set multiple(value: SupImplicitBoolean) {
-    this._multiple = supCoerceBooleanProperty(value);
-  }
+  size = this.options.size;
 
-  get multiple() {
-    return this._multiple;
-  }
+  shape = this.options.shape;
 
-  @Input()
-  set nullable(value: SupImplicitBoolean) {
-    this._nullable = supCoerceBooleanProperty(value);
-  }
+  @ViewChild(SupDropdownDirective, { static: true })
+  readonly dropdown?: SupDropdownDirective<any>;
 
-  get nullable() {
-    return this._nullable;
-  }
+  @ContentChild(SUP_LABEL, { descendants: true })
+  readonly label?: SupLabelDirective;
 
-  @Input()
-  disabled = false;
+  @ContentChild(SupDataListDirective, { read: TemplateRef })
+  readonly dataList?: TemplateRef<any>;
 
-  @Input()
-  placeholder?: string;
+  stringify = this.options.stringify;
 
-  dropped = false;
-
-  focused = false;
-
-  selection = new Set<SupOptionDirective>();
-
-  clickOutside$: Observable<Event>;
-
-  @Input()
-  set value(newValue: any) {
-    const hasAssigned = this.assignValue(newValue);
-    if (hasAssigned) {
-      this.onChange(newValue);
-    }
-  }
-
-  get value(): any {
-    return this.innerValue;
-  }
-
-  private _multiple = false;
-
-  private _nullable = false;
-
-  private innerValue: any;
-
-  private readonly cd = inject(ChangeDetectorRef);
-
-  private compareWith = (o1: any, o2: any) => o1 === o2;
-
-  public get selected(): SupOptionDirective | SupOptionDirective[] {
-    const values = Array.from(this.selection.values());
-    return this.multiple ? values || [] : values[0];
+  get computedValue(): string {
+    return this.value === null ? '' : this.stringify(this.value) || ' ';
   }
 
   constructor(
-    @Inject(SupClickOutsideHandler) outsideHandler$: Observable<Event>,
-    @Inject(SupDestroyService) private destroy$: SupDestroyService
+    @Optional()
+    @Self()
+    @Inject(NgControl)
+    control: NgControl | null,
+    @Inject(ElementRef) elementRef: ElementRef,
+    @Inject(SUP_SELECT_OPTIONS) private readonly options: SupSelectOptions,
   ) {
-    super(true);
-
-    this.clickOutside$ = runOutsideAngular(outsideHandler$).pipe(
-      skipWhile(() => !this.dropped),
-      tap(() => {
-        if (this.dropped) {
-          this.toggleDropdown(false);
-        }
-      })
-    );
+    super(control, elementRef);
   }
 
-  override ngOnInit() {
-    super.ngOnInit();
-    this.value && this.onChange(this.value);
+  checkOption(option: any): void {}
+
+  handleOption(value: TValue): void {
+    this.value = value;
+    this.dropdown?.toggle(false);
   }
 
-  override ngAfterContentInit() {
-    super.ngAfterContentInit();
-    if (this.options && this.innerValue) {
-      this.setSelectionByValue(this.innerValue);
-    }
-  }
-
-  private onChange = (val: any | null) => {};
-
-  private onTouched = () => {};
-
-  writeValue(value: any): void {
-    if (!this.nullable && value == null) {
-      return;
-    }
-
-    if (value == null || (Array.isArray(value) && !value.length)) {
-      this.unmarkAll();
-      this.selection.clear();
-    }
-    this.assignValue(value);
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  public toggleDropdown(visible: boolean): void {
-    if (this.disabled) {
-      return;
-    }
-
-    if (!visible && !this.focused) {
-      this.controlMarkAsTouched();
-      this.focused = true;
-    }
-
-    this.dropped = visible;
-    this.cd.markForCheck();
-  }
-
-  public select(option: SupOptionDirective): void {
-    if (option.disabled) {
-      return;
-    }
-    this.resolveOptionSelection(option);
-    this.propagateChanges(option.value);
-    this.dropped = false;
-  }
-
-  public deselect(option: SupOptionDirective): void {
-    this.unmarkSelected(option);
-    this.propagateChanges(option.value);
-  }
-
-  public trackByFn(index: number): number {
-    return index;
-  }
-
-  private resolveOptionStatement(option: SupOptionDirective): void {
-    if (!this.multiple) {
-      if (this.isSelected(option)) {
-        if (this._nullable) {
-          this.unmarkAll();
-        }
-        return;
-      }
-      this.unmarkAll();
-      this.markSelected(option);
+  onValueChange(value: TValue): void {
+    if (!value) {
+      this.value = null;
     } else {
-      if (this.isSelected(option)) {
-        this.unmarkSelected(option);
-        return;
-      }
-      this.markSelected(option);
+      this.value = value || null;
     }
-  }
-
-  private setSelectionByValue(value: any | any[]): void {
-    if (this.multiple && value) {
-      if (!Array.isArray(value)) {
-        throw new Error(`Value ${value} is not array in multiple selection`);
-      }
-      value.forEach((currentValue: any) =>
-        this.selectOptionByValue(currentValue)
-      );
-    } else {
-      this.selectOptionByValue(value);
-    }
-    this.cd.markForCheck();
-  }
-
-  private selectOptionByValue(value: any): void {
-    this.options?.changes
-      .pipe(startWith(null), takeUntil(this.destroy$))
-      .subscribe(() => {
-        const correspondingOption = this.options?.find(
-          (option: SupOptionDirective) => {
-            if (this.isSelected(option)) {
-              return false;
-            }
-            try {
-              return (
-                option.value != null && this.compareWith(option.value, value)
-              );
-            } catch (error) {
-              return false;
-            }
-          }
-        );
-        if (correspondingOption) {
-          this.resolveOptionSelection(correspondingOption);
-        }
-      });
-  }
-
-  private isSelected(value: SupOptionDirective): boolean {
-    return this.selection.has(value);
-  }
-
-  private markSelected(option: SupOptionDirective): void {
-    if (!this.isSelected(option)) {
-      option.select();
-      this.selection.add(option);
-      this.cd.markForCheck();
-    }
-  }
-
-  private unmarkSelected(option: SupOptionDirective): void {
-    if (this.isSelected(option)) {
-      this.selection.delete(option);
-      option.deselect();
-    }
-  }
-
-  private unmarkAll() {
-    if (!this.isEmpty()) {
-      this.selection.forEach(value => this.unmarkSelected(value));
-    }
-  }
-
-  private propagateChanges(fallbackValue: any): void {
-    let valueToEmit: any;
-    if (this.multiple) {
-      valueToEmit = (this.selected as SupOptionDirective[]).map(
-        option => option.value
-      );
-    } else {
-      valueToEmit = this.selection
-        ? (this.selected as SupOptionDirective)?.value
-        : fallbackValue;
-    }
-    this.innerValue = valueToEmit;
-    this.onChange(valueToEmit);
-    this.cd.markForCheck();
-  }
-
-  private resolveOptionSelection(...values: SupOptionDirective[]): void {
-    values.forEach(value => this.resolveOptionStatement(value));
-  }
-
-  private isEmpty(): boolean {
-    return this.selection.size === 0;
-  }
-
-  private assignValue(newValue: any | any[]): boolean {
-    if (
-      newValue !== this.innerValue ||
-      (this.multiple && Array.isArray(newValue))
-    ) {
-      if (this.options) {
-        this.setSelectionByValue(newValue);
-      }
-      this.innerValue = newValue;
-      return true;
-    }
-    return false;
-  }
-
-  private controlMarkAsTouched(): void {
-    this.onTouched();
   }
 }

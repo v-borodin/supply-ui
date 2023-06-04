@@ -11,6 +11,12 @@
      appearance="secondary"
      supIconButton>
   </a>
-  <button supButton>Licence & FAQ</button>
+  <button (click)="showModal(templateRef)" supButton>Licence & FAQ</button>
 </div>
+
+<ng-template #templateRef>
+  <div class="p-4">
+    The rights to use the library belong to Matej Bel University
+  </div>
+</ng-template>
 

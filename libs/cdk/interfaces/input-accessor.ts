@@ -1,6 +1,14 @@
 import { SupCanDisable, SupCanReadonly, SupHasId } from './elements';
 
-type InputMode = 'decimal' | 'email' | 'none' | 'numeric' | 'search' | 'tel' | 'text' | 'url';
+type InputMode =
+  | 'decimal'
+  | 'email'
+  | 'none'
+  | 'numeric'
+  | 'search'
+  | 'tel'
+  | 'text'
+  | 'url';
 
 export interface SupInputAccessor<TValue = string>
   extends SupCanDisable,
@@ -9,8 +17,6 @@ export interface SupInputAccessor<TValue = string>
   readonly inputMode: InputMode;
 
   readonly invalid: boolean;
-
-  readonly focusable: boolean;
 
   readonly value: TValue;
 

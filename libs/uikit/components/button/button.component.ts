@@ -17,7 +17,7 @@ import {
   supMixinLoadable,
 } from '@supply/cdk';
 import { SupLoaderComponent } from '@supply/uikit/components/loader';
-import { SupIconComponent } from '@supply/uikit/components';
+import { SupIconComponent } from '@supply/uikit/components/icon';
 import { NgxContentOutlet, ReflectiveContent } from '@coreteq/ngx-projection';
 
 const ButtonMixin = supMixinInteractive(

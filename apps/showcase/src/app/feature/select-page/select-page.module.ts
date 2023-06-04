@@ -3,9 +3,23 @@ import { SelectPageComponent } from './select-page.component';
 import { RouterModule } from '@angular/router';
 import { LayoutModule } from '../../layout/layout.module';
 import { SharedModule } from '../../common/shared.module';
+import { SelectBasicDemoComponent } from './select-basic-example/select-basic-demo.component';
+import { SelectBasicExampleComponent } from './select-basic-example/select-basic-example.component';
+import {
+  SupAlertModule,
+  SupDataListModule,
+  SupSelectModule,
+  SupTextFieldModule,
+} from '@supply/uikit';
+import { NgForOf } from '@angular/common';
+import { SupLabelDirective } from '@supply/uikit/directives';
 
 @NgModule({
-  declarations: [SelectPageComponent],
+  declarations: [
+    SelectPageComponent,
+    SelectBasicExampleComponent,
+    SelectBasicDemoComponent,
+  ],
   imports: [
     RouterModule.forChild([
       {
@@ -15,6 +29,12 @@ import { SharedModule } from '../../common/shared.module';
     ]),
     LayoutModule,
     SharedModule,
+    SupAlertModule.forRoot(),
+    SupDataListModule,
+    SupSelectModule,
+    SupTextFieldModule,
+    SupLabelDirective,
+    NgForOf,
   ],
 })
 export class SelectPageModule {}

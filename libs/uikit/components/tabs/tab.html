@@ -1,0 +1,24 @@
+<ng-container *ngIf="activate$ | async"/>
+<div class="sup-tab">
+
+  <span *ngIf="icon"
+          class="sup-left-mg">
+     <div class="sup-icon">
+       <ng-container *ngxContentOutlet="icon as name">
+         <i [src]="name" inline supIcon></i>
+       </ng-container>
+     </div>
+  </span>
+
+  <ng-content/>
+
+  <span *ngIf="iconRight"
+        class="sup-right-mg">
+     <div class="sup-icon">
+       <ng-container *ngxContentOutlet="iconRight as name">
+         <i [src]="name" inline supIcon></i>
+       </ng-container>
+     </div>
+  </span>
+
+</div>

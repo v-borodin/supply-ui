@@ -2,9 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { TextareaPageComponent } from './textarea-page.component';
 import { LayoutModule } from '../../layout/layout.module';
+import { SharedModule } from '../../common/shared.module';
+import { TextareaBasicDemoComponent } from './textarea-basic-example/textarea-basic-demo.component';
 
 @NgModule({
-  declarations: [TextareaPageComponent],
+  declarations: [TextareaPageComponent, TextareaBasicDemoComponent],
   imports: [
     RouterModule.forChild([
       {
@@ -13,6 +15,7 @@ import { LayoutModule } from '../../layout/layout.module';
       },
     ]),
     LayoutModule,
+    SharedModule,
   ],
 })
 export class TextareaPageModule {}

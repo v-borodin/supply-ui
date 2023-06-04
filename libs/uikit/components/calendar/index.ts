@@ -1,2 +1,3 @@
 export * from './calendar.component';
-export * from './calendar-options';
+export * from './calendar.module';
+export * from './calendar.helpers';

@@ -1,0 +1,33 @@
+<ng-container *ngIf="valueChange | async"/>
+
+<ng-content select="input"/>
+<ng-content select="select"/>
+
+<div class="sup-field-content">
+  <span *ngIf="iconLeft"
+        class="sup-left-mg">
+     <div class="sup-icon">
+       <ng-container *ngxContentOutlet="iconLeft as name">
+         <i [src]="name" inline supIcon></i>
+       </ng-container>
+     </div>
+  </span>
+
+  <div class="sup-field-area"></div>
+
+  <span class="sup-right-mg sup-icons-inline">
+    <div *ngIf="showClear"
+         (click)="clear($event)"
+         class="sup-icon sup-icon-clear">
+      <i src="appClose" inline supIcon></i>
+    </div>
+
+    <div *ngIf="loading" class="sup-icon">
+      <sup-loader [size]="'sm'"></sup-loader>
+    </div>
+
+    <div *ngIf="!!iconRight && !loading" class="sup-icon">
+      <i *ngxContentOutlet="iconRight as name" [src]="name" inline supIcon></i>
+    </div>
+  </span>
+</div>

@@ -1,153 +1,64 @@
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
+  ContentChild,
+  ElementRef,
   Inject,
-  Input,
+  Optional,
+  Self,
 } from '@angular/core';
-import { ControlValueAccessor } from '@angular/forms';
-import { Observable, skipWhile, tap } from 'rxjs';
-import {
-  runOutsideAngular,
-  SupClickOutsideHandler,
-  SupFieldSimpleDirective,
-  supIsLuxonDate,
-  supIsNativeDate,
-  supIsString,
-} from '@supply/cdk';
+import { SupAbstractNullableControl } from '@supply/cdk';
+import { NgControl } from '@angular/forms';
+import { SUP_LABEL, SupLabelDirective } from '../../directives';
 import { DateTime } from 'luxon';
-import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
-import { SupIconComponent } from '@supply/uikit/components/icon';
-import { SupCalendarComponent } from '@supply/uikit/components';
+import { ReflectiveContent } from '@coreteq/ngx-projection';
 
 @Component({
   selector: 'sup-date-input',
-  templateUrl: './date-input.component.html',
-  styleUrls: ['./date-input.component.scss'],
-  providers: [SupClickOutsideHandler],
-  standalone: true,
-  imports: [AsyncPipe, NgIf, DatePipe, SupIconComponent, SupCalendarComponent],
+  templateUrl: './date-input.html',
+  styleUrls: ['./date-input.scss'],
+  inputs: ['iconRight'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SupDateInputComponent
-  extends SupFieldSimpleDirective
-  implements ControlValueAccessor
-{
-  @Input()
-  disabled = false;
+export class SupDateInputComponent extends SupAbstractNullableControl<string> {
+  @ContentChild(SUP_LABEL, { descendants: true })
+  readonly label?: SupLabelDirective;
 
-  @Input()
-  closeAfterSelect = true;
+  iconRight: ReflectiveContent;
 
-  @Input()
-  dateFormat = `dd. MM. YYYY`;
+  hasClear = true;
 
-  @Input()
-  size = `medium`;
+  appearance = 'primary';
 
-  @Input()
-  withOverlap = false;
+  size = 'md';
 
-  @Input()
-  align = `left`;
+  shape = 'rounded';
 
-  @Input()
-  calendarWidth: number | string = `100%`;
+  open = false;
 
-  clickOutside$: Observable<Event>;
-
-  dropped = false;
-
-  @Input()
-  set value(newValue: DateTime | null) {
-    const hasAssigned = this.assignValue(newValue);
-    if (hasAssigned) {
-      this.onChange(newValue?.toISODate());
-    }
+  get computedValue(): string {
+    return this.value || '';
   }
-
-  get value(): DateTime | null {
-    return this.innerValue;
-  }
-
-  private innerValue: DateTime | null = null;
 
   constructor(
-    @Inject(ChangeDetectorRef) private changeDetector: ChangeDetectorRef,
-    @Inject(SupClickOutsideHandler) clickOutside$: Observable<Event>
+    @Optional()
+    @Self()
+    @Inject(NgControl)
+    control: NgControl | null,
+    @Inject(ElementRef) elementRef: ElementRef
   ) {
-    super(true);
-    this.clickOutside$ = runOutsideAngular(
-      clickOutside$.pipe(
-        skipWhile(() => !this.dropped),
-        tap(() => this.forceClose())
-      )
-    );
+    super(control, elementRef);
   }
 
-  writeValue(value: DateTime | Date | string): void {
-    if (value == null) {
-      const hasAssigned = this.assignValue(value);
-      if (hasAssigned) {
-        this.changeDetector.markForCheck();
-      }
-      return;
+  onValueChange(value: DateTime | null, close = false): void {
+    if (!value) {
+      this.value = null;
+    } else {
+      this.value = value.toISODate() || null;
     }
 
-    let luxonDate = null;
-
-    if (supIsString(value)) {
-      luxonDate = DateTime.fromISO(value);
+    if (close) {
+      this.open = false;
     }
-
-    if (supIsNativeDate(value)) {
-      luxonDate = DateTime.fromJSDate(value);
-    }
-
-    if (supIsLuxonDate(value)) {
-      luxonDate = value;
-    }
-
-    this.assignValue(luxonDate);
-  }
-
-  toggleDropdown(): void {
-    if (this.disabled) {
-      return;
-    }
-    this.dropped = !this.dropped;
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  onDayChange(day: DateTime): void {
-    this.value = day;
-
-    if (this.closeAfterSelect) {
-      this.forceClose();
-    }
-  }
-
-  private onChange: (value: any) => void = () => {};
-
-  private onTouched: any = () => {};
-
-  private forceClose(): void {
-    this.dropped = false;
-    this.changeDetector.markForCheck();
-  }
-
-  private assignValue(newValue: DateTime | null): boolean {
-    if (newValue !== this.innerValue) {
-      this.innerValue = newValue;
-      return true;
-    }
-    return false;
   }
 }

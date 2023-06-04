@@ -9,6 +9,7 @@ import { NgIf } from '@angular/common';
 import {
   supCoerceBooleanProperty,
   SupImplicitBoolean,
+  supMixinAppearance,
   supMixinClose,
   supMixinShape,
 } from '@supply/cdk';
@@ -18,13 +19,15 @@ import {
   FadeInOut,
 } from './notification.helpers';
 import { NgxContentOutlet, ReflectiveContent } from '@coreteq/ngx-projection';
-import { SupIconComponent } from '@supply/uikit/components';
+import { SupIconComponent } from '@supply/uikit/components/icon';
 
-const NotificationMixin = supMixinClose(
-  supMixinShape(
-    class {
-      constructor(readonly elementRef: ElementRef) {}
-    }
+const NotificationMixin = supMixinAppearance(
+  supMixinClose(
+    supMixinShape(
+      class {
+        constructor(readonly elementRef: ElementRef) {}
+      }
+    )
   )
 );
 
@@ -42,7 +45,7 @@ const STATUS_ICON = {
   selector: 'sup-notification',
   templateUrl: './notification.html',
   styleUrls: ['./notification.scss'],
-  inputs: ['status', 'shape', 'hasClose', 'hasIcon', 'icon'],
+  inputs: ['appearance', 'status', 'shape', 'hasClose', 'hasIcon', 'icon'],
   outputs: ['close'],
   host: {
     role: 'alert',
@@ -67,6 +70,8 @@ export class SupNotificationComponent extends NotificationMixin {
 
   @HostBinding('class.has-icon')
   hasIcon = this.options.hasIcon;
+
+  override appearance = this.options.appearance;
 
   override shape = this.options.shape;
 

@@ -5,16 +5,16 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { DateTime, Info, StringUnitLength } from 'luxon';
 import { NgForOf, TitleCasePipe } from '@angular/common';
-import { supIsAdjacent, supIsTheSameDate, supIsWeekend } from '@supply/cdk';
+import { supIsAdjacent, supIsTheSameDate, supIsToday, supIsWeekend } from '@supply/cdk';
+import { DateTime, Info, StringUnitLength } from 'luxon';
 import { SupCalendarGridPipe } from '@supply/uikit/pipes';
 
 @Component({
   selector: 'sup-calendar-grid',
+  standalone: true,
   templateUrl: './calendar-grid.component.html',
   styleUrls: ['./calendar-grid.component.scss'],
-  standalone: true,
   imports: [NgForOf, SupCalendarGridPipe, TitleCasePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -38,8 +38,12 @@ export class SupCalendarGridComponent {
 
   constructor() {
     this.weekdays = Info.weekdays(this.weekdayLength, {
-      locale: 'en',
+      locale: 'sk',
     });
+  }
+
+  isToday(day: DateTime): boolean {
+    return supIsToday(day);
   }
 
   isPressed(day: DateTime): boolean | null {

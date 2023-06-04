@@ -126,7 +126,7 @@
       background-color: var(--sup-color-scale-white);
 
       &::after {
-        color: var(--sup-color-accent);
+        color: var(--sup-color-btn-primary-bg);
         border-width: 1px;
       }
     }
@@ -180,7 +180,7 @@
 
     @include focus {
       background-color: var(--sup-color-scale-white);
-      border-color: var(--sup-color-accent);
+      border-color: var(--sup-color-btn-primary-bg);
     }
 
     @include readonly {
